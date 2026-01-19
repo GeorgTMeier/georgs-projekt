@@ -1,0 +1,25 @@
+<div class="card" style="padding: 14px;">
+  <div class="sub" style="margin-bottom: 10px;">
+    Formular-Edit für <code><%= h(table_name) %></code> (Row <code><%= h(row[primary_key.to_sym]) %></code>)
+  </div>
+
+  <form method="post" action="/edit/<%= h(row[primary_key.to_sym]) %>">
+    <div style="display: grid; grid-template-columns: 220px 1fr; gap: 10px 12px; align-items: center;">
+      <% columns.each do |col| %>
+        <label class="sub"><code><%= h(col) %></code></label>
+        <% if col == primary_key %>
+          <input disabled value="<%= h(display_value(row[col.to_sym])) %>" style="width: 100%; padding: 8px 10px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.03); color: rgba(255,255,255,0.75);" />
+        <% else %>
+          <input name="<%= h(col) %>" value="<%= h(display_value(row[col.to_sym])) %>" style="width: 100%; padding: 8px 10px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.92);" />
+        <% end %>
+      <% end %>
+    </div>
+
+    <div style="margin-top: 14px; display: flex; gap: 10px; align-items: center;">
+      <button type="submit" style="padding: 8px 12px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.15); background: rgba(45,212,191,0.18); color: white; cursor: pointer;">
+        Speichern
+      </button>
+      <a href="/" class="sub">zurück</a>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,15 @@
+<div class="card" style="padding: 14px;">
+  <div style="font-weight: 700; margin-bottom: 8px;">Datenbankverbindung fehlgeschlagen</div>
+  <div class="sub" style="margin-bottom: 12px;">
+    <code><%= error_message %></code>
+  </div>
+
+  <div class="sub" style="line-height: 1.6;">
+    Prüfe deine ENV‑Variablen (entweder <code>DATABASE_URL</code> oder <code>PGHOST/PGPORT/PGDATABASE/PGUSER/PGPASSWORD</code>).
+    Aktuelle App‑Konfiguration: Tabelle <code><%= table_name %></code>, PK <code><%= primary_key %></code>.
+  </div>
+
+  <div style="margin-top: 12px;">
+    <a href="/" class="sub">neu laden</a>
+  </div>
+</div>
