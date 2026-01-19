@@ -1,0 +1,36 @@
+<div class="card">
+  <div class="table-wrap">
+    <table aria-label="Daten-Grid">
+      <thead>
+        <tr>
+          <% columns.each do |col| %>
+            <th><%= col %></th>
+          <% end %>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% rows.each do |row| %>
+          <% pk_val = row[primary_key.to_sym] %>
+          <tr data-id="<%= pk_val %>">
+            <% columns.each do |col| %>
+              <% val = row[col.to_sym] %>
+              <% if col == primary_key %>
+                <td class="pk"><%= val %></td>
+              <% else %>
+                <td data-col="<%= col %>" contenteditable="true"><%= val %></td>
+              <% end %>
+            <% end %>
+            <td class="pk" style="white-space: nowrap;">
+              <a href="/edit/<%= pk_val %>">Edit</a>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="sub" style="margin-top: 10px;">
+  Zeige max. <%= limit %> Zeilen.
+</div>
