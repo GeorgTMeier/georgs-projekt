@@ -1,6 +1,9 @@
-# Postgres Grid Editor (Ruby)
+# Grid Editor (Ruby) – Postgres oder REST
 
-Kleine Ruby‑Webapp, die sich mit einer PostgreSQL‑Datenbank verbindet, eine Tabelle als Grid im Browser anzeigt und Inline‑Edits (Zellen bearbeiten) direkt zurück in die DB speichert.
+Kleine Ruby‑Webapp, die Daten als Grid im Browser anzeigt und Inline‑Edits (Zellen bearbeiten) speichern kann.
+
+- **Postgres‑Modus**: direkte DB‑Verbindung (`app.rb`)
+- **REST‑Modus**: Daten via REST‑API laden & zurückschreiben (`rest_app.rb`)
 
 ## Voraussetzungen
 
@@ -15,7 +18,7 @@ Im Projektordner:
 bundle install
 ```
 
-## Konfiguration (ENV)
+## Postgres‑Modus (app.rb) – Konfiguration (ENV)
 
 Du kannst entweder `DATABASE_URL` setzen **oder** die `PG*` Variablen.
 
@@ -64,6 +67,45 @@ Dann im Browser öffnen: `http://127.0.0.1:4567/`
 
 - Grid: Zelle anklicken → ändern → Fokus verlassen (oder Enter) → wird gespeichert
 - Fallback: Pro Zeile gibt es einen „Edit“-Link (Formularansicht)
+
+## REST‑Modus (rest_app.rb)
+
+Der REST‑Modus lädt Zeilen per `GET` von einer API und speichert Edits per `PATCH` oder `PUT` zurück zur API.
+
+### Konfiguration (ENV)
+
+- `API_BASE_URL` (**required**) z.B. `https://api.example.com/`
+- `LIST_PATH` (default: `/items`) – `GET` Liste
+- `UPDATE_PATH` (default: `/items/%{id}`) – Update‑Endpoint (Template)
+- `SHOW_PATH` (default: `UPDATE_PATH`) – `GET` Single‑Row (für Formularansicht)
+- `UPDATE_METHOD` (default: `PATCH`) – `PATCH` oder `PUT`
+- `PRIMARY_KEY` (default: `id`) – Feldname der ID
+- `LIMIT` (default: `200`) – wird als `?limit=` angehängt, falls `LIST_PATH` noch kein `?` hat
+- Auth optional:
+  - `API_TOKEN` → `Authorization: Bearer <token>`
+  - `API_KEY` + `API_KEY_HEADER` (default Header: `X-API-Key`)
+
+Optional:
+
+- `COLUMNS` – Spaltenliste (CSV), z.B. `id,name,email`
+
+### Start
+
+```bash
+bundle exec ruby rest_app.rb
+```
+
+Beispiel PowerShell:
+
+```powershell
+$env:API_BASE_URL="https://api.example.com/"
+$env:LIST_PATH="/users"
+$env:UPDATE_PATH="/users/%{id}"
+$env:PRIMARY_KEY="id"
+$env:UPDATE_METHOD="PATCH"
+$env:API_TOKEN="..."
+bundle exec ruby rest_app.rb
+```
 
 ## Beispiel‑Tabelle (optional)
 

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title><%= table_name %> – Grid Editor</title>
+    <title><%= h(table_name) %> – Grid Editor</title>
     <style>
       :root {
         --bg: #0b1020;
@@ -100,13 +100,13 @@
       code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
     </style>
   </head>
-  <body data-table="<%= table_name %>" data-pk="<%= primary_key %>">
+  <body data-table="<%= h(table_name) %>" data-pk="<%= h(primary_key) %>">
     <div class="wrap">
       <div class="top">
         <div>
-          <h1>Postgres Grid Editor</h1>
+          <h1>Grid Editor</h1>
           <div class="sub">
-            Tabelle: <code><%= table_name %></code> · Primary Key: <code><%= primary_key %></code>
+            Quelle: <code><%= h(table_name) %></code> · Primary Key: <code><%= h(primary_key) %></code>
           </div>
         </div>
         <div class="pill" id="saveStatus" title="Speicherstatus">

@@ -5,6 +5,9 @@ require "bigdecimal"
 require "date"
 require "time"
 
+require_relative "helpers"
+helpers ViewHelpers
+
 set :bind, ENV.fetch("BIND", "127.0.0.1")
 set :port, ENV.fetch("PORT", "4567").to_i
 
@@ -21,25 +24,12 @@ def db
   end
 
   # Fallback: build connection from PG* env vars
-#  host = ENV.fetch("PGHOST", "127.0.0.1")
-#  port = ENV.fetch("PGPORT", "5432").to_i
-#  database = ENV.fetch("PGDATABASE")
-#  user = ENV.fetch("PGUSER")
-#  password = ENV["PGPASSWORD"]
-         
-  # gtm Setze statisch  
-  host = "192.168.207.160"
-  port = "5432"                                 
-  database = "SENATRA"
-  port = "5432"       
-  user = "postgres"
-  password = "Ole1brumm"
+  host = ENV.fetch("PGHOST", "127.0.0.1")
+  port = ENV.fetch("PGPORT", "5432").to_i
+  database = ENV.fetch("PGDATABASE")
+  user = ENV.fetch("PGUSER")
+  password = ENV["PGPASSWORD"]
 
-# andere Datenbank
-  database = "RK2"
-  
-
-  
   @db = Sequel.connect(
     adapter: "postgres",
     host: host,
