@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><note xmlns="http://www.lotus.com/dxl" class="form" maintenanceversion="2.0" replicaid="C125899B00337147" version="12.0">
+<noteinfo noteid="3a2" sequence="5014" unid="422FEECFACF0DDAA852566F10060E0CB">
+<created><datetime>19990106T123810,03-05</datetime></created>
+<modified><datetime dst="true">20230424T112154,91+02</datetime></modified>
+<revised><datetime>20220519T113214,57+00</datetime></revised>
+<lastaccessed><datetime dst="true">20230424T112154,90+02</datetime></lastaccessed>
+<addedtofile><datetime dst="true">20230424T112154,90+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Domino Template Development/O=Domino</name></updatedby>
+<revisions><datetime>20060302T163212,07-05</datetime><datetime>20070202T143904,68-05</datetime><datetime dst="true">20110919T143200,60-04</datetime><datetime>20120417T103148,82+08</datetime></revisions>
+<wassignedby><name>CN=Domino Template Development/O=Domino</name></wassignedby>
+<item name="$ImagesWide" sign="true"><number>1</number></item>
+<item name="$ImagesHigh" sign="true"><number>1</number></item>
+<item name="$ImagesColorize" sign="true"><number>0</number></item>
+<item name="$TITLE" sign="true"><textlist><text>Circuits.gif</text><text>circuit</text></textlist></item>
+
+<item name="$ImageNames" sign="true"><text>Circuits.gif</text></item>
+<item name="$LANGUAGE" sign="true"><text>en</text></item>
+<item name="$EditFilePath" sign="true"><text>C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\notesC41F34\~Circuits.gif</text></item>
+<item name="$Flags"><text>34Ci</text></item></note>

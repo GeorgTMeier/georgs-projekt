@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><note xmlns="http://www.lotus.com/dxl" class="form" maintenanceversion="2.0" replicaid="C125899B00337147" version="12.0">
+<noteinfo noteid="56e" sequence="5012" unid="F67E1BD317B51D99852566CD007A3B64">
+<created><datetime>19981201T171505,96-05</datetime></created>
+<modified><datetime dst="true">20230424T112156,06+02</datetime></modified>
+<revised><datetime>20220519T113221,07+00</datetime></revised>
+<lastaccessed><datetime dst="true">20230424T112156,05+02</datetime></lastaccessed>
+<addedtofile><datetime dst="true">20230424T112156,05+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Domino Template Development/O=Domino</name></updatedby>
+<revisions><datetime>20060302T163212,02-05</datetime><datetime>20070202T143907,80-05</datetime></revisions>
+<wassignedby><name>CN=Domino Template Development/O=Domino</name></wassignedby>
+<item name="$ImagesWide" sign="true"><number>1</number></item>
+<item name="$ImagesHigh" sign="true"><number>1</number></item>
+<item name="$ImagesColorize" sign="true"><number>0</number></item>
+
+<item name="$ImageNames" sign="true"><text>connection2.gif</text></item>
+<item name="$Comment" sign="true"><text>used for connection wizard</text></item>
+<item name="$TITLE" sign="true"><textlist><text>connectionwizard.gif</text><text>connectionwizard</text></textlist></item>
+<item name="$Flags"><text>34Ci</text></item>
+<item name="$LANGUAGE" sign="true"><text>en</text></item></note>

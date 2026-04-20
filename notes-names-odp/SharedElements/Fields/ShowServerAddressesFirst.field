@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note class='sharedfield' xmlns='http://www.lotus.com/dxl' version='12.0'
+ maintenanceversion='2.0' replicaid='C125899B00337147'>
+<noteinfo noteid='152' unid='545D9B773480BD9D852579A30042907A' sequence='10'>
+<created><datetime>20120213T070703,62-05</datetime></created>
+<modified><datetime dst='true'>20230424T112153,56+02</datetime></modified>
+<revised><datetime>20220519T113207,48+00</datetime></revised>
+<lastaccessed><datetime dst='true'>20230424T112153,55+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20230424T112153,55+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Domino Template Development/O=Domino</name></updatedby>
+<revisions><datetime>20120213T070703,68-05</datetime><datetime>20120213T071031,07-05</datetime><datetime
+>20120215T115424,69-05</datetime></revisions>
+<wassignedby><name>CN=Domino Template Development/O=Domino</name></wassignedby>
+<item name='$HTMLCode' sign='true'>
+<rawitemdata type='1'>
+</rawitemdata></item>
+<item name='$TITLE'><text>ShowServerAddressesFirst</text></item>
+<item name='$INFO' sign='true'>
+<rawitemdata type='1'>
+hhgBAIAAAAAAgAAAAQABAP///wAQAAAA
+</rawitemdata></item>
+<item name='$Flags'><text/></item>
+<item name='$DesignerVersion' sign='true'><text>8.5.3</text></item>
+<item name='ShowServerAddressesFirst' placeholder='true'>
+<rawitemdata type='0'>
+</rawitemdata></item>
+<item name='$FIELDS'><text>ShowServerAddressesFirst</text></item>
+<item name='$BODY' summary='true' sign='true'>
+<rawitemdata type='1'>
+gQKC/1oAAQAAAAAAAAAAAKAFAACgBQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAABAAAAAJSHAAAAAAAAAAAAAAAAAQAAAAQAAACDBAEAhf8IAAEAAArdBgAAiv/+/1AA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4AHgAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAALD/FAAAAAQgAAAAAAAAAAAAAAAAiv/OAIpCAQUCIAIAAAAAAAAC
+AQAACQAAYgAAAAAAGAAAAC8AYgAAAFAABQAOAE1haWxBZGRyZXNzaW5nAQABADMACwKvAC4ACgAB
+AAAArgAkAAUAGABTaG93U2VydmVyQWRkcmVzc2VzRmlyc3SuAAQAtQMDAAcAEAAJAAkzUzRTNlM4
+UwBTaG93U2VydmVyQWRkcmVzc2VzRmlyc3QBACsAU2hvdyBzZXJ2ZXIgYWRkcmVzc2VzIGZpcnN0
+IEluIHR5cGUtYWhlYWR8MQDeBgAAiv+F/wgAAQAACg==
+</rawitemdata></item>
+<item name='$LANGUAGE' sign='true'><text>en</text></item></note>
+

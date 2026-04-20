@@ -1,0 +1,59 @@
+' ============================================================================
+' Agent_SaveRow.lss
+' Agent "save row" / "update row": Liest Preview-Felder t00..t05 und führt
+' UPDATE public.buchpos aus (pk1 aus t00, betrag aus t01, gewerk t02, bvh t03, art t04, test t05).
+' Voraussetzung: Script-Bibliothek PGData eingebunden.
+' ============================================================================
+
+Option Public
+Option Declare
+
+Sub Initialize
+    On Error GoTo errInit
+    Dim session As New NotesSession
+    Dim doc As NotesDocument
+    Dim pk1 As Integer, betrag As Double
+    Dim bvh As String, test As String, art As String, gewerk As String
+    Dim v As Variant
+
+    Set doc = session.DocumentContext
+    If doc Is Nothing Then
+        Messagebox "Kein Dokument-Kontext.", 48, "SaveRow"
+        Exit Sub
+    End If
+
+    v = doc.GetItemValue("t00")
+    If IsEmpty(v) Or Not IsNumeric(v(0)) Then
+        Messagebox "t00 (pk1) muss eine Zahl sein.", 48, "SaveRow"
+        Exit Sub
+    End If
+    pk1 = CInt(v(0))
+
+    v = doc.GetItemValue("t01")
+    If IsEmpty(v) Or Not IsNumeric(v(0)) Then
+        Messagebox "t01 (Betrag) muss eine Zahl sein.", 48, "SaveRow"
+        Exit Sub
+    End If
+    Dim s As String
+    s = CStr(v(0))
+    If Instr(s, ",") > 0 Then s = Left(s, Instr(s, ",") - 1) + "." + Mid(s, Instr(s, ",") + 1)
+    betrag = CDbl(s)
+
+    bvh = doc.GetItemValue("t03")(0)
+    test = doc.GetItemValue("t05")(0)
+    art = doc.GetItemValue("t04")(0)
+    gewerk = doc.GetItemValue("t02")(0)
+    If IsNull(bvh) Then bvh = ""
+    If IsNull(test) Then test = ""
+    If IsNull(art) Then art = ""
+    If IsNull(gewerk) Then gewerk = ""
+
+    Call UpdateBuchposRow(pk1, bvh, test, betrag, art, gewerk)
+    Call doc.ReplaceItemValue("Event", "zelle geändert")
+    doc.Save True, False
+    Messagebox "Zeile gespeichert.", 64, "SaveRow"
+    Exit Sub
+
+errInit:
+    Messagebox "SaveRow Fehler: " & Err() & " " & Error$, 48, "Agent"
+End Sub

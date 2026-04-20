@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><note xmlns="http://www.lotus.com/dxl" class="form" maintenanceversion="2.0" replicaid="C125899B00337147" version="12.0">
+<noteinfo noteid="4da" sequence="21" unid="B397ED379F2CC4C7852572F00056D7C6">
+<created><datetime dst="true">20070604T114833,34-04</datetime></created>
+<modified><datetime dst="true">20230424T112155,69+02</datetime></modified>
+<revised><datetime>20220519T113218,87+00</datetime></revised>
+<lastaccessed><datetime dst="true">20230424T112155,68+02</datetime></lastaccessed>
+<addedtofile><datetime dst="true">20230424T112155,68+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Domino Template Development/O=Domino</name></updatedby>
+<revisions><datetime dst="true">20070604T114833,54-04</datetime><datetime dst="true">20070607T095659,03-04</datetime><datetime dst="true">20070607T095732,56-04</datetime><datetime dst="true">20070607T095755,76-04</datetime><datetime dst="true">20080616T113408,05-04</datetime><datetime dst="true">20080616T113550,15-04</datetime><datetime dst="true">20080616T113556,85-04</datetime><datetime dst="true">20110919T143158,14-04</datetime><datetime dst="true">20190513T032758,42-04</datetime><datetime dst="true">20190513T032832,12-04</datetime><datetime dst="true">20190513T032948,37-04</datetime><datetime dst="true">20190516T040622,27-04</datetime><datetime dst="true">20190807T050552,59-04</datetime></revisions>
+<wassignedby><name>CN=Domino Template Development/O=Domino</name></wassignedby>
+<item name="$TITLE"><text>WSDL.properties</text></item>
+<item name="$FlagsExt" sign="true"><text>D</text></item>
+<item name="$FileModDT" sign="true"><datetime dst="true">20080616T114007,57-04</datetime></item>
+<item name="$EditFilePath" sign="true"><text>C:\DOCUME~1\dbranco\LOCALS~1\Temp\notes6C3E04\~WSDL2.properties</text></item>
+<item name="$Flags"><text>345CgQ</text></item>
+<item name="$DesignerVersion" sign="true"><text>8.5.3</text></item>
+
+
+<item name="$FileNames" sign="true"><text>WSDL.properties</text></item>
+<item name="$LANGUAGE" sign="true"><text>en</text></item></note>

@@ -1,0 +1,46 @@
+'++LotusScript Development Environment:2:5:(Options):0:74
+Option Public
+
+'++LotusScript Development Environment:2:5:(Forward):0:1
+Declare Sub Initialize
+Declare Sub GetRLANList(note As notesdocument, vDriverList() As Variant, vDrivers() As Variant, vDisplayList() As Variant)
+
+'++LotusScript Development Environment:2:5:(Declarations):0:2
+
+'++LotusScript Development Environment:2:2:Initialize:1:10
+Sub Initialize
+	
+End Sub
+
+'++LotusScript Development Environment:2:2:GetRLANList:1:8
+Sub GetRLANList(note As notesdocument, vDriverList() As Variant, vDrivers() As Variant, vDisplayList() As Variant)
+	Dim x As Integer
+	Dim y As Integer
+	Dim flag As String
+	Dim db As NotesDatabase
+	
+	y = 0
+	x = 0
+	
+	Set db = note.ParentDatabase
+	
+	'On Error Resume Next
+	Forall Forms In db.Forms
+		If Forms.IsSubForm Then
+			If Left(Forms.Name, 5) = "$RLAN" Then
+				Redim Preserve vDriverList(x)
+				Redim Preserve vDrivers(x)
+				Redim Preserve vDisplayList(x)
+				Aliases = Forms.Aliases
+				vDriverList(x) = Aliases(0) & "|" & Aliases(1)
+				vDisplayList(x) = Aliases(0)
+				vDrivers(x)= Aliases(1)                    
+				x = x + 1
+			End If     
+		End If
+	End Forall
+	
+'	For x = 0 To Ubound(vDriverlist)
+'		Print vDriverList(x)
+'	Next
+End Sub

@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note class='form' xmlns='http://www.lotus.com/dxl' version='12.0' maintenanceversion='2.0'
+ replicaid='C125899B00337147'>
+<noteinfo noteid='4d2' unid='B0955657361E3D91852569E6004572C8' sequence='59'>
+<created><datetime>20010201T073833,68-05</datetime></created>
+<modified><datetime dst='true'>20230424T112155,67+02</datetime></modified>
+<revised><datetime>20220519T113218,77+00</datetime></revised>
+<lastaccessed><datetime dst='true'>20230424T112155,66+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20230424T112155,66+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Domino Template Development/O=Domino</name></updatedby>
+<revisions><datetime dst='true'>20060816T083448,85-04</datetime><datetime
+ dst='true'>20070419T141501,04-04</datetime></revisions>
+<wassignedby><name>CN=Domino Template Development/O=Domino</name></wassignedby>
+<item name='$LANGUAGE' sign='true'><text>en</text></item>
+<item name='$OpenAsCompApp' sign='true'><text>0</text></item>
+<item name='$TITLE' sign='true'><text>InteriorContacts|InteriorContacts</text></item>
+<item name='$Comment' sign='true'><text/></item>
+<item name='$FrameSet' sign='true'>
+<rawitemdata type='1'>
+7/8YAAIACQAAAAAAAAAAAAAAAAAAAAAA8P8+AEUAAAAAAAAAAAABAAEAAAAAAAUAAAAAAAUAAAAA
+AAEAAgAAAAAAAQAAAAAAAAADAAEAAQDOAAMAAQDw/z4AAQAAAAAAAAAAAAEAAQAAAAAABQAAAAAA
+BQAAAAAAAgABAAAAAAAFAAAAAAAAAAEAMgADAF4AAwABAPH/QgARAAAAAEAAAQIAAQABAAAAAAAO
+AAAAAAABAAAAAAAAAE5vdGVzTmF2aWdhdG9yAQD///9dAQAACgEAAAAAXfb/NwAAAAAAAwADABUA
+AAAAAAAAAAAAAAAAAAAAAAAAAABTd2l0Y2hlckZvcm1fQ29udGFjdHM/8P8+AAEAAAAAAAAAAAAB
+AAEAAAAAAAUAAAAAAAUAAAAAAAEAAgAAAAAABQAAAAAAAAADAAEAAQCxAAEAlADx/0sAEQAAAABA
+AAADAAEAAQAAAAAADgAAAAkAAQAAAAAAAABOb3Rlc05hdmlnYXRvck5vdGVzVmlldwEA////XQEA
+AAoBAAAAAF0/9v8zAAAAAAADAAYAEQAAAAAAAAAAAAAAAAAAAAAAAAAAAENvbnRhY3RzQW5kUGlj
+a2VyP/D/PgABAAAAAAAAAAAAAQABAAAAAAAFAAAAAAAFAAAAAAACAAEAAAAAAAUAAAAAAAAAAwAB
+AAEAEgADAAEA8f80ABEAAAAAQAABAgABAAEAAAAAAAAAAAAAAAEAAAAAAAAAAQD///9dAQAACgEA
+AAAAXfb/ggABAAAAAwADAGAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAoABAAAAD4A+wBxAa8AMgAY
+AAEADgAoTm9UYWJOYXZGb3JtKa4AGgABAA0AQWRkcmVzc1BpY2tlcgCuAAQAtQMDAAcADAAFAAk0
+UzZTABAAAAAOAAEABABGb3JtAwDx/zQAEQAAAABAAAECAAEAAQAAAAAAAAAAAAAAAQAAAAAAAAAB
+AP///10BAAAKAQAAAABd9v8xAAAAAAADAAcADwAAAAAAAAAAAAAAAAAAAAAAAAAAAERhcmsgQ29s
+b3IgUGFnZT/x/zQAAQAAAABAAAADAAEAAQAAAAAAAAAAAAAAAQAAAAAAAAABAP///10BAAAKAQAA
+AABd9v81AAAAAAADAAYAEwAAAAAAAAAAAAAAAAAAAAAAAAAAAENvbnRhY3RzIFZpZXcgRnJhbWU/
+</rawitemdata></item>
+<item name='$Flags'><text>#4C</text></item>
+<item name='$DesignerVersion' sign='true'><text>8</text></item></note>
+

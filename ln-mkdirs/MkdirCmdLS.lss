@@ -1,0 +1,128 @@
+' ============================================================================
+' MkdirCmdLS.lss – LotusScript-Klasse zum Erzeugen einer CMD-Textdatei,
+' die unter Windows mit dem mkdir-Befehl Verzeichnisse anlegt.
+'
+' Nutzung in Notes:
+' 1. Erstellen → Design → Script-Bibliothek, Name z. B. "MkdirCmdLS"
+' 2. Inhalt dieser Datei einfügen und speichern
+' 3. Im Agent oder Formular die Bibliothek einbinden, dann z. B.:
+'
+'   Dim m As New MkdirCmd
+'   Call m.Init
+'   Call m.AppendDir("C:\Projekt\Ordner1")
+'   Call m.AppendDir("C:\Projekt\Ordner2\Unterordner")
+'   Call m.WriteCmdFile("C:\Temp\erzeuge_verzeichnisse.cmd")
+'   ' Anschließend die CMD-Datei unter Windows ausführen
+' ============================================================================
+
+Option Public
+Option Declare
+
+' ----------------------------------------------------------------------------
+' Klasse: MkdirCmd – sammelt Verzeichnispfade und schreibt eine CMD-Datei
+' ----------------------------------------------------------------------------
+Public Class MkdirCmd
+    Private dirs() As String
+    Private dirCount As Long
+    Private xcopySources() As String
+    Private xcopyDests() As String
+    Private xcopyCount As Long
+
+    Public Sub New()
+        Init
+    End Sub
+
+    ''' Initialisiert die Listen (mkdir und xcopy) – leert sie bei erneuter Nutzung.
+    Public Sub Init()
+        dirCount = 0
+        ReDim dirs(0)
+        xcopyCount = 0
+        ReDim xcopySources(0)
+        ReDim xcopyDests(0)
+    End Sub
+
+    ''' Fügt einen Verzeichnispfad hinzu (wird in der CMD-Datei per mkdir angelegt).
+    ''' path: voller oder relativer Pfad, z. B. "C:\Temp\NeuerOrdner"
+    ''' Unnötige Backslashes (doppelte, abschließende) werden entfernt.
+    Public Sub AppendDir(path As String)
+        Dim p As String
+        p = Trim(path)
+        If p = "" Then Exit Sub
+        p = NormalizePath(p)
+        If p = "" Then Exit Sub
+        dirCount = dirCount + 1
+        ReDim Preserve dirs(dirCount - 1)
+        dirs(dirCount - 1) = p
+    End Sub
+
+    ''' Entfernt doppelte Backslashes und abschließende Backslashes (außer bei "X:\").
+    Private Function NormalizePath(s As String) As String
+        Dim pos As Long
+        ' Doppelte Backslashes durch einfachen ersetzen
+        Do While Instr(s, "\\") > 0
+            pos = Instr(s, "\\")
+            s = Left(s, pos - 1) & "\" & Mid(s, pos + 2)
+        Loop
+        ' Abschließende Backslashes entfernen, aber "X:\" (Laufwerkswurzel) beibehalten
+        Do While Len(s) > 3 And Right(s, 1) = "\"
+            s = Left(s, Len(s) - 1)
+        Loop
+        NormalizePath = s
+    End Function
+
+    ''' Fügt einen xcopy-Aufruf hinzu (Quellverzeichnis → Zielverzeichnis).
+    ''' sourceDir: Quellpfad, destDir: Zielpfad. Beide werden wie bei AppendDir normalisiert.
+    Public Sub AppendXcopy(sourceDir As String, destDir As String)
+        Dim src As String, dst As String
+        src = NormalizePath(Trim(sourceDir))
+        dst = NormalizePath(Trim(destDir))
+        If src = "" Or dst = "" Then Exit Sub
+        xcopyCount = xcopyCount + 1
+        ReDim Preserve xcopySources(xcopyCount - 1)
+        ReDim Preserve xcopyDests(xcopyCount - 1)
+        xcopySources(xcopyCount - 1) = src
+        xcopyDests(xcopyCount - 1) = dst
+    End Sub
+
+    ''' Schreibt eine CMD-Datei: mkdir für alle AppendDir-Einträge,
+    ''' xcopy für alle AppendXcopy-Einträge.
+    ''' filePath: voller Pfad der Zieldatei, z. B. "C:\Temp\mkdirs.cmd"
+    ''' Unter Windows: mkdir erzeugt bei Bedarf übergeordnete Ordner.
+    Public Sub WriteCmdFile(filePath As String)
+        On Error GoTo errWrite
+        Dim i As Long
+        Dim f As Integer
+        Dim line1 As String
+
+        If dirCount = 0 And xcopyCount = 0 Then
+            Exit Sub
+        End If
+
+        f = FreeFile()
+        Open filePath For Output As #f
+        Print #f, "@echo off"
+        Print #f, "rem Erzeugt mit MkdirCmdLS – " & Format(Now(), "yyyy-mm-dd hh:nn:ss")
+        Print #f, ""
+        If dirCount > 0 Then
+            For i = 0 To dirCount - 1
+                line1 = "mkdir """ & dirs(i) & """"
+                Print #f, line1
+            Next
+            If xcopyCount > 0 Then Print #f, ""
+        End If
+        If xcopyCount > 0 Then
+            For i = 0 To xcopyCount - 1
+                line1 = "xcopy """ & xcopySources(i) & """ """ & xcopyDests(i) & """ /E /I /Y"
+                Print #f, line1
+            Next
+        End If
+        Close #f
+        Exit Sub
+errWrite:
+        If f > 0 Then
+            On Error Resume Next
+            Close #f
+        End If
+        Error Err, Error$
+    End Sub
+End Class

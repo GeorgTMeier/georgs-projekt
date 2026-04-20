@@ -4,6 +4,8 @@ require "json"
 require "bigdecimal"
 require "date"
 require "time"
+require "fileutils"
+require "securerandom"
 
 require_relative "helpers"
 helpers ViewHelpers
@@ -151,6 +153,36 @@ patch "/api/rows/:id" do
   halt 404, { error: "Row not found" }.to_json if affected == 0
 
   { ok: true }.to_json
+end
+
+post "/upload-photo" do
+  content_type :json
+
+  uploaded = params[:photo]
+  halt 400, { error: "No photo uploaded" }.to_json unless uploaded && uploaded[:tempfile]
+
+  tempfile = uploaded[:tempfile]
+  original_name = uploaded[:filename].to_s
+  safe_ext = File.extname(original_name).downcase
+  safe_ext = ".jpg" if safe_ext.empty?
+
+  allowed_exts = %w[.jpg .jpeg .png .webp]
+  halt 400, { error: "Unsupported file type" }.to_json unless allowed_exts.include?(safe_ext)
+
+  tempfile.rewind
+  bytes = tempfile.size
+  max_bytes = 300 * 1024
+  halt 400, { error: "File too large: #{bytes} bytes (max #{max_bytes})" }.to_json if bytes > max_bytes
+
+  upload_dir = File.expand_path("uploads", settings.root)
+  FileUtils.mkdir_p(upload_dir)
+
+  filename = "photo-#{Time.now.to_i}-#{SecureRandom.hex(6)}#{safe_ext}"
+  target = File.join(upload_dir, filename)
+  tempfile.rewind
+  File.binwrite(target, tempfile.read)
+
+  { ok: true, filename: filename, bytes: bytes }.to_json
 end
 
 error Sequel::DatabaseError do

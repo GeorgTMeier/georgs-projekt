@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note class='filter' xmlns='http://www.lotus.com/dxl' version='12.0' maintenanceversion='2.0'
+ replicaid='C125899B00337147'>
+<noteinfo noteid='21e' unid='BF9A8A22F490CB2B852571BE004A63D8' sequence='7'>
+<created><datetime dst='true'>20060802T093232,24-04</datetime></created>
+<modified><datetime dst='true'>20230424T112153,95+02</datetime></modified>
+<revised><datetime>20220519T113209,57+00</datetime></revised>
+<lastaccessed><datetime dst='true'>20230424T112153,94+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20230424T112153,94+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Domino Template Development/O=Domino</name></updatedby>
+<wassignedby><name>CN=Domino Template Development/O=Domino</name></wassignedby>
+<item name='$LANGUAGE' sign='true'><text>en</text></item>
+<item name='$TITLE' sign='true'><text>(Restore Document)</text></item>
+<item name='$AssistType' sign='true'><number>65412</number></item>
+<item name='$AssistLastRun' sign='true'>
+<rawitemdata type='400'>
+AAAAAAAAAAA=
+</rawitemdata></item>
+<item name='$AssistDocCount' sign='true'><number>0</number></item>
+<item name='$FlagsExt' sign='true'><text/></item>
+<item name='$AssistFlags' sign='true'><text>EHs</text></item>
+<item name='$AssistTrigger' sign='true'><text>4</text></item>
+<item name='$AssistInfo' sign='true'>
+<rawitemdata type='11'>
+AQAEAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+</rawitemdata></item>
+<item name='$AssistQuery' sign='true'>
+<rawitemdata type='f'>
+gQYAAAAA
+</rawitemdata></item>
+<item name='$AssistAction' sign='true'>
+<rawitemdata type='10'>
+gQKE/z4AAAAAADQANAAIABIAAgAmHAAAAAAAAO0BAwAHAAwABQAJMFMwRQAAAAgAZgADAAcADAAF
+AAkwUlJTAA==
+</rawitemdata></item>
+<item name='$AssistAction_Ex' sign='true'>
+<rawitemdata type='14'>
+gQI=
+</rawitemdata></item>
+<item name='$Restricted' sign='true'><number>0</number></item>
+<item name='$Flags'><text>f3</text></item>
+<item name='$DesignerVersion' sign='true'><text>6</text></item>
+<item name='$AssistRunInfo' summary='true'>
+<rawitemdata type='3'>
+BgAAAgAACAAaAgAAAAAAAAUAAAAwAAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAA+I9vALdxJYUAAAAA9GN1ALVxJYXY0G4AtXElhQAAAAAAAAAAAAAAAAAAAAAAAAAAU3RhcnRl
+ZCBydW5uaW5nIGFnZW50ICdSZXN0b3JlIERvY3VtZW50JyBvbiAwNy8yNi8yMDA2IDA0OjE4OjMz
+IFBNDQoxIGRvY3VtZW50KHMpIHdlcmUgbW9kaWZpZWQgYnkgZm9ybXVsYQ0KRG9uZSBydW5uaW5n
+IGFnZW50ICdSZXN0b3JlIERvY3VtZW50JyBvbiAwNy8yNi8yMDA2IDA0OjE4OjMzIFBNDQoADQqq
+qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
+qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
+qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
+qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
+qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
+qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
+qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
+qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
+qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
+qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
+qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
+qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
+qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
+qqqqqqqqqqqqqqqqqqqqqqqq
+</rawitemdata></item>
+<item name='$POID'><datetime dst='true'>20060620T134941,22-04</datetime></item>
+<item name='$AssistVersion'><datetime>20220519T113209,52+00</datetime></item></note>
+

@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note class='form' xmlns='http://www.lotus.com/dxl' version='12.0' maintenanceversion='2.0'
+ replicaid='C125899B00337147'>
+<noteinfo noteid='37e' unid='39147A321CEE1639852569E6005A4942' sequence='27'>
+<created><datetime>20010201T112609,94-05</datetime></created>
+<modified><datetime dst='true'>20230424T112154,82+02</datetime></modified>
+<revised><datetime>20220519T113214,02+00</datetime></revised>
+<lastaccessed><datetime dst='true'>20230424T112154,81+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20230424T112154,81+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Domino Template Development/O=Domino</name></updatedby>
+<wassignedby><name>CN=Domino Template Development/O=Domino</name></wassignedby>
+<item name='$LANGUAGE' sign='true'><text>en</text></item>
+<item name='$TITLE' sign='true'><text>Advanced View Frame|Advanced View Frame</text></item>
+<item name='$Comment' sign='true'><text/></item>
+<item name='$FrameSet' sign='true'>
+<rawitemdata type='1'>
+7/8YAAIAAwAAAAAAAAAAAAAAAAAAAAAA8P8+AEUAAAAAAAAAAAABAAEAAAAAAAUAAAAAAAUAAAAA
+AAIAAQAAAAAAAQAAAAAAAAACAGEAAQAAAAMAAQDx/0kAAQAAAABAAAADAAEAAQAAAAAACQAAAAwA
+AQAAAAAAAABOb3Rlc1ZpZXdOb3Rlc1ByZXZpZXcBAP///zIBAAAKAQAAAAAyP/b/KgAAAAAAAwAC
+AAgAAAAAAAAAAAAAAAAAAAAAAAAAAABBY2NvdW50c/H/XADhAAAAAGAAAAMAAQABAAAAAAAMAAAA
+AAABAAAAAAAAAE5vdGVzUHJldmlldxQAFAAAABIAAQAHAFByZXZpZXcAAwAAAAIAKAABANDX4TIB
+AAAKAQAAAAAy
+</rawitemdata></item>
+<item name='$CompAppPageName' sign='true'><text/></item>
+<item name='$OpenAsCompApp' sign='true'><text>0</text></item>
+<item name='$Flags'><text>#34CQ</text></item>
+<item name='$DesignerVersion' sign='true'><text>8</text></item></note>
+

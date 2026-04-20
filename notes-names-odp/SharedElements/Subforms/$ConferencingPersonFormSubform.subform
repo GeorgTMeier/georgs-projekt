@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note class='form' xmlns='http://www.lotus.com/dxl' version='12.0' maintenanceversion='2.0'
+ replicaid='C125899B00337147'>
+<noteinfo noteid='45e' unid='8AF2459855CB72DD852562360060E795' sequence='5044'>
+<created><datetime dst='true'>19950913T133827,41-04</datetime></created>
+<modified><datetime dst='true'>20230424T112155,38+02</datetime></modified>
+<revised><datetime>20220519T113217,20+00</datetime></revised>
+<lastaccessed><datetime dst='true'>20230424T112155,37+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20230424T112155,37+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Domino Template Development/O=Domino</name></updatedby>
+<revisions><datetime dst='true'>20191025T061218,04-04</datetime><datetime
+>20191105T042052,59-05</datetime><datetime>20191105T053817,09-05</datetime><datetime
+>20191107T061243,71-05</datetime><datetime>20191107T074950,60-05</datetime><datetime
+>20191107T085638,60-05</datetime><datetime>20191108T011248,06-05</datetime><datetime
+>20191108T031440,68-05</datetime><datetime>20191108T040426,78-05</datetime><datetime
+>20191108T044341,52-05</datetime><datetime>20191111T102147,38-05</datetime><datetime
+>20191111T212147,62-05</datetime><datetime>20191111T221652,02-05</datetime><datetime
+>20191111T222415,71-05</datetime><datetime>20191111T223547,82-05</datetime><datetime
+>20191111T224723,88-05</datetime><datetime>20191111T230124,09-05</datetime><datetime
+>20191111T231508,51-05</datetime><datetime>20191112T052705,30-05</datetime><datetime
+>20191112T100526,65-05</datetime><datetime>20200113T055055,66-05</datetime><datetime
+>20200117T033913,96-05</datetime><datetime>20200402T144707,24+0530</datetime></revisions>
+<wassignedby><name>CN=Domino Template Development/O=Domino</name></wassignedby>
+<item name='$TITLE'><textlist><text>$ConferencingPersonFormSubform</text><text
+>1.0</text><text>$ConferencingPersonFormSubform</text></textlist></item>
+<item name='$INFO' sign='true'>
+<rawitemdata type='1'>
+hhgBAIAAAAAAgAAAAQABAP///wAAAAAA
+</rawitemdata></item>
+<item name='$Flags'><text>CUA3x</text></item>
+<item name='$DesignerVersion' sign='true'><text>6</text></item>
+<item name='$LANGUAGE' sign='true'><text>en</text></item>
+<item name='$$ScriptName' summary='false' sign='true'><text>$ConferencingPersonFormSubform</text></item>
+<item name='$BODY' sign='true'>
+<rawitemdata type='1'>
+gQKC/1IAAQAAAAAAAAAAAKAFAACgBQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAADBjAAAAAJQEoAUOAKAFDgAAAAAAgwQBAIX/CAABAAAJ
+</rawitemdata></item></note>
+

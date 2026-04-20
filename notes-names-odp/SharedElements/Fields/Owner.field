@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note class='sharedfield' xmlns='http://www.lotus.com/dxl' version='12.0'
+ maintenanceversion='2.0' replicaid='C125899B00337147'>
+<noteinfo noteid='15e' unid='682989CA4B9EF0EA852562510064B3D9' sequence='5013'>
+<created><datetime dst='true'>19951010T141956,41-04</datetime></created>
+<modified><datetime dst='true'>20230424T112153,59+02</datetime></modified>
+<revised><datetime>20220519T113207,68+00</datetime></revised>
+<lastaccessed><datetime dst='true'>20230424T112153,58+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20230424T112153,58+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Domino Template Development/O=Domino</name></updatedby>
+<wassignedby><name>CN=Domino Template Development/O=Domino</name></wassignedby>
+<item name='$TITLE'><text>Owner</text></item>
+<item name='$INFO' sign='true'>
+<rawitemdata type='1'>
+hhgBAIAAAAAAgAAAAQABAP///wAAAAAA
+</rawitemdata></item>
+<item name='$Flags'><text/></item>
+<item name='$DesignerVersion' sign='true'><text>6</text></item>
+<item name='Owner' placeholder='true'>
+<rawitemdata type='0'>
+</rawitemdata></item>
+<item name='$FIELDS'><text>Owner</text></item>
+<item name='$BODY' summary='true' sign='true'>
+<rawitemdata type='1'>
+gQKC/1IAAQAAAAAAAAAAAKAFAACgBQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAABAAAAAJQHAAAAAAAAAAAAAAAAgwQBAIX/CAABAAAK3QYAAIr//v9QAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAACw/xQAAAAAAAAAAAABAAAAAAAAAIr/XgCHxAEFDiACAAAAAAAAAgEAAAkAAAAA
+AAAAAAUANAAAAE93bmVyRnVsbCBuYW1lIG9mIHBlcnNvbiBhbGxvd2VkIHRvIG1vZGlmeSB0aGlz
+IGRvY3VtZW50LgDeBgAAiv+F/wgAAQAACg==
+</rawitemdata></item>
+<item name='$LANGUAGE' sign='true'><text>en</text></item></note>
+

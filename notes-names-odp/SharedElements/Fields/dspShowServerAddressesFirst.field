@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note class='sharedfield' xmlns='http://www.lotus.com/dxl' version='12.0'
+ maintenanceversion='2.0' replicaid='C125899B00337147'>
+<noteinfo noteid='156' unid='667EF6B2B9008D5E852579A300430D95' sequence='7'>
+<created><datetime>20120213T071223,89-05</datetime></created>
+<modified><datetime dst='true'>20230424T112153,57+02</datetime></modified>
+<revised><datetime>20220519T113207,52+00</datetime></revised>
+<lastaccessed><datetime dst='true'>20230424T112153,56+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20230424T112153,56+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Domino Template Development/O=Domino</name></updatedby>
+<wassignedby><name>CN=Domino Template Development/O=Domino</name></wassignedby>
+<item name='$HTMLCode' sign='true'>
+<rawitemdata type='1'>
+</rawitemdata></item>
+<item name='$TITLE'><text>dspShowServerAddressesFirst</text></item>
+<item name='$INFO' sign='true'>
+<rawitemdata type='1'>
+hhgBAIAAAAAAgAAAAQABAP///wAQAAAA
+</rawitemdata></item>
+<item name='$Flags'><text/></item>
+<item name='$DesignerVersion' sign='true'><text>8.5.3</text></item>
+<item name='dspShowServerAddressesFirst' placeholder='true'>
+<rawitemdata type='0'>
+</rawitemdata></item>
+<item name='$FIELDS'><text>dspShowServerAddressesFirst</text></item>
+<item name='$BODY' summary='true' sign='true'>
+<rawitemdata type='1'>
+gQKC/1oAAQAAAAAAAAAAAKAFAACgBQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAABAAAAAJSHAAAAAAAAAAAAAAAAAQAAAAQAAACDBAEAhf8IAAEAAArdBgAAiv/+/1oA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4AHgAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAACgAAAAoAAAAIACoAAwCw/xQAAAAEIAAAAAAAAAAAAAAAAIr/egCKQgEF
+AiACAAAAAAAAAgEAAAkAAAwAAAAAABsAAAAvAAwAAAAKAAEAAAADAGRzcFNob3dTZXJ2ZXJBZGRy
+ZXNzZXNGaXJzdAEAKwBTaG93IHNlcnZlciBhZGRyZXNzZXMgZmlyc3QgSW4gdHlwZS1haGVhZHwx
+3gYAAIr/hf8IAAEAAAo=
+</rawitemdata></item>
+<item name='$LANGUAGE' sign='true'><text>en</text></item></note>
+

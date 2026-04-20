@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><note xmlns="http://www.lotus.com/dxl" class="form" maintenanceversion="2.0" replicaid="C125899B00337147" version="12.0">
+<noteinfo noteid="4aa" sequence="7" unid="A86BD61BFE7CED4E85257536005A88E9">
+<created><datetime>20090106T112852,89-05</datetime></created>
+<modified><datetime dst="true">20230424T112155,57+02</datetime></modified>
+<revised><datetime>20220519T113218,26+00</datetime></revised>
+<lastaccessed><datetime dst="true">20230424T112155,56+02</datetime></lastaccessed>
+<addedtofile><datetime dst="true">20230424T112155,56+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Domino Template Development/O=Domino</name></updatedby>
+<wassignedby><name>CN=Domino Template Development/O=Domino</name></wassignedby>
+<item name="$FlagsExt" sign="true"><text>D</text></item>
+<item name="$ImagesHigh" sign="true"><number>1</number></item>
+<item name="$ImagesColorize" sign="true"><number>0</number></item>
+
+<item name="$MimeType" sign="true"><text>image/gif</text></item>
+<item name="$FileModDT" sign="true"><datetime>20070201T111938,97-05</datetime></item>
+<item name="$ImageNames" sign="true"><text>animatedothercalendars.gif</text></item>
+<item name="$WebBrowserCompatible" sign="true"><number>1</number></item>
+
+
+
+
+
+
+
+
+
+<item name="$ImagesWide" sign="true"><number>8</number></item>
+<item name="$PublicAccess" sign="true"><text>1</text></item>
+<item name="$Flags"><text>34CiQv</text></item>
+<item name="$LANGUAGE" sign="true"><text>en</text></item>
+<item name="$TITLE" sign="true"><text>outl_animatedothercalendars.gif</text></item>
+<item name="$DesignerVersion" sign="true"><text>8.5</text></item></note>

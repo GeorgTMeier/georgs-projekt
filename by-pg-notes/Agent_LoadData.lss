@@ -1,0 +1,76 @@
+' ============================================================================
+' Agent_LoadData.lss
+' Agent "Laden": Lädt public.test2view per ODBC, füllt GridData, Summe,
+' optional GridSameArt (wenn aktuelle Zeile gesetzt).
+' Voraussetzung: Script-Bibliothek PGData eingebunden.
+' Dokument-Felder: GridData (Mehrzeilig), Summe (Text), GridSameArt (Mehrzeilig),
+' SelectedRow (Zahl, 0-basiert), Event (Text), t00..t05 (Preview).
+' ============================================================================
+
+Option Public
+Option Declare
+
+Sub Initialize
+    On Error GoTo errInit
+    Dim session As New NotesSession
+    Dim doc As NotesDocument
+    Dim list As Variant, colNames() As String, summe As Double
+    Dim sameArt As Variant, i As Long, selectedRow As Long
+    Dim item As NotesItem, s As String, lines As String
+
+    Set doc = session.DocumentContext
+    If doc Is Nothing Then
+        Messagebox "Kein Dokument-Kontext (z. B. von Formular aus öffnen).", 48, "LoadData"
+        Exit Sub
+    End If
+
+    ' LoadTest2View aufrufen
+    list = LoadTest2View(colNames, summe)
+
+    ' GridData: jede Zeile als eine Zeile im Mehrzeilenfeld (Tab-getrennte Spalten)
+    If IsArray(list) Then
+        lines = ""
+        For i = LBound(list) To UBound(list)
+            If i > LBound(list) Then lines = lines + Chr(10)
+            lines = lines + list(i)
+        Next
+        Call doc.ReplaceItemValue("GridData", lines)
+        Call doc.ReplaceItemValue("Summe", "Summe: " + Format(summe, "0.00"))
+        selectedRow = CLng(doc.GetItemValue("SelectedRow")(0))
+        If selectedRow < 0 Then selectedRow = 0
+        If selectedRow > UBound(list) Then selectedRow = UBound(list)
+
+        ' Preview t00..t05 aus gewählter Zeile
+        If UBound(list) >= 0 Then
+            Dim parts() As String
+            parts = Split(list(selectedRow), Chr(9))
+            For i = 0 To 5
+                If i <= UBound(parts) Then
+                    Call doc.ReplaceItemValue("t0" + CStr(i), parts(i))
+                End If
+            Next
+        End If
+
+        ' GridSameArt: nur Zeilen mit gleicher Art wie selectedRow
+        sameArt = FilterRowsByArt(list, colNames, selectedRow)
+        lines = ""
+        If IsArray(sameArt) Then
+            For i = LBound(sameArt) To UBound(sameArt)
+                If i > LBound(sameArt) Then lines = lines + Chr(10)
+                lines = lines + sameArt(i)
+            Next
+        End If
+        Call doc.ReplaceItemValue("GridSameArt", lines)
+    Else
+        Call doc.ReplaceItemValue("GridData", "")
+        Call doc.ReplaceItemValue("Summe", "Summe: 0,00")
+        Call doc.ReplaceItemValue("GridSameArt", "")
+    End If
+
+    Call doc.ReplaceItemValue("Event", "geladen")
+    doc.Save True, False
+    Exit Sub
+
+errInit:
+    Messagebox "LoadData Fehler: " & Err() & " " & Error$, 48, "Agent"
+End Sub

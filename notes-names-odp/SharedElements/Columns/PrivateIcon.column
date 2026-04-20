@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note class='view' xmlns='http://www.lotus.com/dxl' version='12.0' maintenanceversion='2.0'
+ replicaid='C125899B00337147'>
+<noteinfo noteid='2be' unid='B37F60101E8725A985257648006097D7' sequence='45'>
+<created><datetime dst='true'>20091007T133503,27-04</datetime></created>
+<modified><datetime dst='true'>20230424T112154,34+02</datetime></modified>
+<revised><datetime>20220519T113211,73+00</datetime></revised>
+<lastaccessed><datetime dst='true'>20230424T112154,33+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20230424T112154,33+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Domino Template Development/O=Domino</name></updatedby>
+<revisions><datetime dst='true'>20190923T063754,54-04</datetime><datetime
+ dst='true'>20190923T064337,98-04</datetime><datetime dst='true'>20190926T054627,12-04</datetime><datetime
+ dst='true'>20191025T061227,99-04</datetime><datetime>20191105T042102,71-05</datetime><datetime
+>20191105T053827,27-05</datetime><datetime>20191107T061253,66-05</datetime><datetime
+>20191107T075000,54-05</datetime><datetime>20191107T085649,53-05</datetime><datetime
+>20191108T011258,62-05</datetime><datetime>20191108T031450,42-05</datetime><datetime
+>20191108T040436,82-05</datetime><datetime>20191108T044351,38-05</datetime><datetime
+>20191111T102158,83-05</datetime><datetime>20191111T212159,50-05</datetime><datetime
+>20191111T221702,24-05</datetime><datetime>20191111T222425,99-05</datetime><datetime
+>20191111T223559,49-05</datetime><datetime>20191111T224734,22-05</datetime><datetime
+>20191111T230134,51-05</datetime><datetime>20191111T231519,36-05</datetime><datetime
+>20191112T052716,41-05</datetime><datetime>20191112T100537,60-05</datetime><datetime
+>20200113T055112,90-05</datetime><datetime>20200117T033931,71-05</datetime></revisions>
+<wassignedby><name>CN=Domino Template Development/O=Domino</name></wassignedby>
+<item name='$FormulaClass' sign='true'><text>1</text></item>
+<item name='$SourceSeqTime' sign='true'><datetime dst='true'>20091007T133503,32-04</datetime></item>
+<item name='$SourceSequence' sign='true'><text>00000001</text></item>
+<item name='$SourceURL' sign='true'><textlist><text>Notes:///CCC5763300447A1F//B37F60101E8725A985257648006097D7</text><text
+>Notes:///CCC5763300447A1F:85257633004479F0:51C62FD5//4E6</text></textlist></item>
+<item name='$ClassName' sign='true'><text>View</text></item>
+<item name='$SourceDbPath' sign='true'><text>CN=Masterlock/OU=Server/O=Templates!!templates\pernames\R8\R8.5.2\names-wrk852.nsf</text></item>
+<item name='$CacheDocVersion' sign='true'><number>1</number></item>
+<item name='$TITLE' sign='true'><text>PrivateIcon</text></item>
+<item name='$Index' sign='true'><text/></item>
+<item name='$Formula' summary='true' sign='true'><formula compiled='true'>
+kgACAGAACAAkUHJpdmF0ZQUABwBSZWFkZXJzAAEAAAALAgUADABDb25maWRlbnRpYWwBAAEAMQAK
+AhwCrwAiABAAAAAAAAAAAMBpQK4AEgAAAAAAAAAAAAAArgAEALUDAwAFACQAHwADAAgACQAEACRQ
+cml2YXRlJENvbmZsaWN0JFJFRgAEAAQAAAAIAGYAAwA=
+</formula></item>
+<item name='$Collation' summary='true'>
+<rawitemdata type='2'>
+BgAAAABE
+</rawitemdata></item>
+<item name='$Collation1' summary='true'>
+<rawitemdata type='2'>
+FQABAABEgWYAAAAIACRQcml2YXRl
+</rawitemdata></item>
+<item name='$VIEWFORMAT' summary='true' sign='true'>
+<rawitemdata type='5'>
+AQABAAEACAAAAFZDQAIIAAAAXgEAAAwAAQAACgIAAAAAAAAAAAICAAAAJFByaXZhdGVeAQcA1ADN
+AE5PVEU6IEFueSBjaGFuZ2UgdG8gdGhpcyBjb2x1bW4gcHJvcGVydHkgb3IgZm9ydW11bGEgbmVl
+ZHMgYWxzbyB0byBiZSBtYWRlIGluIHRoZSBQcml2YXRlIEljb24gY29sdW1uIGluIHRoZSAnQmly
+dGhkYXlzICYgQW5uaXZlcnNhcmllcycgdmlldy4gSXQgaXMgbm90IHNoYXJlZCBpbiB0aGF0IHZp
+ZXcgZHVlIHRvIHNvcnRpbmcgYmVpbmcgdHVybmVkIG9mZi4ABwAKAAMACTFTAAIAYAAIACRQcml2
+YXRlBQAHAFJlYWRlcnMAAQAAAAsCBQAMAENvbmZpZGVudGlhbAEAAQAxAAoCHAKvACIAEAAAAAAA
+AAAAwGlArgASAAAAAAAAAAAAAACuAAQAtQMDAAcAHgAYAAkwUlIzUzRTNVM2UzdTOFM5UzEwUzEy
+UyYAAQAAAAEBAAkBAAAKAQEOCgAAAQCtKwEAAQABAAAAAAAAAAAAV0MBAQAJAAAAAAAAAAAAAAAA
+AAAAAAYABBAAAAAA//8AAAAAAAAAAAAAAAAAAEIAAAAAAAEA////AAUA////AAEAAAAAAAAAAAAA
+AAAAAQD///8AAQD///8AAAABAAAAAAABAAAAAAABAAAAAAAAAAgAAAAAAAEADABQcml2YXRlIElj
+b24=
+</rawitemdata></item>
+<item name='$Comment' sign='true'><text/></item>
+<item name='$Flags'><text>^Y</text></item>
+<item name='$DesignerVersion' sign='true'><text>8.5.2</text></item>
+<item name='$LANGUAGE' sign='true'><text>en</text></item></note>
+

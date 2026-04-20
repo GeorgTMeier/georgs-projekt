@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><note xmlns="http://www.lotus.com/dxl" class="filter" maintenanceversion="2.0" replicaid="C125899B00337147" version="12.0">
+<noteinfo noteid="22a" sequence="74" unid="CE581107F5799A598525768D005D6460">
+<created><datetime>20091215T120005,44-05</datetime></created>
+<modified><datetime dst="true">20230424T112153,98+02</datetime></modified>
+<revised><datetime>20220519T113209,71+00</datetime></revised>
+<lastaccessed><datetime dst="true">20230424T112153,97+02</datetime></lastaccessed>
+<addedtofile><datetime dst="true">20230424T112153,97+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Domino Template Development/O=Domino</name></updatedby>
+<revisions><datetime dst="true">20190923T063742,62-04</datetime><datetime dst="true">20190923T064326,23-04</datetime><datetime dst="true">20190926T054613,46-04</datetime><datetime dst="true">20191025T061215,79-04</datetime><datetime>20191105T042050,31-05</datetime><datetime>20191105T053814,83-05</datetime><datetime>20191107T061241,46-05</datetime><datetime>20191107T074948,38-05</datetime><datetime>20191107T085636,18-05</datetime><datetime>20191108T011245,65-05</datetime><datetime>20191108T031438,50-05</datetime><datetime>20191108T040424,53-05</datetime><datetime>20191108T044339,30-05</datetime><datetime>20191111T102144,76-05</datetime><datetime>20191111T212145,03-05</datetime><datetime>20191111T221649,72-05</datetime><datetime>20191111T222413,46-05</datetime><datetime>20191111T223545,26-05</datetime><datetime>20191111T224721,60-05</datetime><datetime>20191111T230121,81-05</datetime><datetime>20191111T231506,07-05</datetime><datetime>20191112T052702,82-05</datetime><datetime>20191112T100524,21-05</datetime><datetime>20200113T055052,55-05</datetime><datetime>20200117T033910,86-05</datetime><datetime>20200402T144707,16+0530</datetime></revisions>
+<wassignedby><name>CN=Domino Template Development/O=Domino</name></wassignedby>
+<item name="$TITLE" sign="true"><text>MiscContactsLib</text></item>
+<item name="$Flags"><text>s34Q</text></item>
+<item name="$PublicAccess" sign="true"><text>1</text></item>
+<item name="$DesignerVersion" sign="true"><text>8.5.4</text></item>
+<item name="$LANGUAGE" sign="true"><text>en</text></item>
+
+</note>

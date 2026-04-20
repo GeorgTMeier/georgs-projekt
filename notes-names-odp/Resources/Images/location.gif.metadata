@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><note xmlns="http://www.lotus.com/dxl" class="form" maintenanceversion="2.0" replicaid="C125899B00337147" version="12.0">
+<noteinfo noteid="582" sequence="9" unid="FDAE32387113044B852566C400607692">
+<created><datetime>19981122T123338,10-05</datetime></created>
+<modified><datetime dst="true">20230424T112156,11+02</datetime></modified>
+<revised><datetime>20220519T113221,34+00</datetime></revised>
+<lastaccessed><datetime dst="true">20230424T112156,10+02</datetime></lastaccessed>
+<addedtofile><datetime dst="true">20230424T112156,10+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Domino Template Development/O=Domino</name></updatedby>
+<revisions><datetime>20060302T144220,65-05</datetime><datetime>20070202T143955,43-05</datetime></revisions>
+<wassignedby><name>CN=Domino Template Development/O=Domino</name></wassignedby>
+<item name="$ImagesWide" sign="true"><number>1</number></item>
+<item name="$ImagesHigh" sign="true"><number>1</number></item>
+<item name="$ImagesColorize" sign="true"><number>0</number></item>
+
+
+
+<item name="$MimeType" sign="true"><text>image/gif</text></item>
+<item name="$FileModDT" sign="true"><datetime>20010226T074234,00-05</datetime></item>
+<item name="$Flags"><text>34Ci</text></item>
+<item name="$ImageNames" sign="true"><text>location.gif</text></item>
+<item name="$LANGUAGE" sign="true"><text>en</text></item>
+<item name="$TITLE" sign="true"><textlist><text>location.gif</text><text>location</text></textlist></item>
+<item name="$DesignerVersion" sign="true"><text>7</text></item></note>

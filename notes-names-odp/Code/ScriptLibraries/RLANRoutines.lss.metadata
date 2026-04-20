@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><note xmlns="http://www.lotus.com/dxl" class="filter" maintenanceversion="2.0" replicaid="C125899B00337147" version="12.0">
+<noteinfo noteid="246" sequence="5037" unid="EF46F5CFF46BD64B8525664E006369B7">
+<created><datetime dst="true">19980727T140551,27-04</datetime></created>
+<modified><datetime dst="true">20230424T112154,05+02</datetime></modified>
+<revised><datetime>20220519T113209,99+00</datetime></revised>
+<lastaccessed><datetime dst="true">20230424T112154,04+02</datetime></lastaccessed>
+<addedtofile><datetime dst="true">20230424T112154,04+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Domino Template Development/O=Domino</name></updatedby>
+<revisions><datetime dst="true">20191025T061216,16-04</datetime><datetime>20191105T042050,68-05</datetime><datetime>20191105T053815,21-05</datetime><datetime>20191107T061241,82-05</datetime><datetime>20191107T074948,74-05</datetime><datetime>20191107T085636,59-05</datetime><datetime>20191108T011246,06-05</datetime><datetime>20191108T031438,85-05</datetime><datetime>20191108T040424,91-05</datetime><datetime>20191108T044339,66-05</datetime><datetime>20191111T102145,18-05</datetime><datetime>20191111T212145,46-05</datetime><datetime>20191111T221650,11-05</datetime><datetime>20191111T222413,84-05</datetime><datetime>20191111T223545,69-05</datetime><datetime>20191111T224721,99-05</datetime><datetime>20191111T230122,18-05</datetime><datetime>20191111T231506,48-05</datetime><datetime>20191112T052703,23-05</datetime><datetime>20191112T100524,60-05</datetime><datetime>20200113T055053,13-05</datetime><datetime>20200117T033911,40-05</datetime><datetime>20200402T144707,16+0530</datetime></revisions>
+<wassignedby><name>CN=Domino Template Development/O=Domino</name></wassignedby>
+<item name="$TITLE" sign="true"><text>RLANRoutines</text></item>
+<item name="$Flags"><text>s34Q</text></item>
+<item name="$PublicAccess" sign="true"><text>1</text></item>
+<item name="$LANGUAGE" sign="true"><text>en</text></item>
+
+</note>

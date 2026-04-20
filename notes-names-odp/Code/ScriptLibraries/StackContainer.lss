@@ -1,0 +1,92 @@
+'++LotusScript Development Environment:2:5:(Options):0:74
+Option Public
+Option Declare
+
+'++LotusScript Development Environment:2:5:(Forward):0:1
+Declare Class StackContainer
+
+'++LotusScript Development Environment:2:5:(Declarations):0:10
+
+Class StackContainer
+	
+	Private Sub SetValue( Value1 As Variant, Value2 As Variant)
+          'This allows you set value1 to value2's value or object reference
+		
+		If Isobject( Value2) Then
+			Set Value1 = Value2
+		Else
+			Value1 = Value2
+		End If                      
+		
+	End Sub
+	
+	Private valueArray() As Variant
+	Private size As Long
+	
+	Property Get count As Long
+		count = size
+	End Property
+	
+	Sub push( value As Variant)
+		
+		Redim Preserve valueArray(size) As Variant
+		setValue valueArray(size), value
+		size = size + 1
+		
+	End Sub
+	
+	Function pop As Variant
+		If size > 0 Then
+			size = size -1
+			If Isobject( valueArray(size)) Then
+				Set pop = valueArray( size)
+			Else
+				pop = valueArray( size)
+			End If
+			
+			If size = 0 Then
+				Erase valuearray
+			Else
+				Redim Preserve valueArray( size -1) As Variant
+			End If
+			
+		End If
+	End Function
+	
+	Function array As Variant
+		If size > 0 Then
+			Redim newarray( size - 1) As Variant
+			Dim count As Long
+			For count = 0 To size -1
+				newArray(size - count - 1) = valueArray( count)
+			Next
+			
+			array = newArray
+		End If
+		
+	End Function
+	
+	Function reverseArray As Variant
+		If size > 0 Then
+			Redim newarray( size - 1) As Variant
+			Dim count As Long
+			For count = 0 To size -1
+				newArray(count) = valueArray( count)
+			Next
+			
+			reverseArray = newArray
+		End If
+		
+	End Function
+	
+	Function peek As Variant
+		If size > 0 Then
+			If Isobject( valueArray( size -1)) Then
+				Set peek = valueArray( size - 1)
+			Else
+				peek = valueArray( size - 1)
+			End If
+		End If
+		
+	End Function
+End Class

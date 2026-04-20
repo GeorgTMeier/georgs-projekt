@@ -1,0 +1,38 @@
+'++LotusScript Development Environment:2:5:(Options):0:74
+Option Public
+
+'++LotusScript Development Environment:2:5:(Forward):0:1
+Declare Function GetString ( StringType As Integer) As String
+
+'++LotusScript Development Environment:2:5:(Declarations):0:2
+
+'++LotusScript Development Environment:2:1:GetString:1:8
+Function GetString ( StringType As Integer) As String
+	
+	Select Case StringType
+		
+	Case 1  ' Msgbox message for field validation
+		GetString = "A person's last name or a company name is required."
+	Case 2  ' Msgbox title for field validation
+		GetString = "Field Contains Incorrect Data"
+	Case 3  'used in MailLibrary and VCardLib
+		getString = "Error"
+	Case 4  'used in MailLibrary and VCardLib
+		getString = "Please verify that it appears correctly in your current location."
+	Case 5  'used in MailLibrary and VCardLib
+		getString = "Your mail file could not be opened."
+	Case 6  'used in VCardLib
+		getString = "Contacts" 
+	Case 7 'used in VCardLib
+		getString = "Forwarding a contact vCard"
+	Case 8 'used in VCardLib
+		getString = "You must select one or more contacts to forward."
+	Case 9 'used in VCardLib
+		getstring = "Forward vCard"	
+	Case 10 'used in Quick Contact
+		getstring = "Add Quick Contact"
+	Case 11 'used in Quick Contact
+		getstring = "Contact successfully added."		
+	End Select	
+	
+End Function

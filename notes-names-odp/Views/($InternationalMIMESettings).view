@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note class='view' xmlns='http://www.lotus.com/dxl' version='12.0' maintenanceversion='2.0'
+ replicaid='C125899B00337147'>
+<noteinfo noteid='29e' unid='7FC3E2FE5E2DF1228525664E007CC2EE' sequence='5041'>
+<created><datetime dst='true'>19980727T184243,66-04</datetime></created>
+<modified><datetime dst='true'>20230424T112154,26+02</datetime></modified>
+<revised><datetime>20220519T113211,21+00</datetime></revised>
+<lastaccessed><datetime dst='true'>20230424T112536,85+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20230424T112154,25+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Domino Template Development/O=Domino</name></updatedby>
+<revisions><datetime dst='true'>20191025T061224,93-04</datetime><datetime
+>20191105T042059,67-05</datetime><datetime>20191105T053824,09-05</datetime><datetime
+>20191107T061250,50-05</datetime><datetime>20191107T074957,51-05</datetime><datetime
+>20191107T085646,18-05</datetime><datetime>20191108T011255,50-05</datetime><datetime
+>20191108T031447,40-05</datetime><datetime>20191108T040433,75-05</datetime><datetime
+>20191108T044348,32-05</datetime><datetime>20191111T102155,20-05</datetime><datetime
+>20191111T212155,82-05</datetime><datetime>20191111T221659,06-05</datetime><datetime
+>20191111T222422,66-05</datetime><datetime>20191111T223556,01-05</datetime><datetime
+>20191111T224730,90-05</datetime><datetime>20191111T230131,32-05</datetime><datetime
+>20191111T231516,04-05</datetime><datetime>20191112T052712,95-05</datetime><datetime
+>20191112T100534,21-05</datetime><datetime>20200113T055108,70-05</datetime><datetime
+>20200117T033927,36-05</datetime><datetime>20200402T144707,16+0530</datetime></revisions>
+<wassignedby><name>CN=Domino Template Development/O=Domino</name></wassignedby>
+<item name='$LANGUAGE' sign='true'><text>en</text></item>
+<item name='$FormulaClass' sign='true'><text>1</text></item>
+<item name='$TITLE' sign='true'><text>($InternationalMIMESettings)</text></item>
+<item name='$Index' sign='true'><text/></item>
+<item name='$Formula' summary='true' sign='true'><formula compiled='true'>
+lAACADAAEgBDb25uZWN0aW9uTG9jYXRpb24FABIAQ29ubmVjdGlvbkxvY2F0aW9uAwAFAC4AKQAD
+ABIACQAEAENvbm5lY3Rpb25Mb2NhdGlvbiRDb25mbGljdCRSRUYABAAEAAAAJgAFAAQAVHlwZQEA
+EQBDb252ZXJzaW9uT3B0aW9ucwAKAgMABwAKAAQACUwxUw==
+</formula></item>
+<item name='$Collation' summary='true'>
+<rawitemdata type='2'>
+HwABAABECGYAAAASAENvbm5lY3Rpb25Mb2NhdGlvbg==
+</rawitemdata></item>
+<item name='$VIEWFORMAT' summary='true' sign='true'>
+<rawitemdata type='5'>
+AQABAAIACAQAAFZDAQASABIAMgAAAN0AAQAACQABAAAIAAAAAAICAAAAQ29ubmVjdGlvbkxvY2F0
+aW9uQ29ubmVjdGlvbkxvY2F0aW9uMgACADAAEgBDb25uZWN0aW9uTG9jYXRpb24FABIAQ29ubmVj
+dGlvbkxvY2F0aW9uAwAmAAEAAAABAQAJAQAACgEBDgoAAAEArSsBAAEAAQAAAAAAAAAAAFdDAgAA
+CQAAAAAAAAAAAAAAAAAAAAABAMAAAAAAAP//AAAAAAAAAAAAAAAAAABCAAAAAAABAP///wAFAP//
+/wABAAAAAAAAAAAAAAAAAAEA////AAEAoKDFAAAAAQAAAAAAAQCAgIAAAQAAAAAAAAAIAAAAAAAB
+AFhDAAyAAgAAAAAAAQICAgEBAQEHAAMAAAAAAAAAACAvLzpZQwAACAAAAAEAAAABAAAAAAAAAAAA
+AAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAALiwkAA==
+</rawitemdata></item>
+<item name='$Comment' sign='true'><text/></item>
+<item name='$Flags'><text>Y</text></item>
+<item name='$DesignerVersion' sign='true'><text>8</text></item></note>
+

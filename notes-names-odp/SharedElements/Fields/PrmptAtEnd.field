@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note class='sharedfield' xmlns='http://www.lotus.com/dxl' version='12.0'
+ maintenanceversion='2.0' replicaid='C125899B00337147'>
+<noteinfo noteid='146' unid='4335390C43109D4685256B110076B477' sequence='13'>
+<created><datetime>20011127T163634,47-05</datetime></created>
+<modified><datetime dst='true'>20230424T112153,53+02</datetime></modified>
+<revised><datetime>20220519T113207,32+00</datetime></revised>
+<lastaccessed><datetime dst='true'>20230424T112153,52+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20230424T112153,52+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Domino Template Development/O=Domino</name></updatedby>
+<revisions><datetime>20060302T163212,02-05</datetime><datetime dst='true'>20110407T081839,57-04</datetime></revisions>
+<wassignedby><name>CN=Domino Template Development/O=Domino</name></wassignedby>
+<item name='$LANGUAGE' sign='true'><text>en</text></item>
+<item name='$HTMLCode' sign='true'>
+<rawitemdata type='1'>
+</rawitemdata></item>
+<item name='$TITLE'><text>PrmptAtEnd</text></item>
+<item name='$INFO' sign='true'>
+<rawitemdata type='1'>
+hhgBAIAAAAAAgAAAAQABAP///wAQAAAA
+</rawitemdata></item>
+<item name='$Flags'><text/></item>
+<item name='$DesignerVersion' sign='true'><text>8.5.3</text></item>
+<item name='PrmptAtEnd' placeholder='true'>
+<rawitemdata type='0'>
+</rawitemdata></item>
+<item name='$FIELDS'><text>PrmptAtEnd</text></item>
+<item name='$BODY' summary='true' sign='true'>
+<rawitemdata type='1'>
+gQKC/1oAAQAAAAAAAAAAAKAFAACgBQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAABAAAAAJSHAAAAAAAAAAAAAAAAAQAAAAQAAACDBAEAhf8IAAEAAArdBgAAiv/+/6gA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAWAAAAFgACgAEAAAARAC/AFgBAAAAAAAAAEBvQA4CrwAsAAgAKwCuACQA
+AQAQAExvY0FsbFBybXB0QXRFbmT7AWwBKgAKAq4ABAC1AwMABwAOAAgACTZTN1MxNVOw/xQAAAAG
+IAAAAAAAAAAAAAAAAIr/IgGKQgEFAiAAAAgAAAAAAgEAAAoOAKwAAAAAAAoAKAARAA4AAAAMAAEA
+AQAwAAMArAAAAIIABQAOAFJlcGxpY2F0ZUF0RW5kAQAAAAoCBQAOAFJlcGxpY2F0ZUF0RW5kAQAB
+ADAACgIdAq8ARgAMAAEAAQAwAK4AOgAFAAoAUHJtcHRBdEVuZAEAAAAKAq8AIgAMAAEAAQAwAK4A
+FgAFAAoAUHJtcHRBdEVuZK4ABAC1BQMABwAoACEACTJSM1M0UzVTNlM3UzhTMTBTMTJSMTNTMTRT
+MTZTMThTAFBybXB0QXRFbmRSZXBsaWNhdGlvbiBwcm9tcHQgd2hlbiBOb3RlcyBzaHV0cyBkb3du
+AQANAFByb21wdCBtZSB8IDEA3gYAAIr/hf8IAAEAAAo=
+</rawitemdata></item></note>
+

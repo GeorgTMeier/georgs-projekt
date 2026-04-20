@@ -1,0 +1,75 @@
+================================================================================
+Formular "MainPG" – Beschreibung der Felder und Buttons (by-pg-notes)
+================================================================================
+
+Formularname: MainPG (oder wie gewünscht)
+
+--- Felder (Feldname | Typ | Beschreibung) ---
+
+GridData       | Mehrzeilig/Text oder Rich Text | Anzeige der geladenen test2view-Daten.
+                Jede Zeile = eine Zeile aus der View (Spalten Tab-getrennt).
+                Wird vom Agent LoadData gefüllt.
+
+GridSameArt    | Mehrzeilig/Text | Nur Datensätze mit gleicher Art wie die
+                aktuell gewählte Zeile. Wird von LoadData gefüllt.
+
+Summe          | Text (berechnet oder lesbar) | Summe der Spalte Betrag, z. B. "Summe: 1234,56".
+                Wird von LoadData gesetzt.
+
+SelectedRow    | Zahl (editierbar oder berechnet) | Index der aktuell gewählten Zeile (0-basiert).
+                Wird für Preview und GridSameArt verwendet. Kann per Listfeld/Keyword
+                oder manuell gesetzt werden.
+
+Event          | Text | Status/Event-Text ("geladen", "zelle geändert", "neue Zelle" etc.).
+
+Zeile          | Text (optional) | Anzeige Zeilenindex.
+Spalte         | Text (optional) | Anzeige Spaltenindex.
+
+--- Preview-Felder (werden von LoadData aus der gewählten Zeile gefüllt) ---
+
+t00            | Text | Entspricht erste Spalte (z. B. pk1/ID).
+t01            | Text | Betrag.
+t02            | Text | gewerk.
+t03            | Text | bvh.
+t04            | Text | art.
+t05            | Text | test.
+
+--- Buttons ---
+
+"Laden"        | Button oder Hotspot | Führt Agent "LoadData" aus (manuell oder @Command).
+"save row"     | Button oder Hotspot | Führt Agent "SaveRow" aus (UPDATE buchpos aus t00..t05).
+"update row"   | Wie "save row" – gleiche Aktion.
+
+--- Anordnung (Vorschlag) ---
+
+  [ Bereich: Haupt-Grid ]
+  GridData (großes Mehrzeilenfeld oder Tabelle)
+
+  [ Summe ]
+  Summe
+
+  [ Datensätze mit gleicher Art ]
+  GridSameArt (Mehrzeilenfeld)
+
+  [ Buttons ]
+  Laden   save row   update row
+
+  [ Debug ]
+  Zeile   Spalte   Event
+
+  [ Preview (rechts oder unten) ]
+  t00, t01, t02, t03, t04, t05
+
+--- Agenten-Zuordnung ---
+
+- LoadData: Auslöser "Manuell" oder "Nach dem Öffnen eines Dokuments";
+  Option "LotusScript ausführen"; Code aus Agent_LoadData.lss.
+  Aufruf z. B. über Button "Laden" mit @Command([RunAgent]; "LoadData").
+
+- SaveRow: Auslöser "Manuell"; Option "LotusScript ausführen"; Code aus Agent_SaveRow.lss.
+  Aufruf über Button "save row" / "update row" mit @Command([RunAgent]; "SaveRow").
+
+- In der Datenbank muss die Script-Bibliothek "PGData" (Inhalt von ScriptLib_PGData.lss)
+  existieren und in den Agenten bzw. im Formular als eingebundene Bibliothek referenziert sein.
+
+================================================================================

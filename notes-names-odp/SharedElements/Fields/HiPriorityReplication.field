@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note class='sharedfield' xmlns='http://www.lotus.com/dxl' version='12.0'
+ maintenanceversion='2.0' replicaid='C125899B00337147'>
+<noteinfo noteid='182' unid='A2543EF879B5ACAF0525696500624837' sequence='12'>
+<created><datetime>20000925T125330,15-05</datetime></created>
+<modified><datetime dst='true'>20230424T112153,68+02</datetime></modified>
+<revised><datetime>20220519T113208,16+00</datetime></revised>
+<lastaccessed><datetime dst='true'>20230424T112153,67+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20230424T112153,67+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Domino Template Development/O=Domino</name></updatedby>
+<revisions><datetime>20060302T163211,84-05</datetime><datetime>20070118T204125,91-05</datetime></revisions>
+<wassignedby><name>CN=Domino Template Development/O=Domino</name></wassignedby>
+<item name='$LANGUAGE' sign='true'><text>en</text></item>
+<item name='$HTMLCode' sign='true'>
+<rawitemdata type='1'>
+</rawitemdata></item>
+<item name='$TITLE'><text>HiPriorityReplication</text></item>
+<item name='$INFO' sign='true'>
+<rawitemdata type='1'>
+hhgBAIAAAAAAgAAAAQABAP///wAAAAAA
+</rawitemdata></item>
+<item name='$Flags'><text/></item>
+<item name='$DesignerVersion' sign='true'><text>8.5</text></item>
+<item name='HiPriorityReplication' placeholder='true'>
+<rawitemdata type='0'>
+</rawitemdata></item>
+<item name='$FIELDS'><text>HiPriorityReplication</text></item>
+<item name='$BODY' summary='true' sign='true'>
+<rawitemdata type='1'>
+gQKC/1oAAQAAAAAAAAAAAKAFAACgBQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAABAAAAAJSHAAAAAAAAAAAAAAAAAQAAAAQAAACDBAEAhf8IAAEAAArdBgAAiv/+/7QA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAZAAAAGQACgAEAAAAUAC/AFgBAAAAAAAAAEBvQA4CrwA4AAgAKwCuADAA
+AQAbAExvY0FsbEhpUHJpb3JpdHlSZXBsaWNhdGlvbgD7AWwBKgAKAq4ABAC1AwMABwAOAAgACTZT
+N1MxNVOw/xQAAAAGIAAAAAAAAAAAAAAAAIr/SAKKQgEFAiACAAgAAAAAAgEBAQkOAGQBAAAAABUA
+ZwA1AA4AAAAMAAEAAQAwAAMAZAEDAG4AFQBIaVByaW9yaXR5UmVwbGljYXRpb24ABQAVAEhpUHJp
+b3JpdHlSZXBsaWNhdGlvbgABAAAACgKvAC4ADAABAAEAMACuACIABQAVAEhpUHJpb3JpdHlSZXBs
+aWNhdGlvbgCuAAQAtQMDAAcACgADAAkxUwAIACAABQAVAEhpUHJpb3JpdHlSZXBsaWNhdGlvbgAD
+AAcACgADAAkwUgADAIoACgBFbmFibGVkX0hJBQAVAEhpUHJpb3JpdHlSZXBsaWNhdGlvbgABAAEA
+MAAKAq8AVAAMAAEAAQAwAK4ASAAFABUASGlQcmlvcml0eVJlcGxpY2F0aW9uAAEAAQAxAAoCrwAi
+AAwAAQABADEArgAWAAUACgBFbmFibGVkX0hJrgAEALUFAwAHAAwABQAJMFIxUwAAACAABQAVAEhp
+UHJpb3JpdHlSZXBsaWNhdGlvbgADAAcACgADAAkwUgBIaVByaW9yaXR5UmVwbGljYXRpb25DaG9v
+c2UgRW5hYmxlIGlmIHlvdSB3YW50IHRoZSBSZXBsaWNhdG9yIHRvIGJlIGVuYWJsZWQgYW5kIHVz
+ZSB0aGUgc3BlY2lmaWVkIHNjaGVkdWxlIGF0IHRoaXMgbG9jYXRpb24uAQAxAEFkZGl0aW9uYWwg
+aW50ZXJ2YWwgZm9yIGhpZ2gtcHJpb3JpdHkgZGF0YWJhc2VzfDEAev8kAAkAAAAAAAAAAAAAAAAA
+AAAAAAAAAABFbmFibGVkXzEA3gYAAIr/hf8IAAEAAAo=
+</rawitemdata></item></note>
+

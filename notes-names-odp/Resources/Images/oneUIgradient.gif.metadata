@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><note xmlns="http://www.lotus.com/dxl" class="form" maintenanceversion="2.0" replicaid="C125899B00337147" version="12.0">
+<noteinfo noteid="53e" sequence="8" unid="DF38D7669C08AF3B482579E3000D9988">
+<created><datetime>20120417T102832,72+08</datetime></created>
+<modified><datetime dst="true">20230424T112155,94+02</datetime></modified>
+<revised><datetime>20220519T113220,34+00</datetime></revised>
+<lastaccessed><datetime dst="true">20230424T112155,93+02</datetime></lastaccessed>
+<addedtofile><datetime dst="true">20230424T112155,93+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Domino Template Development/O=Domino</name></updatedby>
+<revisions><datetime>20120417T102832,77+08</datetime></revisions>
+<wassignedby><name>CN=Domino Template Development/O=Domino</name></wassignedby>
+<item name="$TITLE"><text>oneUIgradient.gif</text></item>
+<item name="$Flags"><text>34CiQ</text></item>
+<item name="$FlagsExt" sign="true"><text>D</text></item>
+<item name="$ImagesWide" sign="true"><number>1</number></item>
+<item name="$ImagesHigh" sign="true"><number>1</number></item>
+<item name="$ImagesColorize" sign="true"><number>0</number></item>
+
+
+<item name="$MimeType" sign="true"><text>image/gif</text></item>
+<item name="$FileModDT" sign="true"><datetime>20120417T102834,00+08</datetime></item>
+<item name="$ImageNames" sign="true"><text>oneUIgradient.gif</text></item>
+<item name="$DesignerVersion" sign="true"><text>8.5.3</text></item>
+<item name="$PublicAccess" sign="true"><text>1</text></item>
+<item name="$LANGUAGE" sign="true"><text>en</text></item></note>

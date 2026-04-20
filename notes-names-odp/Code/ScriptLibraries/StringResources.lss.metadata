@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><note xmlns="http://www.lotus.com/dxl" class="filter" maintenanceversion="2.0" replicaid="C125899B00337147" version="12.0">
+<noteinfo noteid="1e6" sequence="45" unid="7D41F2C929A2535B85256921005AFAF5">
+<created><datetime dst="true">20000719T123344,85-04</datetime></created>
+<modified><datetime dst="true">20230424T112153,88+02</datetime></modified>
+<revised><datetime>20220519T113209,23+00</datetime></revised>
+<lastaccessed><datetime dst="true">20230424T112153,87+02</datetime></lastaccessed>
+<addedtofile><datetime dst="true">20230424T112153,87+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Domino Template Development/O=Domino</name></updatedby>
+<revisions><datetime dst="true">20190923T063743,13-04</datetime><datetime dst="true">20190923T064326,73-04</datetime><datetime dst="true">20190926T054614,07-04</datetime><datetime dst="true">20191025T061216,33-04</datetime><datetime>20191105T042050,85-05</datetime><datetime>20191105T053815,36-05</datetime><datetime>20191107T061241,97-05</datetime><datetime>20191107T074948,90-05</datetime><datetime>20191107T085636,78-05</datetime><datetime>20191108T011246,23-05</datetime><datetime>20191108T031439,01-05</datetime><datetime>20191108T040425,06-05</datetime><datetime>20191108T044339,82-05</datetime><datetime>20191111T102145,35-05</datetime><datetime>20191111T212145,65-05</datetime><datetime>20191111T221650,28-05</datetime><datetime>20191111T222413,99-05</datetime><datetime>20191111T223545,90-05</datetime><datetime>20191111T224722,15-05</datetime><datetime>20191111T230122,35-05</datetime><datetime>20191111T231506,67-05</datetime><datetime>20191112T052703,43-05</datetime><datetime>20191112T100524,77-05</datetime><datetime>20200113T055053,41-05</datetime><datetime>20200117T033911,62-05</datetime><datetime>20200402T144707,14+0530</datetime></revisions>
+<wassignedby><name>CN=Domino Template Development/O=Domino</name></wassignedby>
+<item name="$LANGUAGE" sign="true"><text>en</text></item>
+<item name="$TITLE" sign="true"><text>StringResources</text></item>
+<item name="$Flags"><text>s34Q</text></item>
+<item name="$PublicAccess" sign="true"><text>1</text></item>
+
+</note>

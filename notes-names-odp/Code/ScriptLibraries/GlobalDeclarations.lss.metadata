@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><note xmlns="http://www.lotus.com/dxl" class="filter" maintenanceversion="2.0" replicaid="C125899B00337147" version="12.0">
+<noteinfo noteid="1be" sequence="5041" unid="2D48BC2AE2F73B5F8525646D0076FD26">
+<created><datetime dst="true">19970402T173940,54-04</datetime></created>
+<modified><datetime dst="true">20230424T112153,81+02</datetime></modified>
+<revised><datetime>20220519T113208,81+00</datetime></revised>
+<lastaccessed><datetime dst="true">20230424T112153,80+02</datetime></lastaccessed>
+<addedtofile><datetime dst="true">20230424T112153,80+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Domino Template Development/O=Domino</name></updatedby>
+<revisions><datetime dst="true">20191025T061215,62-04</datetime><datetime>20191105T042050,12-05</datetime><datetime>20191105T053814,64-05</datetime><datetime>20191107T061241,27-05</datetime><datetime>20191107T074948,21-05</datetime><datetime>20191107T085635,99-05</datetime><datetime>20191108T011245,45-05</datetime><datetime>20191108T031438,32-05</datetime><datetime>20191108T040424,34-05</datetime><datetime>20191108T044339,13-05</datetime><datetime>20191111T102144,55-05</datetime><datetime>20191111T212144,81-05</datetime><datetime>20191111T221649,55-05</datetime><datetime>20191111T222413,27-05</datetime><datetime>20191111T223545,05-05</datetime><datetime>20191111T224721,43-05</datetime><datetime>20191111T230121,64-05</datetime><datetime>20191111T231505,87-05</datetime><datetime>20191112T052702,61-05</datetime><datetime>20191112T100524,02-05</datetime><datetime>20200113T055052,31-05</datetime><datetime>20200117T033910,61-05</datetime><datetime>20200402T144707,14+0530</datetime></revisions>
+<wassignedby><name>CN=Domino Template Development/O=Domino</name></wassignedby>
+<item name="$TITLE" sign="true"><text>GlobalDeclarations</text></item>
+<item name="$Flags"><text>s34Q</text></item>
+<item name="$PublicAccess" sign="true"><text>1</text></item>
+<item name="$LANGUAGE" sign="true"><text>en</text></item>
+
+</note>

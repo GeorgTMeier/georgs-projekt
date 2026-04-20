@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note class='form' xmlns='http://www.lotus.com/dxl' version='12.0' maintenanceversion='2.0'
+ replicaid='C125899B00337147'>
+<noteinfo noteid='406' unid='6EBAB9F45A7E98E9852572C20064164E' sequence='38'>
+<created><datetime dst='true'>20070419T141313,10-04</datetime></created>
+<modified><datetime dst='true'>20230424T112155,16+02</datetime></modified>
+<revised><datetime>20220519T113216,02+00</datetime></revised>
+<lastaccessed><datetime dst='true'>20230424T112155,15+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20230424T112155,15+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Domino Template Development/O=Domino</name></updatedby>
+<revisions><datetime dst='true'>20191025T061220,15-04</datetime><datetime
+>20191105T042054,78-05</datetime><datetime>20191105T053819,26-05</datetime><datetime
+>20191107T061245,83-05</datetime><datetime>20191107T074952,82-05</datetime><datetime
+>20191107T085640,96-05</datetime><datetime>20191108T011250,40-05</datetime><datetime
+>20191108T031442,78-05</datetime><datetime>20191108T040428,94-05</datetime><datetime
+>20191108T044343,62-05</datetime><datetime>20191111T102149,74-05</datetime><datetime
+>20191111T212150,18-05</datetime><datetime>20191111T221654,20-05</datetime><datetime
+>20191111T222417,88-05</datetime><datetime>20191111T223550,41-05</datetime><datetime
+>20191111T224726,06-05</datetime><datetime>20191111T230126,28-05</datetime><datetime
+>20191111T231510,89-05</datetime><datetime>20191112T052707,69-05</datetime><datetime
+>20191112T100528,96-05</datetime><datetime>20200113T055059,38-05</datetime><datetime
+>20200117T033917,81-05</datetime><datetime>20200402T144707,22+0530</datetime></revisions>
+<wassignedby><name>CN=Domino Template Development/O=Domino</name></wassignedby>
+<item name='$HTMLCode' sign='true'>
+<rawitemdata type='1'>
+X/8QAAIADwAHAAAAAAAAAA==
+</rawitemdata></item>
+<item name='$TITLE'><text>(NoTabNavForm)</text></item>
+<item name='$Comment' sign='true'><text>Used in the InteriorContacts frameset</text></item>
+<item name='$INFO' sign='true'>
+<rawitemdata type='1'>
+hhgBAIAAAAAAgAAAPwABAO/v7wAQAAAA
+</rawitemdata></item>
+<item name='$Flags'><text>CD</text></item>
+<item name='$DesignerVersion' sign='true'><text>8</text></item>
+<item name='$LANGUAGE' sign='true'><text>en</text></item>
+<item name='$$ScriptName' summary='false' sign='true'><text>(NoTabNavForm)</text></item>
+<item name='$BODY' sign='true'>
+<rawitemdata type='1'>
+gQKC/1oAAQAAAAAAAAAAAKAFAACgBQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAACBAAAAAJWHAAAAAAAAAAAAAAAAAQAAAAYAAACDBAEAhf8IAAEAAAk=
+</rawitemdata></item></note>
+

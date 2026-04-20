@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note class='sharedfield' xmlns='http://www.lotus.com/dxl' version='12.0'
+ maintenanceversion='2.0' replicaid='C125899B00337147'>
+<noteinfo noteid='132' unid='237E2DB2C37496C2852561C60006E505' sequence='5022'>
+<created><datetime dst='true'>19950523T211518,45-04</datetime></created>
+<modified><datetime dst='true'>20230424T112153,48+02</datetime></modified>
+<revised><datetime>20220519T113207,13+00</datetime></revised>
+<lastaccessed><datetime dst='true'>20230424T112153,47+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20230424T112153,47+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Domino Template Development/O=Domino</name></updatedby>
+<wassignedby><name>CN=Domino Template Development/O=Domino</name></wassignedby>
+<item name='$LANGUAGE' sign='true'><text>en</text></item>
+<item name='$HTMLCode' sign='true'>
+<rawitemdata type='1'>
+</rawitemdata></item>
+<item name='$TITLE'><text>Country</text></item>
+<item name='$INFO' sign='true'>
+<rawitemdata type='1'>
+hhgBAIAAAAAAgAAAAQABAP///wAAAAAA
+</rawitemdata></item>
+<item name='$Flags'><text/></item>
+<item name='$DesignerVersion' sign='true'><text>6</text></item>
+<item name='country' summary='false' sign='true'><number>0</number></item>
+<item name='$FIELDS'><text>Country</text></item>
+<item name='$BODY' summary='true' sign='true'>
+<rawitemdata type='1'>
+gQKC/1oAAQAAAAAAAAAAAKAFAACgBQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAABAAAAAJSHAAAAAAAAAAAAAAAAAQAAAAQAAACDBAEAhf8IAAEAAArdBgAA9//3/yQA
+AQAAgAAA0AIgAQAAAAAAAAAAZAAAAAAAAAAAAAAAAAD+/1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALD/
+FAAAAAAAgAAAAAAAAAAAAAAAiv8+AILAAAMAIAIAAAAAAAADAQAKCAAAAAAAAAAABwATAAAAQ291
+bnRyeUVudGVyIENvdW50cnkgQ29kZS7SCAEAAACAANIICQD///8A3gYAAPf/hf8IAAEAAAo=
+</rawitemdata></item></note>
+

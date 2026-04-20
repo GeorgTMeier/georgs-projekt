@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note class='form' xmlns='http://www.lotus.com/dxl' version='12.0' maintenanceversion='2.0'
+ replicaid='C125899B00337147'>
+<noteinfo noteid='4f6' unid='C985391A3B1242A185257B1100507A20' sequence='6'>
+<created><datetime>20130213T093901,44-05</datetime></created>
+<modified><datetime dst='true'>20230424T112155,76+02</datetime></modified>
+<revised><datetime>20220519T113219,29+00</datetime></revised>
+<lastaccessed><datetime dst='true'>20230424T112155,75+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20230424T112155,75+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Domino Template Development/O=Domino</name></updatedby>
+<wassignedby><name>CN=Domino Template Development/O=Domino</name></wassignedby>
+<item name='$LANGUAGE' sign='true'><text>en</text></item>
+<item name='$OpenAsCompApp' sign='true'><text>0</text></item>
+<item name='$TITLE' sign='true'><text>InteriorStandard|InteriorStandard</text></item>
+<item name='$Comment' sign='true'><text/></item>
+<item name='$FrameSet' sign='true'>
+<rawitemdata type='1'>
+7/8YAAIAAwAAAAAAAAAAAAAAAAAAAAAA8P8+AEUAAAAAAAAAAAABAAEAAAAAAAUAAAAAAAUAAAAA
+AAEAAgAAAAAAAQAAAAAAAAADAAEAAQDOAAMAAQDx/0sAEQAAAABAAAADAAEAAQAAAAAADgAAAAkA
+AQAAAAAAAABOb3Rlc05hdmlnYXRvck5vdGVzVmlldwEA////MAEAAAoBAAAAADA/9v8zAAAAAAAD
+AAYAEQAAAAAAAAAAAAAAAAAAAAAAAAAAAENvbnRhY3RzQW5kUGlja2VyP/H/NAABAAAAAEAAAAMA
+AQABAAAAAAAAAAAAAAABAAAAAAAAAAEA////MAEAAAoBAAAAADD2/zUAAAAAAAMABgATAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAQ29udGFjdHMgVmlldyBGcmFtZT8=
+</rawitemdata></item>
+<item name='$Flags'><text>#4C</text></item>
+<item name='$DesignerVersion' sign='true'><text>8.5.3</text></item></note>
+

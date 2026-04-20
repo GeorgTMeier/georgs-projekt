@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note class='form' xmlns='http://www.lotus.com/dxl' version='12.0' maintenanceversion='2.0'
+ replicaid='C125899B00337147'>
+<noteinfo noteid='2ee' unid='059C5EE33E5EB737852569E60059D8F8' sequence='42'>
+<created><datetime>20010201T112122,48-05</datetime></created>
+<modified><datetime dst='true'>20230424T112154,46+02</datetime></modified>
+<revised><datetime>20220519T113212,35+00</datetime></revised>
+<lastaccessed><datetime dst='true'>20230424T112154,45+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20230424T112154,45+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Domino Template Development/O=Domino</name></updatedby>
+<revisions><datetime dst='true'>20191025T061222,87-04</datetime><datetime
+>20191105T042057,64-05</datetime><datetime>20191105T053822,04-05</datetime><datetime
+>20191107T061248,54-05</datetime><datetime>20191107T074955,52-05</datetime><datetime
+>20191107T085643,98-05</datetime><datetime>20191108T011253,34-05</datetime><datetime
+>20191108T031445,46-05</datetime><datetime>20191108T040431,73-05</datetime><datetime
+>20191108T044346,33-05</datetime><datetime>20191111T102152,92-05</datetime><datetime
+>20191111T212153,45-05</datetime><datetime>20191111T221657,00-05</datetime><datetime
+>20191111T222420,63-05</datetime><datetime>20191111T223553,62-05</datetime><datetime
+>20191111T224728,87-05</datetime><datetime>20191111T230129,24-05</datetime><datetime
+>20191111T231513,87-05</datetime><datetime>20191112T052710,72-05</datetime><datetime
+>20191112T100532,01-05</datetime><datetime>20200113T055104,95-05</datetime><datetime
+>20200117T033923,54-05</datetime><datetime>20200402T144707,17+0530</datetime></revisions>
+<wassignedby><name>CN=Domino Template Development/O=Domino</name></wassignedby>
+<item name='$LANGUAGE' sign='true'><text>en</text></item>
+<item name='$HTMLCode' sign='true'>
+<rawitemdata type='1'>
+X/8QAAIADwAHAAAAAAAAAA==
+</rawitemdata></item>
+<item name='$TITLE'><textlist><text>Dark Color Page</text><text>Dark Color Page</text></textlist></item>
+<item name='$INFO' sign='true'>
+<rawitemdata type='1'>
+hhgBAIAAAAAAgAAAXwABANDX4QAKAAAA
+</rawitemdata></item>
+<item name='$Flags'><text>C34WQ</text></item>
+<item name='$DesignerVersion' sign='true'><text>8</text></item>
+<item name='$$ScriptName' summary='false' sign='true'><text>Dark Color Page</text></item>
+<item name='$BODY' sign='true'>
+<rawitemdata type='1'>
+gQKC/1oAAQAAAAAAAAAAAKAFAACgBQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAABAAAAAJSHAAAAAAAAAAAAAAAAAQAAAAQAAACDBAEAhf8IAAEAAAo=
+</rawitemdata></item></note>
+

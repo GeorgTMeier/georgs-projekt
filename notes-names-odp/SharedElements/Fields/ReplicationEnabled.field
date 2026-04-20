@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note class='sharedfield' xmlns='http://www.lotus.com/dxl' version='12.0'
+ maintenanceversion='2.0' replicaid='C125899B00337147'>
+<noteinfo noteid='126' unid='01F0889D1A1396BF0525696500622B3D' sequence='14'>
+<created><datetime>20000925T125215,97-05</datetime></created>
+<modified><datetime dst='true'>20230424T112153,45+02</datetime></modified>
+<revised><datetime>20220519T113206,93+00</datetime></revised>
+<lastaccessed><datetime dst='true'>20230424T112153,44+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20230424T112153,44+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Domino Template Development/O=Domino</name></updatedby>
+<revisions><datetime>20060302T163211,99-05</datetime><datetime>20070118T124919,62-05</datetime><datetime
+>20070118T125002,65-05</datetime><datetime dst='true'>20090402T090948,59-04</datetime></revisions>
+<wassignedby><name>CN=Domino Template Development/O=Domino</name></wassignedby>
+<item name='$LANGUAGE' sign='true'><text>en</text></item>
+<item name='$HTMLCode' sign='true'>
+<rawitemdata type='1'>
+</rawitemdata></item>
+<item name='$TITLE'><text>ReplicationEnabled</text></item>
+<item name='$INFO' sign='true'>
+<rawitemdata type='1'>
+hhgBAIAAAAAAgAAAAQABAP///wAAAAAA
+</rawitemdata></item>
+<item name='$Flags'><text/></item>
+<item name='$DesignerVersion' sign='true'><text>8.5</text></item>
+<item name='ReplicationEnabled' placeholder='true'>
+<rawitemdata type='0'>
+</rawitemdata></item>
+<item name='$FIELDS'><text>ReplicationEnabled</text></item>
+<item name='$BODY' summary='true' sign='true'>
+<rawitemdata type='1'>
+gQKC/1oAAQAAAAAAAAAAAKAFAACgBQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAABAAAAAJSHAAAAAAAAAAAAAAAAAQAAAAQAAACDBAEAhf8IAAEAAArdBgAAiv/+/7AA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAYAAAAGAACgAEAAAATAC/AFgBAAAAAAAAAEBvQA4CrwA0AAgAKwCuACwA
+AQAYAExvY0FsbFJlcGxpY2F0aW9uRW5hYmxlZPsBbAEqAAoCrgAEALUDAwAHAA4ACAAJNlM3UzE1
+U7D/FAAAAAYgAAAAAAAAAAAAAAAAiv9uAYJCAQUCIAIACAAAAAACAQEBCQ4AlAAAAAAAEgBnAC4A
+DgAAAAwAAQABADAAAwCUAAMAYgASAFJlcGxpY2F0aW9uRW5hYmxlZAUAEgBSZXBsaWNhdGlvbkVu
+YWJsZWQBAAAACgKvACoADAABAAEAMACuAB4ABQASAFJlcGxpY2F0aW9uRW5hYmxlZK4ABAC1AwMA
+BwAKAAMACTFTAAAAHAAFABIAUmVwbGljYXRpb25FbmFibGVkAwAHAAoAAwAJMFIAUmVwbGljYXRp
+b25FbmFibGVkQ2hvb3NlIEVuYWJsZSBpZiB5b3Ugd2FudCB0aGUgUmVwbGljYXRvciB0byBiZSBl
+bmFibGVkIGFuZCB1c2UgdGhlIHNwZWNpZmllZCBzY2hlZHVsZSBhdCB0aGlzIGxvY2F0aW9uLgEA
+KgBSZXBsaWNhdGlvbiBpcyBlbmFibGVkIGZvciB0aGlzIGxvY2F0aW9ufDEAev8kAAkAAAAAAAAA
+AAAAAAAAAAAAAAAAAABFbmFibGVkXzIA3gYAAIr/hf8IAAEAAAo=
+</rawitemdata></item></note>
+

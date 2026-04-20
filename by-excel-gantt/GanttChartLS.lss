@@ -1,0 +1,171 @@
+' ============================================================================
+' GanttChartLS.lss – LotusScript-Klasse zur Erzeugung eines Gantt-Diagramms
+' als HTML (für Browser oder Notes-RTF/Datei).
+'
+' Nutzung in Notes:
+' 1. Erstellen → Design → Script-Bibliothek, Name z. B. "GanttChartLS"
+' 2. Inhalt dieser Datei einfügen und speichern
+' 3. Im Agent oder Formular die Bibliothek einbinden, dann z. B.:
+'
+'   Dim g As New GanttChart
+'   Call g.AddTask("Projektstart", Cdat("2025-02-01"), 3)   ' Name, Start, Dauer (Tage)
+'   Call g.AddTask("Konzept", Cdat("2025-02-05"), 5)
+'   Call g.AddTaskRange("Abnahme", Cdat("2025-02-20"), Cdat("2025-02-22"))  ' Start + Enddatum
+'   html = g.GenerateHtml()
+'   ' HTML in RTF-Feld schreiben oder:
+'   Call g.WriteHtmlFile("C:\Temp\Gantt.html")
+' ============================================================================
+
+Option Public
+Option Declare
+
+' ----------------------------------------------------------------------------
+' Klasse: GanttTask – eine Aufgabe im Gantt
+' ----------------------------------------------------------------------------
+Public Class GanttTask
+    Public TaskName As String
+    Public StartDate As Date
+    Public EndDate As Date
+    Public DurationDays As Integer
+
+    ' Konstruktor: Name, Startdatum, Dauer in Tagen
+    Public Sub New(name As String, startD As Date, durationDays As Integer)
+        TaskName = name
+        StartDate = startD
+        DurationDays = durationDays
+        EndDate = DateAdd("d", durationDays - 1, startD)
+    End Sub
+End Class
+
+' ----------------------------------------------------------------------------
+' Klasse: GanttChart – Sammlung von Aufgaben, HTML-Ausgabe
+' ----------------------------------------------------------------------------
+Public Class GanttChart
+    Private tasks() As Variant
+    Private taskCount As Long
+    Private dayWidthPx As Integer
+    Private labelWidthPx As Integer
+    Private minDate As Date
+    Private maxDate As Date
+
+    Public Sub New()
+        taskCount = 0
+        ReDim tasks(0)
+        dayWidthPx = 24
+        labelWidthPx = 220
+        minDate = 0
+        maxDate = 0
+    End Sub
+
+    ' Aufgabe hinzufügen: Name, Startdatum, Dauer in Tagen
+    Public Sub AddTask(name As String, startDate As Date, durationDays As Integer)
+        Dim t As New GanttTask(name, startDate, durationDays)
+        AddTaskObj t
+    End Sub
+
+    ' Aufgabe hinzufügen: Name, Startdatum, Enddatum (Dauer wird berechnet)
+    Public Sub AddTaskRange(name As String, startDate As Date, endDate As Date)
+        Dim dur As Integer
+        dur = DateDiff("d", startDate, endDate) + 1
+        If dur < 1 Then dur = 1
+        AddTask name, startDate, dur
+    End Sub
+
+    Private Sub AddTaskObj(t As GanttTask)
+        taskCount = taskCount + 1
+        ReDim Preserve tasks(taskCount - 1)
+        Set tasks(taskCount - 1) = t
+        If minDate = 0 Or t.StartDate < minDate Then minDate = t.StartDate
+        If maxDate = 0 Or t.EndDate > maxDate Then maxDate = t.EndDate
+    End Sub
+
+    ' Gantt als HTML-String erzeugen
+    Public Function GenerateHtml() As String
+        If taskCount = 0 Then
+            GenerateHtml = "<!DOCTYPE html><html><head><meta charset=""utf-8""><title>Gantt</title></head><body><p>Keine Aufgaben.</p></body></html>"
+            Exit Function
+        End If
+
+        Dim totalDays As Long
+        totalDays = DateDiff("d", minDate, maxDate) + 1
+        If totalDays < 1 Then totalDays = 1
+
+        Dim totalWidthPx As Long
+        totalWidthPx = totalDays * dayWidthPx
+        Dim rowHeightPx As Integer
+        rowHeightPx = 32
+
+        Dim sb As String
+        sb = "<!DOCTYPE html><html><head><meta charset=""utf-8""><title>Gantt</title><style>"
+        sb = sb & "body{font-family:Segoe UI,Arial,sans-serif;margin:16px;background:#f5f5f5;}"
+        sb = sb & ".gantt{display:inline-block;background:#fff;border:1px solid #ccc;border-radius:6px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.1);}"
+        sb = sb & ".gantt-header{display:flex;background:#2c3e50;color:#fff;font-weight:bold;}"
+        sb = sb & ".gantt-label{width:" & labelWidthPx & "px;min-width:" & labelWidthPx & "px;padding:10px 12px;border-right:1px solid #34495e;}"
+        sb = sb & ".gantt-timeline{overflow-x:auto;padding:10px 0 0 0;}"
+        sb = sb & ".gantt-timeline-inner{display:flex;min-width:" & totalWidthPx & "px;}"
+        sb = sb & ".gantt-day{width:" & dayWidthPx & "px;min-width:" & dayWidthPx & "px;text-align:center;font-size:11px;}"
+        sb = sb & ".gantt-row{display:flex;min-height:" & rowHeightPx & "px;align-items:center;border-bottom:1px solid #eee;}"
+        sb = sb & ".gantt-row:nth-child(even){background:#fafafa;}"
+        sb = sb & ".gantt-row .gantt-label{padding:6px 12px;font-size:13px;background:transparent;color:#333;border-right:1px solid #eee;}"
+        sb = sb & ".gantt-bars{position:relative;flex:1;min-height:" & rowHeightPx & "px;min-width:" & totalWidthPx & "px;}"
+        sb = sb & ".gantt-bar{position:absolute;height:20px;top:6px;border-radius:4px;background:linear-gradient(180deg,#3498db,#2980b9);color:#fff;font-size:11px;display:flex;align-items:center;padding-left:6px;box-sizing:border-box;overflow:hidden;}"
+        sb = sb & ".gantt-bar:nth-of-type(4n+2){background:linear-gradient(180deg,#27ae60,#219a52);}"
+        sb = sb & ".gantt-bar:nth-of-type(4n+3){background:linear-gradient(180deg,#e67e22,#d35400);}"
+        sb = sb & ".gantt-bar:nth-of-type(4n+4){background:linear-gradient(180deg,#9b59b6,#8e44ad);}"
+        sb = sb & "</style></head><body><div class=""gantt"">"
+
+        ' Header: Thema + Tage
+        sb = sb & "<div class=""gantt-header""><div class=""gantt-label"">Thema</div><div class=""gantt-timeline""><div class=""gantt-timeline-inner"">"
+        Dim d As Date
+        d = minDate
+        Do While d <= maxDate
+            sb = sb & "<div class=""gantt-day"">" & Day(d) & "." & Month(d) & "</div>"
+            d = DateAdd("d", 1, d)
+        Loop
+        sb = sb & "</div></div></div>"
+
+        ' Zeilen pro Aufgabe
+        Dim i As Long
+        Dim t As GanttTask
+        Dim startOffsetPx As Long
+        Dim lengthPx As Long
+        Dim lengthDays As Long
+        Dim barClass As String
+
+        For i = 0 To taskCount - 1
+            Set t = tasks(i)
+            startOffsetPx = DateDiff("d", minDate, t.StartDate) * dayWidthPx
+            lengthDays = DateDiff("d", t.StartDate, t.EndDate) + 1
+            If lengthDays < 1 Then lengthDays = 1
+            lengthPx = lengthDays * dayWidthPx
+
+            sb = sb & "<div class=""gantt-row""><div class=""gantt-label"">" & EscapeHtml(t.TaskName) & "</div><div class=""gantt-bars"">"
+            sb = sb & "<div class=""gantt-bar"" style=""left:" & startOffsetPx & "px;width:" & lengthPx & "px;"" title=""" & Format(t.StartDate, "dd.mm.yyyy") & " - " & Format(t.EndDate, "dd.mm.yyyy") & """>"
+            If lengthPx > 40 Then sb = sb & EscapeHtml(t.TaskName)
+            sb = sb & "</div></div></div>"
+        Next
+
+        sb = sb & "</div></body></html>"
+        GenerateHtml = sb
+    End Function
+
+    Private Function EscapeHtml(s As String) As String
+        Dim r As String
+        r = Replace(s, "&", "&amp;")
+        r = Replace(r, "<", "&lt;")
+        r = Replace(r, ">", "&gt;")
+        r = Replace(r, """", "&quot;")
+        EscapeHtml = r
+    End Function
+
+    ' Optional: HTML in Datei schreiben
+    Public Sub WriteHtmlFile(filePath As String)
+        Dim h As String
+        h = GenerateHtml()
+        Dim f As Integer
+        f = FreeFile()
+        Open filePath For Output As f
+        Print #f, h
+        Close f
+    End Sub
+End Class

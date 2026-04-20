@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><note xmlns="http://www.lotus.com/dxl" class="form" maintenanceversion="2.0" replicaid="C125899B00337147" version="12.0">
+<noteinfo noteid="4b2" sequence="15" unid="ABB890BE13BC5ED5852568860055B2BA">
+<created><datetime>20000215T103603,14-05</datetime></created>
+<modified><datetime dst="true">20230424T112155,59+02</datetime></modified>
+<revised><datetime>20220519T113218,35+00</datetime></revised>
+<lastaccessed><datetime dst="true">20230424T112155,58+02</datetime></lastaccessed>
+<addedtofile><datetime dst="true">20230424T112155,58+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Domino Template Development/O=Domino</name></updatedby>
+<revisions><datetime>20060302T163212,01-05</datetime><datetime>20070202T143956,27-05</datetime></revisions>
+<wassignedby><name>CN=Domino Template Development/O=Domino</name></wassignedby>
+<item name="$ImagesWide" sign="true"><number>1</number></item>
+<item name="$ImagesHigh" sign="true"><number>1</number></item>
+<item name="$ImagesColorize" sign="true"><number>0</number></item>
+
+<item name="$ImageNames" sign="true"><text>mailgr.gif</text></item>
+<item name="$TITLE" sign="true"><textlist><text>mailgr.gif</text><text>mailgr.gif</text></textlist></item>
+<item name="$DesignerVersion" sign="true"><text>5</text></item>
+<item name="$Flags"><text>34CiQ</text></item>
+<item name="$LANGUAGE" sign="true"><text>en</text></item></note>

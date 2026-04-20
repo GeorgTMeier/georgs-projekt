@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><note xmlns="http://www.lotus.com/dxl" class="form" maintenanceversion="2.0" replicaid="C125899B00337147" version="12.0">
+<noteinfo noteid="4c2" sequence="5011" unid="AD33093B05E3B2A1852566CD007A1C1E">
+<created><datetime>19981201T171345,90-05</datetime></created>
+<modified><datetime dst="true">20230424T112155,63+02</datetime></modified>
+<revised><datetime>20220519T113218,57+00</datetime></revised>
+<lastaccessed><datetime dst="true">20230424T112155,62+02</datetime></lastaccessed>
+<addedtofile><datetime dst="true">20230424T112155,62+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Domino Template Development/O=Domino</name></updatedby>
+<revisions><datetime>20060302T163212,14-05</datetime><datetime>20070202T143805,05-05</datetime></revisions>
+<wassignedby><name>CN=Domino Template Development/O=Domino</name></wassignedby>
+<item name="$ImagesWide" sign="true"><number>1</number></item>
+<item name="$ImagesHigh" sign="true"><number>1</number></item>
+
+<item name="$ImageNames" sign="true"><text>actn019.gif</text></item>
+<item name="$Comment" sign="true"><text>used for connection wizard</text></item>
+<item name="$TITLE" sign="true"><textlist><text>actn019.gif</text><text>actn019.gif</text></textlist></item>
+<item name="$Flags"><text>34Ci</text></item>
+<item name="$LANGUAGE" sign="true"><text>en</text></item></note>

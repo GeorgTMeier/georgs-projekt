@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><note xmlns="http://www.lotus.com/dxl" class="form" maintenanceversion="2.0" replicaid="C125899B00337147" version="12.0">
+<noteinfo noteid="322" sequence="17" unid="1862CD665E6A342A852571720067C7CC">
+<created><datetime dst="true">20060518T145333,56-04</datetime></created>
+<modified><datetime dst="true">20230424T112154,59+02</datetime></modified>
+<revised><datetime>20220519T113212,84+00</datetime></revised>
+<lastaccessed><datetime dst="true">20230424T112154,58+02</datetime></lastaccessed>
+<addedtofile><datetime dst="true">20230424T112154,58+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Domino Template Development/O=Domino</name></updatedby>
+<revisions><datetime dst="true">20060918T134634,39-04</datetime><datetime>20070202T143958,49-05</datetime></revisions>
+<wassignedby><name>CN=Domino Template Development/O=Domino</name></wassignedby>
+<item name="$FlagsExt" sign="true"><text>D</text></item>
+<item name="$ImagesWide" sign="true"><number>1</number></item>
+<item name="$ImagesHigh" sign="true"><number>1</number></item>
+<item name="$ImagesColorize" sign="true"><number>0</number></item>
+<item name="$TITLE" sign="true"><textlist><text>outl_Advanced.gif</text><text>Advanced.gif</text></textlist></item>
+<item name="$DesignerVersion" sign="true"><text>8</text></item>
+
+
+<item name="$MimeType" sign="true"><text>image/gif</text></item>
+<item name="$FileModDT" sign="true"><datetime dst="true">20060905T120351,22-04</datetime></item>
+<item name="$Flags"><text>34CiQ</text></item>
+<item name="$ImageNames" sign="true"><text>out_advanced.gif</text></item>
+<item name="$LANGUAGE" sign="true"><text>en</text></item></note>

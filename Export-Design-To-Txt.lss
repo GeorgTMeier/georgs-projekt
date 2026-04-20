@@ -1,0 +1,294 @@
+'*** LotusScript Agent: Export All Design to Text ***
+' Fügen Sie diesen Code in einen Agenten ein und führen Sie ihn aus.
+' Exportiert: Forms, Views, Agents, Script Libraries (LotusScript + Formeln)
+'
+' Anleitung:
+' 1. In Lotus Notes Designer die gewünschte DB öffnen
+' 2. Agent erstellen: "Create" -> "Agent"
+' 3. Trigger: "Manuell" oder "Aktion" -> "Run"
+' 4. Programmierung: "LotusScript" wählen
+' 5. Diesen Code einfügen
+' 6. outputPath ggf. anpassen
+' 7. Agent ausführen
+
+Option Public
+Option Declare
+
+Sub Initialize
+    On Error Goto errHandler
+
+    Dim session As New NotesSession
+    Dim db As NotesDatabase
+    Dim outputPath As String
+    Dim fileNum As Integer
+
+    Set db = session.CurrentDatabase
+
+    ' === Pfad für die Ausgabedatei ===
+    outputPath = "C:\NotesExport\DesignSource_" & Format(Now, "yyyymmdd_hhnnss") & ".txt"
+
+    ' Erstelle Verzeichnis falls nötig
+    If Not MkDirTree(Left(outputPath, Instr(1, outputPath, "\", -1) - 1)) Then
+        outputPath = session.GetEnvironmentString("Directory", True) & "\DesignExport.txt"
+    End If
+
+    fileNum = FreeFile()
+    Open outputPath For Output As fileNum
+
+    Print #fileNum, "=" & String(78, "=")
+    Print #fileNum, "LOTUS NOTES DESIGN EXPORT"
+    Print #fileNum, "Datenbank: " & db.FilePath
+    Print #fileNum, "Erstellt: " & Format(Now, "dd.mm.yyyy hh:nn:ss")
+    Print #fileNum, "=" & String(78, "=")
+    Print #fileNum, ""
+
+    Call ExportForms(db, fileNum)
+    Call ExportViews(db, fileNum)
+    Call ExportAgents(db, fileNum)
+    Call ExportScriptLibraries(db, fileNum)
+    Call ExportFormulaLibraries(db, fileNum)
+
+    Close fileNum
+
+    Messagebox "Export abgeschlossen!" & Chr(10) & Chr(10) & "Datei: " & outputPath, 64, "Export"
+    Exit Sub
+
+errHandler:
+    If fileNum > 0 Then Close fileNum
+    Messagebox "Fehler: " & Err & " - " & Error$, 16, "Export Fehler"
+End Sub
+
+' --- FORMS ---
+Sub ExportForms(db As NotesDatabase, fileNum As Integer)
+    Dim formName As Variant
+    Dim formDoc As NotesDocument
+    Dim item As NotesItem
+    Dim formulaItems As Variant
+    Dim i As Integer
+
+    formulaItems = Array("$Formula", "$$FieldFormula", "$$FieldDefault", "$$FieldInputValidation", _
+                        "$$FieldInputTranslation", "$$WebQuerySave", "$$WebQueryOpen", _
+                        "$$QueryOpen", "$$QuerySave", "$$QueryClose")
+
+    Print #fileNum, String(78, "=")
+    Print #fileNum, ">>> FORMS"
+    Print #fileNum, String(78, "=")
+
+    ForAll fn In db.Forms
+        formName = fn
+        If formName <> "" Then
+            On Error Resume Next
+            Set formDoc = db.GetForm(Cstr(formName))
+            If Not formDoc Is Nothing Then
+                Print #fileNum, ""
+                Print #fileNum, "--- FORM: " & formName & " ---"
+                For i = LBound(formulaItems) To UBound(formulaItems)
+                    Set item = formDoc.GetFirstItem(formulaItems(i))
+                    If Not item Is Nothing Then
+                        Print #fileNum, "[" & formulaItems(i) & "]"
+                        Print #fileNum, item.Text
+                        Print #fileNum, ""
+                    End If
+                Next
+                Call ExportFormActions(formDoc, fileNum)
+            End If
+        End If
+    End ForAll
+End Sub
+
+Sub ExportFormActions(formDoc As NotesDocument, fileNum As Integer)
+    Dim item As NotesItem
+    Set item = formDoc.GetFirstItem("$ACTIONS")
+    If Not item Is Nothing Then
+        Print #fileNum, "[Form Actions / $ACTIONS]"
+        Print #fileNum, item.Text
+        Print #fileNum, ""
+    End If
+End Sub
+
+' --- VIEWS ---
+Sub ExportViews(db As NotesDatabase, fileNum As Integer)
+    Dim view As NotesView
+    Dim viewName As Variant
+    Dim col As NotesViewColumn
+    Dim i As Integer
+
+    Print #fileNum, ""
+    Print #fileNum, String(78, "=")
+    Print #fileNum, ">>> VIEWS"
+    Print #fileNum, String(78, "=")
+
+    ForAll vn In db.Views
+        viewName = vn
+        On Error Resume Next
+        Set view = db.GetView(Cstr(viewName))
+        If Not view Is Nothing Then
+            Print #fileNum, ""
+            Print #fileNum, "--- VIEW: " & viewName & " ---"
+            Print #fileNum, "[Selection Formula]"
+            Print #fileNum, view.SelectionFormula
+            Print #fileNum, ""
+            For i = 0 To view.ColumnCount - 1
+                Set col = view.GetColumn(i + 1)
+                If Not col Is Nothing Then
+                    Print #fileNum, "[Column " & (i+1) & "] " & col.Title
+                    Print #fileNum, col.Formula
+                    Print #fileNum, ""
+                End If
+            Next
+        End If
+    End ForAll
+End Sub
+
+' --- AGENTS ---
+Sub ExportAgents(db As NotesDatabase, fileNum As Integer)
+    Dim agent As NotesAgent
+    Dim agentName As Variant
+
+    Print #fileNum, ""
+    Print #fileNum, String(78, "=")
+    Print #fileNum, ">>> AGENTS"
+    Print #fileNum, String(78, "=")
+
+    ForAll an In db.Agents
+        agentName = an
+        On Error Resume Next
+        Set agent = db.GetAgent(Cstr(agentName))
+        If Not agent Is Nothing Then
+            Print #fileNum, ""
+            Print #fileNum, "--- AGENT: " & agentName & " (Trigger: " & agent.Trigger & ") ---"
+            If agent.IsFormula Then
+                Print #fileNum, "[Formula]"
+                Print #fileNum, agent.Formula
+            Else
+                Print #fileNum, "[LotusScript]"
+                Call ExportAgentScript(db, Cstr(agentName), fileNum)
+            End If
+            Print #fileNum, ""
+        End If
+    End ForAll
+End Sub
+
+Sub ExportAgentScript(db As NotesDatabase, agentName As String, fileNum As Integer)
+    Dim dc As NotesDocumentCollection
+    Dim doc As NotesDocument
+    Dim item As NotesItem
+
+    On Error Resume Next
+    Set dc = db.Search("$TITLE=""" & Replace(agentName, """", """""") & """", Nothing, 0)
+    If Not dc Is Nothing And dc.Count > 0 Then
+        Set doc = dc.GetFirstDocument()
+        Do While Not doc Is Nothing
+            Set item = doc.GetFirstItem("$Script")
+            If Not item Is Nothing Then
+                Print #fileNum, item.Text
+            End If
+            Set item = doc.GetFirstItem("$Formula")
+            If Not item Is Nothing Then
+                Print #fileNum, "[Formula]"
+                Print #fileNum, item.Text
+            End If
+            Set doc = dc.GetNextDocument(doc)
+        Loop
+    End If
+End Sub
+
+' --- SCRIPT LIBRARIES ---
+Sub ExportScriptLibraries(db As NotesDatabase, fileNum As Integer)
+    Dim dc As NotesDocumentCollection
+    Dim doc As NotesDocument
+    Dim item As NotesItem
+    Dim scriptLibName As String
+    Dim slNames As Variant
+    Dim slName As Variant
+
+    Print #fileNum, ""
+    Print #fileNum, String(78, "=")
+    Print #fileNum, ">>> SCRIPT LIBRARIES (LotusScript)"
+    Print #fileNum, String(78, "=")
+
+    On Error Resume Next
+    slNames = db.ScriptLibraries
+    If Isarray(slNames) Then
+        ForAll sln In slNames
+            slName = sln
+            Print #fileNum, ""
+            Print #fileNum, "--- SCRIPT LIBRARY: " & slName & " ---"
+            Call ExportScriptLibContent(db, Cstr(slName), fileNum)
+        End ForAll
+    Else
+        ' Fallback: Note Collection
+        Set dc = db.CreateNoteCollection(False)
+        dc.SelectScriptLibraries = True
+        dc.BuildCollection
+        If dc.Count > 0 Then
+            Set doc = dc.GetFirstDocument()
+            Do While Not doc Is Nothing
+                scriptLibName = doc.GetItemValue("$TITLE")(0)
+                If scriptLibName <> "" Then
+                    Set item = doc.GetFirstItem("$Script")
+                    If Not item Is Nothing Then
+                        Print #fileNum, ""
+                        Print #fileNum, "--- SCRIPT LIBRARY: " & scriptLibName & " ---"
+                        Print #fileNum, item.Text
+                    End If
+                End If
+                Set doc = dc.GetNextDocument(doc)
+            Loop
+        End If
+    End If
+End Sub
+
+Sub ExportScriptLibContent(db As NotesDatabase, libName As String, fileNum As Integer)
+    Dim dc As NotesDocumentCollection
+    Dim doc As NotesDocument
+    Dim item As NotesItem
+
+    Set dc = db.Search("$TITLE=""" & Replace(libName, """", """""") & """", Nothing, 0)
+    If Not dc Is Nothing And dc.Count > 0 Then
+        Set doc = dc.GetFirstDocument()
+        Set item = doc.GetFirstItem("$Script")
+        If Not item Is Nothing Then
+            Print #fileNum, item.Text
+        End If
+    End If
+End Sub
+
+' --- FORMULA LIBRARIES ---
+Sub ExportFormulaLibraries(db As NotesDatabase, fileNum As Integer)
+    Dim dc As NotesDocumentCollection
+    Dim doc As NotesDocument
+    Dim item As NotesItem
+
+    Print #fileNum, ""
+    Print #fileNum, String(78, "=")
+    Print #fileNum, ">>> FORMULA LIBRARIES"
+    Print #fileNum, String(78, "=")
+
+    On Error Resume Next
+    Set dc = db.CreateNoteCollection(False)
+    dc.SelectFormulas = True
+    dc.BuildCollection
+
+    If Not dc Is Nothing And dc.Count > 0 Then
+        Set doc = dc.GetFirstDocument()
+        Do While Not doc Is Nothing
+            Print #fileNum, ""
+            Print #fileNum, "--- FORMULA LIB: " & doc.GetItemValue("$TITLE")(0) & " ---"
+            Set item = doc.GetFirstItem("$Formula")
+            If Not item Is Nothing Then Print #fileNum, item.Text
+            Set doc = dc.GetNextDocument(doc)
+        Loop
+    End If
+End Sub
+
+Function MkDirTree(path As String) As Boolean
+    On Error Resume Next
+    Dim fso As Variant
+    Set fso = CreateObject("Scripting.FileSystemObject")
+    If fso.FolderExists(path) Then
+        MkDirTree = True
+        Exit Function
+    End If
+    MkDirTree = fso.CreateFolder(path)
+End Function

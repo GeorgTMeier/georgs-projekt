@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><note xmlns="http://www.lotus.com/dxl" class="form" maintenanceversion="2.0" replicaid="C125899B00337147" version="12.0">
+<noteinfo noteid="33a" sequence="15" unid="22A4A7D95620AB42852572F00056D7BD">
+<created><datetime dst="true">20070604T114833,25-04</datetime></created>
+<modified><datetime dst="true">20230424T112154,65+02</datetime></modified>
+<revised><datetime>20220519T113213,15+00</datetime></revised>
+<lastaccessed><datetime dst="true">20230424T112154,64+02</datetime></lastaccessed>
+<addedtofile><datetime dst="true">20230424T112154,64+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Domino Template Development/O=Domino</name></updatedby>
+<revisions><datetime dst="true">20070604T114833,26-04</datetime><datetime dst="true">20070607T095706,85-04</datetime><datetime dst="true">20110919T143158,12-04</datetime><datetime dst="true">20190513T032929,55-04</datetime><datetime dst="true">20190516T040543,64-04</datetime><datetime dst="true">20190807T044340,82-04</datetime><datetime dst="true">20190807T050423,65-04</datetime></revisions>
+<wassignedby><name>CN=Domino Template Development/O=Domino</name></wassignedby>
+<item name="$TITLE"><text>WSDL_EN.properties</text></item>
+<item name="$FlagsExt" sign="true"><text>D</text></item>
+<item name="$FileModDT" sign="true"><datetime dst="true">20070604T231300,74-04</datetime></item>
+<item name="$Flags"><text>345CgQ</text></item>
+<item name="$DesignerVersion" sign="true"><text>8.5.3</text></item>
+
+
+<item name="$FileNames" sign="true"><text>WSDL_EN.properties</text></item>
+<item name="$LANGUAGE" sign="true"><text>en</text></item></note>

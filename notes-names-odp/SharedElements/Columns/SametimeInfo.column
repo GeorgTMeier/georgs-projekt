@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note class='view' xmlns='http://www.lotus.com/dxl' version='12.0' maintenanceversion='2.0'
+ replicaid='C125899B00337147'>
+<noteinfo noteid='2ce' unid='DDD83B69302606F685257184004EF946' sequence='45'>
+<created><datetime dst='true'>20060605T102236,22-04</datetime></created>
+<modified><datetime dst='true'>20230424T112154,38+02</datetime></modified>
+<revised><datetime>20220519T113211,95+00</datetime></revised>
+<lastaccessed><datetime dst='true'>20230424T112154,37+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20230424T112154,37+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Domino Template Development/O=Domino</name></updatedby>
+<revisions><datetime dst='true'>20190923T063754,62-04</datetime><datetime
+ dst='true'>20190923T064338,08-04</datetime><datetime dst='true'>20190926T054627,23-04</datetime><datetime
+ dst='true'>20191025T061228,07-04</datetime><datetime>20191105T042102,79-05</datetime><datetime
+>20191105T053827,35-05</datetime><datetime>20191107T061253,74-05</datetime><datetime
+>20191107T075000,63-05</datetime><datetime>20191107T085649,64-05</datetime><datetime
+>20191108T011258,70-05</datetime><datetime>20191108T031450,51-05</datetime><datetime
+>20191108T040436,90-05</datetime><datetime>20191108T044351,46-05</datetime><datetime
+>20191111T102158,94-05</datetime><datetime>20191111T212159,61-05</datetime><datetime
+>20191111T221702,35-05</datetime><datetime>20191111T222426,05-05</datetime><datetime
+>20191111T223559,62-05</datetime><datetime>20191111T224734,33-05</datetime><datetime
+>20191111T230134,62-05</datetime><datetime>20191111T231519,43-05</datetime><datetime
+>20191112T052716,50-05</datetime><datetime>20191112T100537,71-05</datetime><datetime
+>20200113T055113,01-05</datetime><datetime>20200117T033931,85-05</datetime></revisions>
+<wassignedby><name>CN=Domino Template Development/O=Domino</name></wassignedby>
+<item name='$FormulaClass' sign='true'><text>1</text></item>
+<item name='$SourceSeqTime' sign='true'><datetime dst='true'>20060605T102236,23-04</datetime></item>
+<item name='$SourceSequence' sign='true'><text>00000001</text></item>
+<item name='$LANGUAGE' sign='true'><text>en</text></item>
+<item name='$TITLE' sign='true'><text>SametimeInfo</text></item>
+<item name='$Index' sign='true'><text/></item>
+<item name='$Formula' summary='true' sign='true'><formula compiled='true'>
+EAEBAHoADAB4TUEAnjhHAHVyJQAFAAsATWFpbEFkZHJlc3MAAQAAAAoCBQAPAEludGVybmV0QWRk
+cmVzcwABAAAACwIcAq8AMgAaAAUADwBJbnRlcm5ldEFkZHJlc3MArgAYAAUACwBNYWlsQWRkcmVz
+cwCuAAQAtQMDAAIAYAANACRTYW1ldGltZUluZm8ABQANAFNhbWV0aW1lTG9naW4AAQAAAAoCrwAw
+ABYABQAMAHhNQQCeOEcAdXIlAK4AGgAFAA0AU2FtZXRpbWVMb2dpbgCuAAQAtQMDAAUAKAAkAAMA
+DQAJAAQAJFNhbWV0aW1lSW5mbyRDb25mbGljdCRSRUYEAAQAAAAIAGYAAwA=
+</formula></item>
+<item name='$Collation' summary='true'>
+<rawitemdata type='2'>
+BgAAAABE
+</rawitemdata></item>
+<item name='$VIEWFORMAT' summary='true' sign='true'>
+<rawitemdata type='5'>
+AQABAAIACAAAAFZDCAANAAwAeAEAAFEAAQAACQAAAAAAAAAAAAICAAAAJFNhbWV0aW1lSW5mb1Nh
+bWV0aW1lSW5mb3gBBwBeAFcAYW55IGNoYW5nZSB0byB0aGlzIGNvbHVtbiBNVVNUIGJlIG1hZGUg
+dG8gdGhlIGNvcnJlc3BvbmRpbmcgY29sdW1uIGluIE15IENvbnRhY3RzIHZpZXchAAcACgADAAkx
+UwABAHoADAB4TUEAnjhHAHVyJQAFAAsATWFpbEFkZHJlc3MAAQAAAAoCBQAPAEludGVybmV0QWRk
+cmVzcwABAAAACwIcAq8AMgAaAAUADwBJbnRlcm5ldEFkZHJlc3MArgAYAAUACwBNYWlsQWRkcmVz
+cwCuAAQAtQMDAAcAIgAbAAkwUlIxUzJTNVM2UzdTOFM5UzEwUzEyUzE0UwACAGAADQAkU2FtZXRp
+bWVJbmZvAAUADQBTYW1ldGltZUxvZ2luAAEAAAAKAq8AMAAWAAUADAB4TUEAnjhHAHVyJQCuABoA
+BQANAFNhbWV0aW1lTG9naW4ArgAEALUDAwAHABIACwAJMFIzUzRTNlM4UwAmAAEAAAABAQAJAQAA
+CgEBDgoAAAEArSsBAAEAAQAAAAAAAAAAAFdDAQAACQAAAAAAAAAAAAAAAAAAAAABAASAAAAAAP//
+AAAAAAAAAAAAAAAAAABCAAAAAAABAP///wAFAP///wABAAAAAAAAAAAAAAAAAAEA////AAEA////
+AAAAAQAAAAAAAQAAAAAAAQAAAAAAAAAIAAAAAAABAGFDaAAAAAAAAAAAABMAAAAAAAIAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+ACRTQU1FVElNRUlORk8kPXRydWUA
+</rawitemdata></item>
+<item name='$Comment' sign='true'><text/></item>
+<item name='$Flags'><text>^Y</text></item>
+<item name='$DesignerVersion' sign='true'><text>8.5</text></item></note>
+

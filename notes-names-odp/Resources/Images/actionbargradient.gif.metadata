@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><note xmlns="http://www.lotus.com/dxl" class="form" maintenanceversion="2.0" replicaid="C125899B00337147" version="12.0">
+<noteinfo noteid="3d6" sequence="13" unid="5946D929B9247DB28525711C00588338">
+<created><datetime>20060221T110647,60-05</datetime></created>
+<modified><datetime dst="true">20230424T112155,04+02</datetime></modified>
+<revised><datetime>20220519T113215,43+00</datetime></revised>
+<lastaccessed><datetime dst="true">20230424T112155,03+02</datetime></lastaccessed>
+<addedtofile><datetime dst="true">20230424T112155,03+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Domino Template Development/O=Domino</name></updatedby>
+<revisions><datetime dst="true">20060502T105331,11-04</datetime><datetime>20070202T143804,00-05</datetime><datetime>20070202T150126,19-05</datetime><datetime dst="true">20070830T094754,77-04</datetime></revisions>
+<wassignedby><name>CN=Domino Template Development/O=Domino</name></wassignedby>
+<item name="$TITLE"><text>actionbargradient.gif</text></item>
+<item name="$FlagsExt" sign="true"><text>D</text></item>
+<item name="$ImagesWide" sign="true"><number>1</number></item>
+<item name="$ImagesHigh" sign="true"><number>1</number></item>
+<item name="$ImagesColorize" sign="true"><number>0</number></item>
+<item name="$DesignerVersion" sign="true"><text>7</text></item>
+<item name="$LANGUAGE" sign="true"><text>en</text></item>
+
+
+<item name="$MimeType" sign="true"><text>image/gif</text></item>
+<item name="$FileModDT" sign="true"><datetime dst="true">20070830T070912,70-04</datetime></item>
+<item name="$Flags"><text>34CiQ</text></item>
+<item name="$ImageNames" sign="true"><text>viewGradient1.gif</text></item></note>

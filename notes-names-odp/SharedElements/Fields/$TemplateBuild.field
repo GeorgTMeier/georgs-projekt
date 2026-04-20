@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note class='sharedfield' xmlns='http://www.lotus.com/dxl' version='12.0'
+ maintenanceversion='2.0' replicaid='C125899B00337147'>
+<noteinfo noteid='192' unid='B92F0EB2A035EEDD85256C6A006EF262' sequence='25'>
+<created><datetime>20021107T151150,10-05</datetime></created>
+<modified><datetime dst='true'>20230424T112153,72+02</datetime></modified>
+<revised><datetime>20220519T113208,38+00</datetime></revised>
+<lastaccessed><datetime dst='true'>20230424T112153,71+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20230424T112153,71+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Domino Template Development/O=Domino</name></updatedby>
+<revisions><datetime>20061214T092022,67-05</datetime><datetime dst='true'>20070731T080914,62-04</datetime><datetime
+>20080211T120749,86-05</datetime><datetime dst='true'>20080922T115253,44-04</datetime><datetime
+ dst='true'>20090916T082757,74-04</datetime><datetime dst='true'>20100728T082036,35-04</datetime><datetime
+ dst='true'>20110919T143351,99-04</datetime><datetime dst='true'>20121009T123835,19-04</datetime><datetime
+>20130304T095658,56-05</datetime><datetime dst='true'>20130917T143457,57-04</datetime><datetime
+>20200402T144707,14+0530</datetime><datetime>20210726T154244,81+0530</datetime><datetime
+>20211209T175019,87+0530</datetime><datetime>20211209T175228,45+0530</datetime></revisions>
+<wassignedby><name>CN=Domino Template Development/O=Domino</name></wassignedby>
+<item name='$TITLE'><text>$TemplateBuild</text></item>
+<item name='$FIELDS'><text>$TemplateBuild</text></item>
+<item name='$Flags'><text/></item>
+<item name='$INFO' sign='true'><text>$TemplateBuild</text></item>
+<item name='$BODY' summary='true' sign='true'>
+<rawitemdata type='1'>
+gQKC/1IAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAgwQBAIX/CAAAAAAA3QYAAIr/iv8yAIoAAAUAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAADgAAAAAAJFRlbXBsYXRlQnVpbGTeBgAAiv+F/wgAAAAAAA==
+</rawitemdata></item>
+<item name='$TemplateBuild' sign='true'><text>12.0.2</text></item>
+<item name='$TemplateBuildName' sign='true'><text>StdR4PersonalAddressBook</text></item>
+<item name='$LANGUAGE' sign='true'><text>en</text></item>
+<item name='$TemplateBuildDate' sign='true'><datetime>20220519T165127,00+0530</datetime></item>
+<item name='$TemplateBuildTool' sign='true'><text>CICO</text></item></note>
+

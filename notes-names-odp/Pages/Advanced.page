@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note class='form' xmlns='http://www.lotus.com/dxl' version='12.0' maintenanceversion='2.0'
+ replicaid='C125899B00337147'>
+<noteinfo noteid='31e' unid='1712CF2E39BB3BD4852566C7004F277B' sequence='5048'>
+<created><datetime>19981125T092434,51-05</datetime></created>
+<modified><datetime dst='true'>20230424T112154,58+02</datetime></modified>
+<revised><datetime>20220519T113212,79+00</datetime></revised>
+<lastaccessed><datetime dst='true'>20230424T112154,57+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20230424T112154,57+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Domino Template Development/O=Domino</name></updatedby>
+<revisions><datetime dst='true'>20191025T061222,30-04</datetime><datetime
+>20191105T042057,07-05</datetime><datetime>20191105T053821,49-05</datetime><datetime
+>20191107T061248,00-05</datetime><datetime>20191107T074954,99-05</datetime><datetime
+>20191107T085643,39-05</datetime><datetime>20191108T011252,76-05</datetime><datetime
+>20191108T031444,93-05</datetime><datetime>20191108T040431,19-05</datetime><datetime
+>20191108T044345,77-05</datetime><datetime>20191111T102152,24-05</datetime><datetime
+>20191111T212152,79-05</datetime><datetime>20191111T221656,45-05</datetime><datetime
+>20191111T222420,07-05</datetime><datetime>20191111T223552,98-05</datetime><datetime
+>20191111T224728,31-05</datetime><datetime>20191111T230128,60-05</datetime><datetime
+>20191111T231513,28-05</datetime><datetime>20191112T052710,12-05</datetime><datetime
+>20191112T100531,42-05</datetime><datetime>20200113T055103,98-05</datetime><datetime
+>20200117T033922,55-05</datetime><datetime>20200402T144707,19+0530</datetime></revisions>
+<wassignedby><name>CN=Domino Template Development/O=Domino</name></wassignedby>
+<item name='$LANGUAGE' sign='true'><text>en</text></item>
+<item name='$BackgroundRepeat' sign='true'><text>1</text></item>
+<item name='$BackgroundR5' sign='true'>
+<rawitemdata type='1'>
+3QYBAJkAmQAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAH0AHAAAAAEAEwEgAwAAAAAAAAAAAAAA
+AAAAAAD2/zwAAAAAAAMAEwAaAAAAAAAAAAAAAAAAAAAAAAAAAAAAYWR2YW5jZWRvdXQuZ2lmfEFk
+dk91dGxpbmXeBgEAmQA=
+</rawitemdata></item>
+<item name='$HTMLCode' sign='true'>
+<rawitemdata type='1'>
+X/8QAAIADwAHAAAAAAAAAA==
+</rawitemdata></item>
+<item name='$TITLE'><text>Advanced</text></item>
+<item name='$INFO' sign='true'>
+<rawitemdata type='1'>
+hhgBAIAAAAAAAAAAAQABAP///wAAAAAA
+</rawitemdata></item>
+<item name='$Flags'><text>C34WQ</text></item>
+<item name='$DesignerVersion' sign='true'><text>8.5</text></item>
+<item name='$$ScriptName' summary='false' sign='true'><text>Advanced</text></item>
+<item name='$BODY' sign='true'>
+<rawitemdata type='1'>
+gQKC/1oAAQAAAAAAAAAAAKAFAACgBQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAABAAAAAJSHAAAAAAAAAAAAAAAAAQAAAAQAAACDBAEAhf8IAAEAAAqBAoL/WgACAAAA
+AAAAAAAAOAQAADgEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA
+AAAAlIQ4BA0AOAQNAAAAAAABAAAABAAAAIMEAgCF/wgAAQAACt0GAACt/63/FQAbAAgAAAAJAEFk
+dmFuY2VkAADq/z4AGwAIpAAAqAyRBQEAAAkAAAAAAAAAAAEAAAoBAAAJAAAFAP///wABAAAAAAAA
+AAAAAAAAAAAAAAAAAOz/IAGgDgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAEAANgA
+AAAIAAkAAQAACgEAAAoBAAAKAQAACgEAAAoBAAAKAAAAAAAAAAAgAbABAAADAAAABQD///8ABQD/
+//8ABQD///8ABQD///8ABQD///8AAQDp7PEAAQDp7PEABQD///8AAQDp7PEAAQDp7PEAAQAAAAAA
+AQAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA
+AAEAAAAAAAEAAAAAAAEAAAAAAAEAAAD/AAEAAAD/AAAAEwAAAAAAAAAAAAAAAAAAAAAAAAAAAEFk
+dmFuY2VkTm90ZXNWaWV3AK4C3gYAAK4Ahf8IAAEAAAo=
+</rawitemdata></item></note>
+

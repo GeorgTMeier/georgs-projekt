@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><note xmlns="http://www.lotus.com/dxl" class="form" maintenanceversion="2.0" replicaid="C125899B00337147" version="12.0">
+<noteinfo noteid="506" sequence="33" unid="D1B0FDE7950BBDFE852572B8006A4BB4">
+<created><datetime dst="true">20070409T152101,96-04</datetime></created>
+<modified><datetime dst="true">20230424T112155,80+02</datetime></modified>
+<revised><datetime>20220519T113219,59+00</datetime></revised>
+<lastaccessed><datetime dst="true">20230424T112155,79+02</datetime></lastaccessed>
+<addedtofile><datetime dst="true">20230424T112155,79+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Domino Template Development/O=Domino</name></updatedby>
+<revisions><datetime dst="true">20070409T152102,23-04</datetime><datetime dst="true">20070409T152102,53-04</datetime><datetime dst="true">20070409T152114,14-04</datetime><datetime dst="true">20070425T104705,95-04</datetime><datetime dst="true">20090422T065516,57-04</datetime><datetime dst="true">20090422T091120,76-04</datetime><datetime dst="true">20110919T143158,04-04</datetime><datetime>20120417T110532,30+08</datetime><datetime>20130108T095659,96-05</datetime><datetime dst="true">20190513T020648,69-04</datetime><datetime dst="true">20190513T020839,01-04</datetime><datetime dst="true">20190516T030757,00-04</datetime><datetime dst="true">20190516T030810,15-04</datetime><datetime dst="true">20190516T031238,14-04</datetime><datetime dst="true">20190516T040443,78-04</datetime><datetime dst="true">20190807T043813,06-04</datetime><datetime dst="true">20190807T050923,46-04</datetime><datetime dst="true">20190807T051203,27-04</datetime><datetime dst="true">20190812T030559,96-04</datetime><datetime dst="true">20190926T053623,99-04</datetime><datetime dst="true">20190926T053747,02-04</datetime><datetime dst="true">20190926T053925,09-04</datetime><datetime dst="true">20190926T054125,77-04</datetime><datetime dst="true">20190926T054240,37-04</datetime><datetime dst="true">20190926T054355,56-04</datetime></revisions>
+<wassignedby><name>CN=Domino Template Development/O=Domino</name></wassignedby>
+<item name="$TITLE"><text>Notes Contacts Application.xml</text></item>
+<item name="$PublicAccess" sign="true"><text>1</text></item>
+<item name="$SourceSeqTime" sign="true"><datetime dst="true">20070425T104705,95-04</datetime></item>
+<item name="$SourceSequence" sign="true"><text>00000004</text></item>
+<item name="$FlagsExt" sign="true"><text>1</text></item>
+<item name="$Flags"><text>34567C|Q</text></item>
+<item name="$DesignerVersion" sign="true"><text>8.5.3</text></item>
+
+
+
+<item name="$FileNames" sign="true"><text>Notes Contacts Application.xml</text></item>
+<item name="$LANGUAGE" sign="true"><text>en</text></item></note>

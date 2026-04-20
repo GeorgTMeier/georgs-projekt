@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note class='sharedfield' xmlns='http://www.lotus.com/dxl' version='12.0'
+ maintenanceversion='2.0' replicaid='C125899B00337147'>
+<noteinfo noteid='1aa' unid='FFE9328974B6A0C585256297006F00BE' sequence='5014'>
+<created><datetime>19951219T151226,86-05</datetime></created>
+<modified><datetime dst='true'>20230424T112153,78+02</datetime></modified>
+<revised><datetime>20220519T113208,66+00</datetime></revised>
+<lastaccessed><datetime dst='true'>20230424T112153,77+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20230424T112153,77+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Domino Template Development/O=Domino</name></updatedby>
+<wassignedby><name>CN=Domino Template Development/O=Domino</name></wassignedby>
+<item name='$TITLE'><text>AreaCodeInput</text></item>
+<item name='$INFO' sign='true'>
+<rawitemdata type='1'>
+hhgBAIAAAAAAgAAAAQABAP///wAAAAAA
+</rawitemdata></item>
+<item name='$Flags'><text/></item>
+<item name='$DesignerVersion' sign='true'><text>6</text></item>
+<item name='AreaCodeInput' placeholder='true'>
+<rawitemdata type='0'>
+</rawitemdata></item>
+<item name='$FIELDS'><text>AreaCodeInput</text></item>
+<item name='$BODY' summary='true' sign='true'>
+<rawitemdata type='1'>
+gQKC/1IAAQAAAAAAAAAAAKAFAACgBQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAABAAAAAJQHAAAAAAAAAAAAAAAAgwQBAIX/CAABAAAK3QYAAPf/9/8kAAEAAIAAANAC
+IAEAAAAAAAAAAGQAAAAAAAAAAAAAAAAA/v9QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACw/xQAAAAAAIAA
+AAAAAAAAAAAAAIr/WgCKAAAFADAAAQAAAAAAAgEAAAoUAAAAAAAAAA0AFAAAABQAAAASAAUACABB
+cmVhQ29kZQMAQXJlYUNvZGVJbnB1dEVudGVyIHRoZSBhcmVhIGNvZGUuAN4GAAD3/4X/CAABAAAK
+</rawitemdata></item>
+<item name='$LANGUAGE' sign='true'><text>en</text></item></note>
+

@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note class='form' xmlns='http://www.lotus.com/dxl' version='12.0' maintenanceversion='2.0'
+ replicaid='C125899B00337147'>
+<noteinfo noteid='4a2' unid='A5EBC9F8558C063C852569E6004552AB' sequence='42'>
+<created><datetime>20010201T073711,47-05</datetime></created>
+<modified><datetime dst='true'>20230424T112155,55+02</datetime></modified>
+<revised><datetime>20220519T113218,16+00</datetime></revised>
+<lastaccessed><datetime dst='true'>20230424T112155,54+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20230424T112155,54+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Domino Template Development/O=Domino</name></updatedby>
+<revisions><datetime dst='true'>20191025T061222,57-04</datetime><datetime
+>20191105T042057,34-05</datetime><datetime>20191105T053821,74-05</datetime><datetime
+>20191107T061248,25-05</datetime><datetime>20191107T074955,24-05</datetime><datetime
+>20191107T085643,65-05</datetime><datetime>20191108T011253,03-05</datetime><datetime
+>20191108T031445,18-05</datetime><datetime>20191108T040431,43-05</datetime><datetime
+>20191108T044346,02-05</datetime><datetime>20191111T102152,61-05</datetime><datetime
+>20191111T212153,09-05</datetime><datetime>20191111T221656,70-05</datetime><datetime
+>20191111T222420,32-05</datetime><datetime>20191111T223553,29-05</datetime><datetime
+>20191111T224728,57-05</datetime><datetime>20191111T230128,85-05</datetime><datetime
+>20191111T231513,56-05</datetime><datetime>20191112T052710,41-05</datetime><datetime
+>20191112T100531,70-05</datetime><datetime>20200113T055104,38-05</datetime><datetime
+>20200117T033922,96-05</datetime><datetime>20200402T144707,25+0530</datetime></revisions>
+<wassignedby><name>CN=Domino Template Development/O=Domino</name></wassignedby>
+<item name='$LANGUAGE' sign='true'><text>en</text></item>
+<item name='$HTMLCode' sign='true'>
+<rawitemdata type='1'>
+X/8QAAIADwAHAAAAAAAAAA==
+</rawitemdata></item>
+<item name='$TITLE'><textlist><text>Color Page</text><text>Color Page</text></textlist></item>
+<item name='$INFO' sign='true'>
+<rawitemdata type='1'>
+hhgBAIAAAAAAgAAAPwABAOns8QAKAAAA
+</rawitemdata></item>
+<item name='$Flags'><text>C34WQ</text></item>
+<item name='$DesignerVersion' sign='true'><text>8</text></item>
+<item name='$$ScriptName' summary='false' sign='true'><text>Color Page</text></item>
+<item name='$BODY' sign='true'>
+<rawitemdata type='1'>
+gQKC/1oAAQAAAAAAAAAAAKAFAACgBQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAABAAAAAJSHAAAAAAAAAAAAAAAAAQAAAAQAAACDBAEAhf8IAAEAAAo=
+</rawitemdata></item></note>
+

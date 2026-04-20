@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note class='sharedfield' xmlns='http://www.lotus.com/dxl' version='12.0'
+ maintenanceversion='2.0' replicaid='C125899B00337147'>
+<noteinfo noteid='14e' unid='5108607EA76758EC0525696500624327' sequence='12'>
+<created><datetime>20000925T125317,19-05</datetime></created>
+<modified><datetime dst='true'>20230424T112153,55+02</datetime></modified>
+<revised><datetime>20220519T113207,43+00</datetime></revised>
+<lastaccessed><datetime dst='true'>20230424T112153,54+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20230424T112153,54+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Domino Template Development/O=Domino</name></updatedby>
+<revisions><datetime>20060302T163211,84-05</datetime><datetime>20070118T125321,03-05</datetime></revisions>
+<wassignedby><name>CN=Domino Template Development/O=Domino</name></wassignedby>
+<item name='$LANGUAGE' sign='true'><text>en</text></item>
+<item name='$HTMLCode' sign='true'>
+<rawitemdata type='1'>
+</rawitemdata></item>
+<item name='$TITLE'><text>WeekDays</text></item>
+<item name='$INFO' sign='true'>
+<rawitemdata type='1'>
+hhgBAIAAAAAAgAAAAQABAP///wAAAAAA
+</rawitemdata></item>
+<item name='$Flags'><text/></item>
+<item name='$DesignerVersion' sign='true'><text>8.5</text></item>
+<item name='WeekDays' placeholder='true'>
+<rawitemdata type='0'>
+</rawitemdata></item>
+<item name='$FIELDS'><text>WeekDays</text></item>
+<item name='$BODY' summary='true' sign='true'>
+<rawitemdata type='1'>
+gQKC/1oAAQAAAAAAAAAAAKAFAACgBQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAABAAAAAJSHAAAAAAAAAAAAAAAAAQAAAAQAAACDBAEAhf8IAAEAAArdBgAAiv/+/6YA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAVgAAAFYACgAEAAAAQgC/AFgBAAAAAAAAAEBvQA4CrwAqAAgAKwCuACIA
+AQAOAExvY0FsbFdlZWtEYXlz+wFsASoACgKuAAQAtQMDAAcADgAIAAk2UzdTMTVTiv/8AIoCAQUC
+IAIACAAAAAACAQAACW4AAAAAAAAACAAhAEEAbgAAAEoAAQADAE1vbgABAAMAVHVlAB8CAQADAFdl
+ZAAfAgEAAwBUaHUAHwIBAAMARnJpAB8CAQADAFNhdAAfAgEAAwBTdW4AHwIDAAcAIgAcAAkxUzJT
+M1M0UzVTNlM3UzhTOVMxMFMxMVMxMlNXZWVrRGF5c0RheXMgb2Ygd2VlayAtIGUuZy4gTW9uLCBU
+dWUsIFdlZAcABwAHAAcABwAHAAcABwBTdW4gfCAxTW9uIHwgMlR1ZSB8IDNXZWQgfCA0VGh1IHwg
+NUZyaSB8IDZTYXQgfCA3ev8iAAgAAAAAAAAAAAAAAAAAAAAAAAAAAABXZWVrRGF5c94GAACK/4X/
+CAABAAAK
+</rawitemdata></item></note>
+

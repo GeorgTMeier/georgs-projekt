@@ -1,0 +1,173 @@
+' ============================================================================
+' ScriptLib_PGData.lss
+' LotusScript-Bibliothek für PostgreSQL-Zugriff (ODBC) aus Notes/Domino.
+' Entspricht by-pg-grid: test2view laden, buchpos updaten, Summe, gleiche Art.
+' ============================================================================
+
+Option Public
+Option Declare
+
+Uselsx "*LSXODBC"
+
+' ----------------------------------------------------------------------------
+' Konfiguration: DSN oder Connection-String anpassen
+' ----------------------------------------------------------------------------
+Const PG_DSN As String = "PG_RK2"
+' Alternativ Connection-String (wenn kein DSN):
+' Driver={PostgreSQL Unicode};Server=192.168.207.160;Port=5432;Database=RK2;Uid=postgres;Pwd=Ole1brumm;
+
+' ----------------------------------------------------------------------------
+' LoadTest2View: Lädt alle Zeilen aus public.test2view.
+' Gibt eine Liste zurück: jedes Element ist eine Zeile als Tab-getrennter String
+' (Spalten in Reihenfolge wie im SELECT).
+' colNames: Array der Spaltennamen (wird gefüllt)
+' summe: Summe der Spalte Betrag/betrag
+' ----------------------------------------------------------------------------
+Function LoadTest2View(colNames() As String, summe As Double) As Variant
+    On Error GoTo errLoad
+    Dim con As New ODBCConnection
+    Dim qry As New ODBCQuery
+    Dim rs As New ODBCResultSet
+    Dim list As Variant
+    Dim nCols As Integer, i As Integer, rowNum As Long
+    Dim val As String, rowStr As String, v As Variant
+
+    summe = 0
+    ReDim list(0)
+    ReDim colNames(0)
+
+    con.ConnectTo(PG_DSN)
+    Set qry.Connection = con
+    qry.SQL = "SELECT * FROM public.test2view"
+    Set rs.Query = qry
+    rs.Execute
+
+    If rs.IsResultSetAvailable Then
+        nCols = rs.NumColumns
+        ReDim colNames(nCols - 1)
+        For i = 1 To nCols
+            colNames(i - 1) = rs.FieldName(i)
+        Next
+
+        rowNum = 0
+        Do While rs.NextRow()
+            rowStr = ""
+            For i = 1 To nCols
+                If rs.IsValueNull(i) Then
+                    val = ""
+                Else
+                    val = rs.GetValue(i)
+                End If
+                If i > 1 Then rowStr = rowStr & Chr(9)
+                rowStr = rowStr & val
+                ' Summe Betrag
+                If Lcase(rs.FieldName(i)) = "betrag" Then
+                    If Not rs.IsValueNull(i) Then
+                        v = rs.GetValue(i)
+                        If IsNumeric(v) Then summe = summe + CDbl(v)
+                    End If
+                End If
+            Next
+            rowNum = rowNum + 1
+            ReDim Preserve list(rowNum - 1)
+            list(rowNum - 1) = rowStr
+        Loop
+        rs.Close
+    End If
+
+    con.Disconnect
+    LoadTest2View = list
+    Exit Function
+
+errLoad:
+    LoadTest2View = list
+    summe = 0
+    Messagebox "LoadTest2View Fehler: " & Err() & " " & Error$, 48, "ODBC"
+End Function
+
+' ----------------------------------------------------------------------------
+' GetColumnIndex: Sucht Spaltenindex nach Name (case-insensitive)
+' ----------------------------------------------------------------------------
+Function GetColumnIndex(colNames() As String, colName As String) As Integer
+    Dim i As Integer
+    GetColumnIndex = 0
+    For i = LBound(colNames) To UBound(colNames)
+        If Lcase(colNames(i)) = Lcase(colName) Then
+            GetColumnIndex = i + 1
+            Exit Function
+        End If
+    Next
+End Function
+
+' ----------------------------------------------------------------------------
+' FilterRowsByArt: Filtert Zeilen (list = Array von Tab-getrennten Strings)
+' nach gleicher Art wie in Zeile selectedRow (0-basiert).
+' colNames: Spaltennamen, artColIdx: 1-basierter Index der Art-Spalte
+' ----------------------------------------------------------------------------
+Function FilterRowsByArt(list As Variant, colNames() As String, selectedRow As Long) As Variant
+    On Error Resume Next
+    Dim out As Variant, i As Long, parts() As String, artVal As String, rowArt As String
+    Dim artColIdx As Integer, n As Long
+
+    artColIdx = GetColumnIndex(colNames, "art")
+    If artColIdx = 0 Then artColIdx = GetColumnIndex(colNames, "Art")
+    If artColIdx = 0 Or selectedRow < 0 Then
+        FilterRowsByArt = list
+        Exit Function
+    End If
+
+    If IsArray(list) Then
+        If selectedRow >= UBound(list) + 1 Then
+            FilterRowsByArt = list
+            Exit Function
+        End If
+        parts = Split(list(selectedRow), Chr(9))
+        If artColIdx <= UBound(parts) + 1 Then
+            artVal = parts(artColIdx - 1)
+        Else
+            artVal = ""
+        End If
+        n = 0
+        ReDim out(0)
+        For i = LBound(list) To UBound(list)
+            parts = Split(list(i), Chr(9))
+            If artColIdx <= UBound(parts) + 1 Then rowArt = parts(artColIdx - 1) Else rowArt = ""
+            If rowArt = artVal Then
+                ReDim Preserve out(n)
+                out(n) = list(i)
+                n = n + 1
+            End If
+        Next
+        FilterRowsByArt = out
+    Else
+        FilterRowsByArt = list
+    End If
+End Function
+
+' ----------------------------------------------------------------------------
+' UpdateBuchposRow: UPDATE public.buchpos für eine Zeile (pk1, bvh, test, betrag, art, gewerk)
+' ----------------------------------------------------------------------------
+Sub UpdateBuchposRow(pk1 As Integer, bvh As String, test As String, betrag As Double, art As String, gewerk As String)
+    On Error GoTo errUpdate
+    Dim con As New ODBCConnection
+    Dim qry As New ODBCQuery
+    Dim rs As New ODBCResultSet
+
+    con.ConnectTo(PG_DSN)
+    Set qry.Connection = con
+    qry.SQL = "UPDATE public.buchpos SET bvh=?, test=?, betrag=?, art=?, gewerk=? WHERE pk1=?"
+    Set rs.Query = qry
+    rs.SetParameter 1, bvh
+    rs.SetParameter 2, test
+    rs.SetParameter 3, CStr(betrag)
+    rs.SetParameter 4, art
+    rs.SetParameter 5, gewerk
+    rs.SetParameter 6, CStr(pk1)
+    rs.Execute
+    rs.Close
+    con.Disconnect
+    Exit Sub
+
+errUpdate:
+    Messagebox "UpdateBuchposRow Fehler: " & Err() & " " & Error$, 48, "ODBC"
+End Sub

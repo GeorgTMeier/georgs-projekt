@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note class='sharedfield' xmlns='http://www.lotus.com/dxl' version='12.0'
+ maintenanceversion='2.0' replicaid='C125899B00337147'>
+<noteinfo noteid='176' unid='811E340B07921BA70525696500622F45' sequence='14'>
+<created><datetime>20000925T125226,29-05</datetime></created>
+<modified><datetime dst='true'>20230424T112153,65+02</datetime></modified>
+<revised><datetime>20220519T113208,02+00</datetime></revised>
+<lastaccessed><datetime dst='true'>20230424T112153,64+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20230424T112153,64+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Domino Template Development/O=Domino</name></updatedby>
+<revisions><datetime>20060302T163211,97-05</datetime><datetime>20070201T162722,91-05</datetime></revisions>
+<wassignedby><name>CN=Domino Template Development/O=Domino</name></wassignedby>
+<item name='$LANGUAGE' sign='true'><text>en</text></item>
+<item name='$HTMLCode' sign='true'>
+<rawitemdata type='1'>
+</rawitemdata></item>
+<item name='$TITLE'><text>ReplicateImmediate</text></item>
+<item name='$INFO' sign='true'>
+<rawitemdata type='1'>
+hhgBAIAAAAAAgAAAAQABAP///wAAAAAA
+</rawitemdata></item>
+<item name='$Flags'><text/></item>
+<item name='$DesignerVersion' sign='true'><text>8.5</text></item>
+<item name='ReplicateImmediate' placeholder='true'>
+<rawitemdata type='0'>
+</rawitemdata></item>
+<item name='$FIELDS'><text>ReplicateImmediate</text></item>
+<item name='$BODY' summary='true' sign='true'>
+<rawitemdata type='1'>
+gQKC/1oAAQAAAAAAAAAAAKAFAACgBQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAABAAAAAJSHAAAAAAAAAAAAAAAAAQAAAAQAAACDBAEAhf8IAAEAAArdBgAAiv/+/6gA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAWAAAAFgACgAEAAAARAC/AFgBAAAAAAAAAEBvQA4CrwAsAAgAKwCuACQA
+AQAQAFJlcGxEZWZSZXBsSW1tZWT7AWwBKgAKAq4ABAC1AwMABwAOAAgACTZTN1MxNVOw/xQAAAAE
+IgAAAAAAAAAAAAAAAIr/jACKggAFACACAAAAAAAAAgEAAAkOAAAAAAAAABIAIwAlAA4AAAAMAAEA
+AQAwAAMAUmVwbGljYXRlSW1tZWRpYXRlVGltZWZyYW1lIGZvciBjcmVhdGluZyBuZXcgcmVwbGlj
+YXMCAA0AEgBJbW1lZGlhdGVseXwxTmV4dCBSZXBsaWNhdGlvbnww3gYAAIr/hf8IAAEAAAo=
+</rawitemdata></item></note>
+

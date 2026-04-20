@@ -1,0 +1,96 @@
+'++LotusScript Development Environment:2:5:(Options):0:74
+Option Public
+Use "StringResources"
+'++LotusScript Development Environment:2:5:(Forward):0:1
+Declare Sub ForwardvCard
+
+'++LotusScript Development Environment:2:5:(Declarations):0:2
+
+'++LotusScript Development Environment:2:2:ForwardvCard:1:8
+Sub ForwardvCard
+	Dim sess As New notessession
+	Dim ws As New notesuiworkspace
+	Set dbase = sess.CurrentDatabase
+	
+	Dim vcardColl As NotesDocumentCollection
+	Dim vcForwardDoc As NotesDocument
+	Dim uidoc As notesUIDocument
+	
+	Dim maildbase As NotesDatabase
+	
+	Set maildbase = New NotesDatabase("","")
+	maildbase.OpenMail
+	flag = maildbase.Isopen
+	If flag = True Then
+		Set profile = maildbase.GetProfileDocument("CalendarProfile")
+	Else
+		Msgbox getString(5) & Chr(13) & Chr(13) & getString(4), MB_ICONSTOP,  getString(3)
+		mError = 1
+	End If	
+	
+	If mError = 1 Then
+		Exit Sub
+	End If	
+	
+	Set vcardColl = dbase.unprocesseddocuments
+	
+	Dim contactUIdoc As notesuidocument 
+	Set contactUIdoc = ws.CurrentDocument 
+	
+	If vcardColl.count = 0 And ContactUIdoc Is Nothing Then
+		Msgbox  getString(8), 48, getString(9)
+		Exit Sub
+	End If
+	
+	
+	Dim AttachName As String
+	If vCardColl.Count = 1 Then
+		Set FwdContact = vCardColl.GetFirstDocument
+		LN = fwdContact.getitemvalue("LastName")
+		FN = fwdContact.getitemvalue("Firstname")
+		CN = fwdContact.getitemvalue("CompanyName")
+		
+		If FN(0) <> ""  And LN(0) <> "" Then
+			AttachName = LN(0) + "_" + FN(0)  
+		Elseif FN(0) = "" And LN(0) <> "" Then
+			AttachName = LN(0)
+		Elseif FN(0) = "" And LN(0) = "" And CN(0) <> "" Then
+			AttachName = CN(0)
+			AttachName = getString(6)
+		End If		
+		
+	Elseif Not ContactUIdoc Is Nothing Then
+		LN = ContactUIdoc.document.getitemvalue("LastName")
+		FN = ContactUIdoc.document.getitemvalue("Firstname")
+		CN = ContactUIdoc.document.getitemvalue("CompanyName")
+		If FN(0) <> ""  And LN(0) <> "" Then
+			AttachName = LN(0) + "_" + FN(0)  
+		Elseif FN(0) = "" And LN(0) <> "" Then
+			AttachName = LN(0)
+		Elseif FN(0) = "" And LN(0) = "" And CN(0) <> "" Then
+			AttachName = CN(0)
+			AttachName = getString(6)
+		End If	
+		
+	Else
+		tNumC = Cstr(vCardColl.Count)		
+		AttachName = getString(6) + "_" + tNumC
+	End If	
+	
+	Set vcForwardDoc = New NotesDocument(MailDbase)  'CURRENT MAIL FILE
+	
+	Call vcForwardDoc.ReplaceItemValue("Form", Lcase("MeMo"))  'DNT
+	Call vcForwardDoc.ReplaceItemValue("$VAttach", "1")		
+	Call vcForwardDoc.ReplaceItemValue("Subject", getString(7))
+	
+	If vCardColl.Count > 0 Then
+		Call vcForwardDoc.AttachVCard(vcardColl, AttachName)		
+	Elseif Not ContactUIdoc Is Nothing Then
+		Dim contactNote As NotesDocument 
+		Set contactNote  = contactUIdoc.Document 
+		Call vcForwardDoc.AttachVCard(contactNote, AttachName)
+	End If
+	
+	Set uidoc = ws.EditDocument(True, vcForwardDoc)	
+	
+End Sub

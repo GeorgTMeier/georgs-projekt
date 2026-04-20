@@ -1,0 +1,145 @@
+' ============================================================================
+' CreateExcelViaLibreOffice.lss – LotusScript: LibreOffice per COM steuern,
+' eine Excel-Datei erzeugen (5x5 mit Einsen), AutoFilter für Spalte B und D.
+'
+' Nutzung in Notes:
+' 1. Design → Script-Bibliothek anlegen (z. B. "CreateExcelViaLibreOffice")
+' 2. Inhalt dieser Datei einfügen und speichern
+' 3. In einem Agent (z. B. "Erzeuge Excel") die Bibliothek einbinden und:
+'
+'   Dim g As New CreateExcelViaLibreOffice
+'   Call g.Run("C:\Temp\Ausgabe.xlsx")
+'
+' Voraussetzung: LibreOffice unter Windows installiert (COM-Brücke aktiv).
+' ============================================================================
+
+Option Public
+Option Declare
+
+' ----------------------------------------------------------------------------
+' Hauptklasse: CreateExcelViaLibreOffice
+' ----------------------------------------------------------------------------
+Public Class CreateExcelViaLibreOffice
+    Private oSM As Variant      ' ServiceManager
+    Private oDesk As Variant   ' Desktop
+    Private oDoc As Variant    ' Calc-Dokument
+    Private oSheet As Variant  ' Erstes Tabellenblatt
+
+    ''' Erzeugt die Excel-Datei und legt Filter an.
+    ''' outputPath: voller Pfad für die .xlsx-Datei (z. B. "C:\Temp\Ausgabe.xlsx")
+    Public Sub Run(outputPath As String)
+        On Error GoTo errHandler
+        If Trim(outputPath) = "" Then
+            Error 1001, "Run: outputPath darf nicht leer sein."
+        End If
+        ConnectLibreOffice
+        FillRangeOneToFive
+        ApplyAutoFilter
+        SaveAsExcel outputPath
+        CloseDoc
+        Exit Sub
+errHandler:
+        CloseDoc
+        Error Err, "CreateExcelViaLibreOffice: " & Error$
+    End Sub
+
+    ''' Verbindung zu LibreOffice per COM (ServiceManager + Desktop).
+    Private Sub ConnectLibreOffice()
+        Set oSM = CreateObject("com.sun.star.ServiceManager")
+        If Isempty(oSM) Then
+            Error 1002, "LibreOffice ServiceManager nicht verfügbar. Ist LibreOffice installiert?"
+        End If
+        Set oDesk = oSM.createInstance("com.sun.star.frame.Desktop")
+        If Isempty(oDesk) Then
+            Error 1003, "Desktop-Instanz konnte nicht erstellt werden."
+        End If
+        ' Neues Calc-Dokument laden (COM: private:factory/scalc)
+        Dim arg()
+        Set oDoc = oDesk.loadComponentFromURL("private:factory/scalc", "_blank", 0, arg)
+        If Isempty(oDoc) Then
+            Error 1004, "Calc-Dokument konnte nicht geladen werden."
+        End If
+        ' Erstes Blatt – unter COM: GetSheets().getByIndex(0)
+        Set oSheet = oDoc.getSheets().getByIndex(0)
+    End Sub
+
+    ''' Belegt die ersten 5 Zeilen und ersten 5 Spalten mit der Zahl 1.
+    ''' Zellen (0,0) bis (4,4) = A1:E5.
+    Private Sub FillRangeOneToFive()
+        Dim c As Integer
+        Dim r As Integer
+        Dim oCell As Variant
+        For r = 0 To 4
+            For c = 0 To 4
+                Set oCell = oSheet.getCellByPosition(c, r)
+                oCell.setValue(1)
+            Next c
+        Next r
+    End Sub
+
+    ''' Legt einen AutoFilter auf den Bereich A1:E5 an (Pfeile wie bei Daten > Filter > AutoFilter).
+    ''' Verwendet den Dispatcher (simuliert den Menüpunkt) – nur so erscheinen die Dropdown-Pfeile.
+    Private Sub ApplyAutoFilter()
+        Dim oRange As Variant
+        Dim oController As Variant
+        Dim oDispatcher As Variant
+        Dim oFrame As Variant
+        Dim args()
+        ' Zellbereich A1:E5 (Zeilen 0–4, Spalten 0–4)
+        Set oRange = oSheet.getCellRangeByPosition(0, 0, 4, 4)
+        Set oController = oDoc.getCurrentController()
+        ' 1. Bereich auswählen (wie Mausklick auf A1:E5)
+        oController.select(oRange)
+        ' 2. DispatchHelper + .uno:DataFilterAutoFilter = Menü "Daten > Filter > AutoFilter"
+        Set oDispatcher = oSM.createInstance("com.sun.star.frame.DispatchHelper")
+        ' XDispatchProvider: Frame des Dokuments. Fallback: oDesk (Desktop) statt oFrame.
+        Set oFrame = oController.getFrame()
+        ' Letzter Parameter: OLE erwartet oft Array statt Nothing. LotusScript hat kein leeres Array,
+        ' daher 1 Dummy-Property (wird vom Dispatch typischerweise ignoriert).
+        ReDim args(0)
+        Set args(0) = MakePropertyValue("Dummy", "")
+        oDispatcher.executeDispatch(oFrame, ".uno:DataFilterAutoFilter", "", 0, args)
+    End Sub
+
+    ''' Speichert das Dokument als Excel (.xlsx).
+    Private Sub SaveAsExcel(filePath As String)
+        Dim url As String
+        Dim args()
+        url = ConvertToUrl(filePath)
+        ' Filter für Microsoft Excel 2007-365 (.xlsx)
+        ReDim args(0)
+        args(0) = MakePropertyValue("FilterName", "Calc MS Excel 2007 XML")
+        oDoc.storeToURL(url, args)
+    End Sub
+
+    ''' Schließt das Dokument ohne zu speichern (bereits gespeichert).
+    Private Sub CloseDoc()
+        On Error Resume Next
+        If Not Isempty(oDoc) Then
+            oDoc.close(True)
+            Set oDoc = Nothing
+        End If
+        Set oSheet = Nothing
+        Set oDesk = Nothing
+        Set oSM = Nothing
+    End Sub
+
+    ''' Konvertiert einen Windows-Pfad in eine file:-URL.
+    Private Function ConvertToUrl(path As String) As String
+        Dim s As String
+        s = Replace(path, "\", "/")
+        If Left(s, 2) = "C:" Or (Len(s) >= 2 And Mid(s, 2, 1) = ":") Then
+            s = "/" & s
+        End If
+        ConvertToUrl = "file:///" & s
+    End Function
+
+    ''' Erzeugt ein com.sun.star.beans.PropertyValue (Name, Wert) für storeToURL.
+    Private Function MakePropertyValue(name As String, value As String) As Variant
+        Dim o As Variant
+        Set o = oSM.Bridge_GetStruct("com.sun.star.beans.PropertyValue")
+        o.Name = name
+        o.Value = value
+        Set MakePropertyValue = o
+    End Function
+End Class

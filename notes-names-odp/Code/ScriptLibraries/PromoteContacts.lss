@@ -1,0 +1,463 @@
+'++LotusScript Development Environment:2:5:(Options):0:74
+Option Public
+'++LotusScript Development Environment:2:5:(Forward):0:1
+Declare Sub AddRecentContact(moveType As String)
+Declare Sub ProcessLists(TotalNew As Variant, TotalFound As Variant, RCtype As String, UNIDs As Variant)
+Declare Sub PromoteContacts(ExistingContactDoc As notesdocument, view As notesview, RCtype As String)
+Declare Sub GatherRC
+Declare Sub GetEmail(ExistingContactDoc As notesdocument, fname As Variant)
+Declare Sub RCReplace(RCDoc As notesdocument)
+Declare Function CheckAccess(sess As notessession, dbase As notesdatabase)
+
+'++LotusScript Development Environment:2:5:(Declarations):0:10
+'Variables To Translate
+Const NoSelected = "You must select at least one contact to move."
+Const DupMsg = "Checking My Contacts for duplicates." 
+Const dlgTitle = "Move to My Contacts"
+Const noGroup = "You cannot move groups to My Contacts."
+Const NoEmailTxt = "No e-mail address found"
+Const DelMsg = "You do not have sufficient access to the Contacts application.  You must have Deletion privileges to move one or more of the selected contacts."
+'END Variables To Translate
+
+Dim db As notesdatabase
+Dim moveType As String
+Dim RCDoc As notesdocument
+Dim uidoc As notesuidocument
+Dim note As notesdocument
+Dim NameAddr As String
+Dim AccessCheck As Boolean
+
+
+
+
+
+'++LotusScript Development Environment:2:2:AddRecentContact:1:8
+Sub AddRecentContact(moveType As String)
+	Dim uiwork As New notesuiworkspace
+	Dim s As New notessession
+	Dim ProcessRC As String
+	Dim foundUNIDs As Variant
+	
+	Set db = s.currentdatabase
+	Set uidoc = uiwork.currentdocument	
+	Set note = uidoc.document
+	
+	Set ExistingContactsView = db.getview("($VIMPeople)")
+	
+	AddL = note.getitemvalue("AddListNames")
+	FoundL = note.getitemvalue("FoundListnames")
+	AddChecked = note.getitemvalue("AddChecked")
+	FoundChecked = note.getitemvalue("FoundChecked")
+	foundUNIDs = note.getitemvalue("FoundUNIDs")
+	
+	NumAddList = Ubound(AddL)
+	NumFoundList = Ubound(FoundL)
+	
+	If  NumAddList = 0 And AddL(0) <> "" And AddChecked(0) <> "" And FoundChecked(0) = "" Then  		'One new
+		ProcessRC = "N1"
+		TotAddList = note.getitemvalue("AddListNames")		
+		TotFoundList = note.getitemvalue("FoundListNames")
+		Goto ContinueProcessing	
+	Elseif NumFoundList = 0 And FoundL(0) <> "" And AddChecked(0) = ""  And FoundChecked(0) <> "" Then  'One found
+		ProcessRC = "F1"
+		TotAddList = note.getitemvalue("AddListNames")		
+		TotFoundList = note.getitemvalue("FoundListNames")
+		Goto ContinueProcessing	
+	Elseif (NumAddList > 0 And FoundL(0) = ""  And AddChecked(0) = "1") Or   (NumAddList > 0 And FoundChecked(0) = ""  And AddChecked(0) = "1")  Then		'Mult new
+		ProcessRC = "MN"
+		TotAddList = note.getitemvalue("AddList")
+		TotFoundList = note.getitemvalue("FoundList")
+		Goto ContinueProcessing	
+	Elseif (NumFoundList > 0 And AddL(0) = "" And FoundChecked(0) = "1") Or (NumFoundList > 0 And AddChecked(0) = "" And FoundChecked(0) = "1")   Then	'Mult found
+		ProcessRC = "MF"		
+		TotAddList = note.getitemvalue("AddList")
+		TotFoundList = note.getitemvalue("FoundList")		
+		Goto ContinueProcessing	
+	Elseif AddL(0) <> "" And FoundL(0) <> "" And AddChecked(0) = "1" And FoundChecked(0) = "1" Then  'Mixed new and found
+		ProcessRC = "MX"		
+		TotAddList = note.getitemvalue("AddList")
+		TotFoundList = note.getitemvalue("FoundList")	
+		Goto ContinueProcessing	
+	End If
+	
+ContinueProcessing:
+	
+	If ProcessRC = "" Then
+		Msgbox NoSelected, 64, dlgTitle
+		Exit Sub	
+	Else
+		Call processLists(totAddList, TotfoundList, ProcessRC, foundUNIDs)		
+	End If
+	
+	Call uidoc.close
+	Delete uidoc 
+	Call uiwork.viewrefresh
+	
+End Sub
+'++LotusScript Development Environment:2:2:ProcessLists:1:8
+Sub ProcessLists(TotalNew As Variant, TotalFound As Variant, RCtype As String, UNIDs As Variant)
+	
+	Dim view As notesview
+	Dim existingContactDoc As notesdocument
+	Set view = db.getview("($Users)")
+	Set RCview = db.getview("($RCLookup)")
+	Set ExistingContactsView = db.getview("($VIMPeople)")
+	
+	If  RCtype = "N1"Then 					  	    'single new contact;
+		Set RCDoc = RCview.getdocumentbykey(TotalNew(0))	
+		Call PromoteContacts(ExistingContactDoc, view, RCtype)
+	Elseif RCtype = "F1"  Then					'single existing contact
+		Set RCDoc = RCview.getdocumentbykey(TotalFound(0))		
+		Set ExistingContactDoc = db.getdocumentbyunid(UNIDs(0))
+		Call PromoteContacts(ExistingContactDoc, view, RCtype)
+	Elseif RCtype = "MN" Then  				 'multiple new
+		Forall x In TotalNew
+			Set RCDoc = RCview.getdocumentbykey(x)				
+			Call PromoteContacts(ExistingContactDoc, view, RCtype)			
+		End Forall		
+	Elseif RCtype = "MF" Then     				'multiple existing
+		
+		Forall x In TotalFound
+			Set RCDoc = RCview.getdocumentbykey(x)			
+			IDcount = 0			
+			Forall id In UNIDs
+				If id = "" Then
+					Goto nextUNID
+				Else
+					Set ExistingContactDoc = db.getdocumentbyunid(id)					
+				End If
+				
+				FName = existingContactDoc.getitemvalue("FullName")			
+				
+				Call GetEmail(existingContactDoc, FName)
+				
+				If Lcase(nameAddr) = Lcase(x) Then
+					UNIDs(IDcount) = ""
+					
+					Goto promote
+				End If			
+nextUNID:		
+				IDcount = IDcount + 1
+			End Forall
+promote:
+			Call PromoteContacts(ExistingContactDoc, view, RCtype)			
+		End Forall
+		
+	Elseif RCtype = "MX" Then		
+		Forall x In TotalNew
+			Set RCDoc = RCview.getdocumentbykey(x)				
+			Call PromoteContacts(ExistingContactDoc, view, RCtype)			
+		End Forall		
+		
+		Forall x In TotalFound
+			Set RCDoc = RCview.getdocumentbykey(x)			
+			IDcount = 0			
+			Forall id In UNIDs
+				If id = "" Then
+					Goto nextUNID2
+				Else
+					Set ExistingContactDoc = db.getdocumentbyunid(id)					
+				End If
+				
+				FName = existingContactDoc.getitemvalue("FullName")			
+				
+				Call GetEmail(existingContactDoc, FName)
+				
+				If Lcase(nameAddr) = Lcase(x) Then
+					UNIDs(IDcount) = ""
+					
+					Goto promote2
+				End If			
+nextUNID2:		
+				IDcount = IDcount + 1
+			End Forall			
+promote2:
+			Call PromoteContacts(ExistingContactDoc, view, RCtype)			
+		End Forall		
+		
+	End If
+	
+End Sub
+'++LotusScript Development Environment:2:2:PromoteContacts:1:8
+Sub PromoteContacts(ExistingContactDoc As notesdocument, view As notesview, RCtype As String)
+	If RCtype = "N1" Or RCtype = "MN"  Then  		 'single or mult new
+		Call RCReplace(RCDoc)				
+	Elseif RCtype = "F1" Or RCtype = "MF" Then     'single  or mult existing		
+		If ExistingContactDoc.isuidocopen Then
+			uidoc.close True
+			ExistingContactDoc.remove True	
+		Else
+			Call ExistingContactDoc.remove(True)	
+		End If		
+		Call RCReplace(RCDoc)				
+	Elseif RCtype = "MN"   Then   							   'mult new
+		Call RCReplace(RCDoc)				
+	Elseif RCtype = "MX" Then  							        'combination new and existing
+		If Not ExistingContactDoc Is Nothing Then
+			If ExistingContactDoc.isuidocopen Then
+				uidoc.close True
+				ExistingContactDoc.remove True	
+			Else
+				Call ExistingContactDoc.remove(True)	
+			End If
+		End If		
+		Call RCReplace(RCDoc)	
+	End If	
+End Sub
+'++LotusScript Development Environment:2:2:GatherRC:1:8
+Sub GatherRC
+	Dim s As New notessession
+	Dim uiw As New notesuiworkspace 
+	Dim docCount As Long
+	Dim db As notesdatabase	
+	Set db = s.currentdatabase
+	Set coll = db.unprocesseddocuments
+	Dim lookupView As notesview
+	Dim inclGroup As String
+	Dim inclPers As String
+	
+	If coll.count = 0 Then
+		Msgbox NoSelected, 64, dlgTitle
+		Exit Sub
+	End If
+	
+	Set note = coll.getfirstdocument
+	Set lookupView = db.getview("$VimPeople")	
+	
+	docCount = 0	
+	Redim AddList(coll.Count) As Variant
+	Redim FoundList(coll.Count) As Variant
+	Redim NewUNIDs(coll.count) As Variant
+	Redim FoundUNIDs(coll.count) As Variant
+	
+	Do Until docCount = coll.Count	
+		Set LookupViewnote = lookupview.getfirstdocument				
+		
+		'lookup to see if name already exists		
+		RCFullName = note.getitemvalue("FullName")		
+		
+		'If MailAddress has a value, use it.  If MailAddress is "" and InternetAddress has a value, use InternetAddress.  
+		'If both are blank, supply Null
+		
+		RCAddress = note.getitemvalue("MailAddress")
+		RCIntAddress = note.getitemvalue("InternetAddress")		
+		
+		Dim RCNotesName As New notesname(RCAddress(0))
+		Dim RCIntName As New notesname(RCIntAddress(0))
+		
+		If RCAddress(0) <> "" Then
+			If RCNotesName.Addr821 <> "" Then
+				RCReturnAddress = RCNotesName.Addr821
+			Else
+				RCReturnAddress = RCNotesName.abbreviated	
+			End If
+		Elseif RCAddress(0) = "" And RCIntAddress(0) <> "" Then	
+			If RCIntName.Addr821 <> "" Then
+				RCReturnAddress = RCIntName.addr821
+			Else
+				RCReturnAddress= RCIntName.abbreviated
+			End If
+		Else
+			RCreturnAddress = ""	
+		End If
+		
+		RCtype = note.getitemvalue("type")
+		If Lcase(RCtype(0)) = "group" And coll.Count = 1 Then 'dnt
+			Msgbox NoGroup, 64, dlgTitle	
+			Exit Sub
+		Elseif Lcase(RCtype(0)) = "group" Then  'dnt
+			inclGroup = "1"
+			Goto nextRCNote
+		Else
+			inclPers = "1"
+		End If
+		
+		Print DupMsg
+		
+		Dim RCName As New notesname(RCFullName(0))
+		RCCommon = RCName.common	
+		
+		'If the phrase portion of the RFC 822 address has @ sign, parse and use only the name 
+		getCommonNum = Instr(RCCommon, "@")
+		get822Num = Instr(RCName.Abbreviated, "<")		
+		
+		If getCommonNum > 0 And get822Num > 0 Then
+			RCCommon = Left(RCCommon, getCommonNum -1)
+		End If
+		
+		If LookupView.entrycount = 0 Then
+			AddList(docCount) = RCCommon +  " (" + RCreturnaddress + ")"
+		Else
+			
+			While Not LookupViewnote Is Nothing
+				LookupViewnoteFN = LookupViewnote.getitemvalue("FullName")				
+				LookupMailAddr = LookupViewNote.getitemvalue("MailAddress")
+				LookupIntAddr = LookupViewNote.getitemvalue("InternetAddress")
+				
+				Dim LookupNotesName As New notesname(LookupMailAddr(0))
+				Dim LookupIntName As New notesname(LookupIntAddr(0))
+				
+				If LookupMailAddr(0) <> "" Then
+					If LookupNotesname.Addr821 <> "" Then
+						LookupAddress = LookupNotesName.Addr821						
+					Else
+						LookupAddress = LookupNotesName.abbreviated
+					End If					
+				Elseif LookupMailAddr(0) = "" And LookupIntAddr(0) <> "" Then
+					If LookupIntName.addr821 <> "" Then
+						LookupAddress = LookupIntName.addr821
+					Else
+						LookupAddress = LookupIntName.abbreviated
+					End If					
+				Elseif LookupMailAddr(0) = "" And LookupIntAddr(0) = "" Then
+					LookupAddress = ""
+				End If
+				
+				Redim abbrLookupAddress(0) As Variant
+				
+				abbrLookupAddress(0) = LookupAddress
+				
+				Forall x In LookupViewnoteFN
+					Dim xName As New notesname(x)
+					xCommon = xName.common					
+					If Lcase(RCCommon) = Lcase(xCommon)  And Lcase(abbrLookupAddress(0)) = Lcase(RCreturnAddress) Then
+						found = "1"	
+						Exit Forall
+					Else
+						found = "0"
+					End If			
+				End Forall
+				
+				If found = "1" Then
+				' add to FoundList
+					FoundList(docCount) = RCCommon + " (" + RCreturnaddress + ")"
+					foundUNIDs(docCount) = LookupViewNote.universalid
+					FoundAtLeastOne = "1"
+					Goto nextRCNote
+				End If
+				
+				Set LookupViewnote = lookupview.getnextdocument(LookupViewnote)
+			Wend
+		End If		
+		
+		If found = "0" Then
+			'add to AddList
+			AddList(docCount) = RCCommon + " (" + RCreturnaddress + ")"
+		End If
+		
+nextRCNote:			
+		doccount = doccount + 1
+		Set note = coll.getnextdocument(note)
+	Loop
+	
+	If  inclPers = "" And inclGroup = "1" Then
+		Msgbox NoGroup, 64, dlgTitle		
+		Print ""	
+		Exit Sub
+	End If
+	
+	Print ""	
+	
+	Dim dlgnote As New notesdocument(db)	
+	If FoundAtLeastOne = "1" Then
+		If Not CheckAccess(s, db) Then
+			AAFoundList = FoundList
+			Call dlgnote.replaceitemvalue("AAFoundListNames", AAFoundList)
+		End If
+	End If
+	
+	Call dlgnote.replaceitemvalue("AddListNames", AddList)
+	Call dlgnote.replaceitemvalue("FoundListnames", FoundList)
+	Call dlgnote.replaceitemvalue("inclGroup", inclGroup)
+	Call dlgnote.replaceitemvalue("FoundUNIDs", FoundUNIDs)
+	
+	Call uiw.dialogbox("PromoteContact", True, True, True, False, False, False, dlgTitle, dlgnote, True, True)
+	
+End Sub
+'++LotusScript Development Environment:2:2:GetEmail:1:8
+Sub GetEmail(ExistingContactDoc As notesdocument, fname As Variant)
+	
+'If MailAddress has a value, use it.  If MailAddress is "" and InternetAddress has a value, use InternetAddress.  
+'If both are blank, supply null	
+	
+	ECAddress = existingContactDoc.getitemvalue("MailAddress")
+	Dim newECaddress As New notesname(ECAddress(0))
+	
+	ECIntAddress = existingContactDoc.getitemvalue("InternetAddress")
+	Dim newECIntAddress As New notesname(ECIntAddress(0))	
+	
+	If ECaddress(0) <> "" Then
+		If newECaddress.addr821 <> "" Then
+			ECreturnAddress = newECaddress.addr821		
+		Else
+			ECreturnAddress= newECaddress.abbreviated
+		End If			
+	Elseif ECaddress(0) = "" And ECIntAddress(0) <> "" Then
+		If newECintAddress.addr821 <> "" Then
+			ECreturnaddress = newECintaddress.addr821
+		Else
+			ECreturnaddress = newECintaddress.abbreviated	
+		End If		
+	Else
+		ECreturnAddress = ""
+	End If
+	
+	cnRC = Evaluate (|  @name([cn]; "| + FName(0) + |" )  |) 
+	nameAddr = Lcase(cnRC(0)  + " (" + ECreturnaddress + ")"  )
+	
+End Sub
+'++LotusScript Development Environment:2:2:RCReplace:1:8
+Sub RCReplace(RCDoc As notesdocument)
+	
+	Call RCDoc.replaceitemvalue("Form", "Person")  'DNT
+	
+	If Lcase(rcDoc.getitemvalue("Type")(0)) <> Lcase("PeRsOn") Then
+		Call RCDoc.replaceitemvalue("Type", "Person")   'DNT
+		'this code is in place for Mail-In Database records, with only  hierarchical name in Fullname item
+		RCFN = rcdoc.getitemvalue("Fullname")
+		If Ubound(RCFN) = 0 Then
+			Dim FNname As New notesname(RCFN(0))
+			CanonFN = FNname.canonical
+			If CanonFN <> "" Then
+				Redim NewFN(1)				
+			End If
+			NewFN(0) = FNname.canonical
+			NewFN(1) = FNname.common
+			Call RCdoc.replaceitemvalue("Fullname", NewFN)
+		End If
+		' /end Mail-In Db specific code
+		
+	End If	
+	Call RCdoc.replaceitemvalue("$AutoCreatedList", "")
+	Call RCdoc.replaceitemvalue("$DPABState", "")
+	Call RCdoc.replaceitemvalue("$DPAB_State", "")	
+	Call RCDoc.save(False,False)
+	Set newContact = RCdoc.CopyToDatabase( db )
+	Call RCDoc.remove(True)
+	
+End Sub
+'++LotusScript Development Environment:2:1:CheckAccess:1:8
+Function CheckAccess(sess As notessession, dbase As notesdatabase)
+	
+	CheckAccess = True
+	Set acl = dbase.acl	
+	
+	'if db is local, skip acl check
+	If dbase.server = "" And acl.UniformAccess = False Then
+		Exit Function
+	End If	
+	
+	CurrentUsername = Evaluate( "@name([abbreviate]; @username)")
+	Set ACLentry = acl.getentry(CurrentUsername(0))
+	If ACLentry Is Nothing Then
+		Set ACLentry = acl.getentry("-Default-")  'DNT
+	End If
+	
+'Check to see if the user has at least Editor access and deletion rights in db
+	canDelete = aclentry.candeletedocuments
+	If canDelete = False Then
+	'	Msgbox DelMsg, 64, dlgTitle
+		CheckAccess = False
+	End If
+	
+End Function

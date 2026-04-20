@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ***************************************************************** -->
+<!--                                                                   -->
+<!-- © Copyright HCL Technologies. 2006, 2019                          -->
+<!--                                                                   -->
+<!-- ***************************************************************** -->
+<ibm-portal-composite xmlns="http://www.ibm.com/xmlns/prod/websphere/portal/v6.0/ibm-portal-composite" xmlns:var="http://www.ibm.com/xmlns/prod/websphere/portal/v6.0/ibm-portal-composite-variable" xmlns:base="http://www.ibm.com/xmlns/prod/websphere/portal/v6.0/ibm-portal-composite-base" xmlns:community="http://www.ibm.com/xmlns/prod/websphere/portal/v6.0/ibm-portal-composite-community">
+	<application-info guid="[rep_id]_1F_3KE527R200VQ502MGJOIMC2GG4" category="default">
+		<base:title>
+			<base:nls-string xml:lang="en">HCL Notes Contacts Application</base:nls-string>
+		</base:title>
+		<base:description>
+			<base:nls-string xml:lang="en"/>
+		</base:description>
+	</application-info>
+	<community:community>
+		<community:community-role name="manager" initial="true">
+			<base:title>
+				<base:nls-string xml:lang="ko">관리자</base:nls-string>
+				<base:nls-string xml:lang="nl">Beheerders</base:nls-string>
+				<base:nls-string xml:lang="no">Administratorer</base:nls-string>
+				<base:nls-string xml:lang="pl">Administratorzy</base:nls-string>
+				<base:nls-string xml:lang="zh-TW">管理員</base:nls-string>
+				<base:nls-string xml:lang="zh">管理员</base:nls-string>
+				<base:nls-string xml:lang="uk">Administrators</base:nls-string>
+				<base:nls-string xml:lang="tr">Yöneticiler</base:nls-string>
+				<base:nls-string xml:lang="en">Administrators</base:nls-string>
+				<base:nls-string xml:lang="hu">Adminisztrátorok</base:nls-string>
+				<base:nls-string xml:lang="it">Amministratori</base:nls-string>
+				<base:nls-string xml:lang="iw">מנהלנים</base:nls-string>
+				<base:nls-string xml:lang="ja">管理者</base:nls-string>
+				<base:nls-string xml:lang="ar">المسئولون</base:nls-string>
+				<base:nls-string xml:lang="pt">Administradores</base:nls-string>
+				<base:nls-string xml:lang="pt-BR">Administradores</base:nls-string>
+				<base:nls-string xml:lang="ro">Administrators</base:nls-string>
+				<base:nls-string xml:lang="ru">Администраторs</base:nls-string>
+				<base:nls-string xml:lang="th">ผู้ดูแลระบบ</base:nls-string>
+				<base:nls-string xml:lang="sk">Administrátori</base:nls-string>
+				<base:nls-string xml:lang="sl">Skrbniki</base:nls-string>
+				<base:nls-string xml:lang="sv">Administratörer</base:nls-string>
+				<base:nls-string xml:lang="el">Διαχειριστές</base:nls-string>
+				<base:nls-string xml:lang="es">Administradores</base:nls-string>
+				<base:nls-string xml:lang="fi">Pääkäyttäjät</base:nls-string>
+				<base:nls-string xml:lang="fr">Administrateurs</base:nls-string>
+				<base:nls-string xml:lang="ca">Administrators</base:nls-string>
+				<base:nls-string xml:lang="cs">Administrátoři</base:nls-string>
+				<base:nls-string xml:lang="da">Administratorer</base:nls-string>
+				<base:nls-string xml:lang="de">Administratoren</base:nls-string>
+			</base:title>
+			<base:description>
+				<base:nls-string xml:lang="ko">응용프로그램을 편집하고 구성원 정보를 관리할 수 있습니다.</base:nls-string>
+				<base:nls-string xml:lang="nl">Can edit the application and control membership.</base:nls-string>
+				<base:nls-string xml:lang="no">Can edit the application and control membership.</base:nls-string>
+				<base:nls-string xml:lang="pl">Możliwość edytowania aplikacji i sterowania członkostwem.</base:nls-string>
+				<base:nls-string xml:lang="zh-TW">可以編輯應用程式及控制成員資格。</base:nls-string>
+				<base:nls-string xml:lang="zh">可编辑申请内容和控制成员资格。</base:nls-string>
+				<base:nls-string xml:lang="uk">Can edit the application and control membership.</base:nls-string>
+				<base:nls-string xml:lang="tr">Uygulamayı düzenleyebilir ve üyeliği denetleyebilirsiniz.</base:nls-string>
+				<base:nls-string xml:lang="en">Can edit the application and control membership.</base:nls-string>
+				<base:nls-string xml:lang="hu">A felhasználó jogosult az alkalmazás- és vezérlési tagságok módosítására.</base:nls-string>
+				<base:nls-string xml:lang="it">PuÃ² modificare l'applicazione e controllare l'appartenenza.</base:nls-string>
+				<base:nls-string xml:lang="iw">ניתן לערוך את היישום ולשלוט בדמי החברות </base:nls-string>
+				<base:nls-string xml:lang="ja">アプリケーションとコントロールのメンバーを編集できます.</base:nls-string>
+				<base:nls-string xml:lang="ar">يمكن تحرير التطبيق والتحكم في العضوية.</base:nls-string>
+				<base:nls-string xml:lang="pt">Pode editar a aplicação e controlar os membros.</base:nls-string>
+				<base:nls-string xml:lang="pt-BR">É possível editar o aplicativo e controlar a associação.</base:nls-string>
+				<base:nls-string xml:lang="ro">Can edit the application and control membership.</base:nls-string>
+				<base:nls-string xml:lang="ru">Можно изменять приложение и управлять составом пользователей.</base:nls-string>
+				<base:nls-string xml:lang="th">สามารถแก้ไขแอ็พพลิเคชันและความคุมสมาชิก</base:nls-string>
+				<base:nls-string xml:lang="sk">Môže upravovať aplikáciu a rozhodovať o členstve.</base:nls-string>
+				<base:nls-string xml:lang="sl">Možno je urejanje aplikacije in nadzora članstva.</base:nls-string>
+				<base:nls-string xml:lang="sv">Får redigera programmet och kontrollera medlemskap.</base:nls-string>
+				<base:nls-string xml:lang="el">Μπορείτε να επεξεργαστείτε την εφαρμογή και να ελέγξετε τη συμμετοχή.</base:nls-string>
+				<base:nls-string xml:lang="es">Pueden editar la aplicación y controlar el acceso.</base:nls-string>
+				<base:nls-string xml:lang="fi">Voit muokata sovellusta ja hallita jäsenyyksiä.</base:nls-string>
+				<base:nls-string xml:lang="fr">Il est possible d'éditer l'application et de contrôler les informations concernant les membres.</base:nls-string>
+				<base:nls-string xml:lang="ca">Es pot editar l'aplicació i controlar la pertinència.</base:nls-string>
+				<base:nls-string xml:lang="cs">Can edit the application and control membership.</base:nls-string>
+				<base:nls-string xml:lang="da">Kan redigere program og styre medlemskab.</base:nls-string>
+				<base:nls-string xml:lang="de">Kann die Anwendung bearbeiten und die Mitglieder verwalten.</base:nls-string>
+			</base:description>
+			<community:component-role-ref roleRef="Manager@6_3KE527R200VQ502MGJOIMC2G06" componentRef="com.ibm.portal.blank.paa"/>
+			<community:component-role-ref roleRef="Manager@3_3KE527R200VQ502MGJOIMC2G43" componentRef="com.ibm.portal.blank.paa"/>
+			<community:component-role-ref roleRef="Manager@3_3KE527R200VQ502MGJOIMC2GK6" componentRef="com.ibm.portal.blank.paa"/>
+			<community:principal id="uid=wpsadmin,o=Default Organization" idType="UserId" displayName="wpsadmin"/>
+		</community:community-role>
+		<community:community-role name="user">
+			<base:title>
+				<base:nls-string xml:lang="ko">사용자</base:nls-string>
+				<base:nls-string xml:lang="nl">Users</base:nls-string>
+				<base:nls-string xml:lang="no">Brukere</base:nls-string>
+				<base:nls-string xml:lang="pl">Użytkownicy</base:nls-string>
+				<base:nls-string xml:lang="zh-TW">使用者</base:nls-string>
+				<base:nls-string xml:lang="zh">使用者</base:nls-string>
+				<base:nls-string xml:lang="uk">Users</base:nls-string>
+				<base:nls-string xml:lang="tr">Kullanıcılar</base:nls-string>
+				<base:nls-string xml:lang="en">Users</base:nls-string>
+				<base:nls-string xml:lang="hu">Felhasználók</base:nls-string>
+				<base:nls-string xml:lang="it">Utenti</base:nls-string>
+				<base:nls-string xml:lang="iw">משתמשים</base:nls-string>
+				<base:nls-string xml:lang="ja">ユーザー</base:nls-string>
+				<base:nls-string xml:lang="ar">مستخدمون</base:nls-string>
+				<base:nls-string xml:lang="pt">Utilizadores</base:nls-string>
+				<base:nls-string xml:lang="pt-BR">Usuários</base:nls-string>
+				<base:nls-string xml:lang="ro">Users</base:nls-string>
+				<base:nls-string xml:lang="ru">Пользователи</base:nls-string>
+				<base:nls-string xml:lang="th">ผู้ใช้</base:nls-string>
+				<base:nls-string xml:lang="sk">užívateľov</base:nls-string>
+				<base:nls-string xml:lang="sl">Users</base:nls-string>
+				<base:nls-string xml:lang="sv">Användare</base:nls-string>
+				<base:nls-string xml:lang="el">Χρήστες</base:nls-string>
+				<base:nls-string xml:lang="es">Usuarios</base:nls-string>
+				<base:nls-string xml:lang="fi">Users</base:nls-string>
+				<base:nls-string xml:lang="fr">Utilisateurs</base:nls-string>
+				<base:nls-string xml:lang="ca">Users</base:nls-string>
+				<base:nls-string xml:lang="cs">Uživatelé</base:nls-string>
+				<base:nls-string xml:lang="da">Brugere</base:nls-string>
+				<base:nls-string xml:lang="de">Benutzer</base:nls-string>
+			</base:title>
+			<base:description>
+				<base:nls-string xml:lang="ko">응용프로그램을 사용할 수 있습니다.</base:nls-string>
+				<base:nls-string xml:lang="nl">Kan de toepassing gebruiken.</base:nls-string>
+				<base:nls-string xml:lang="no">Kan bruke applikasjonen.</base:nls-string>
+				<base:nls-string xml:lang="pl">Może używać aplikacji.</base:nls-string>
+				<base:nls-string xml:lang="zh-TW">可使用此應用程式</base:nls-string>
+				<base:nls-string xml:lang="zh">可以使用应用程序。</base:nls-string>
+				<base:nls-string xml:lang="uk">Can use the application.</base:nls-string>
+				<base:nls-string xml:lang="tr">Uygulamayı kullanabilir.</base:nls-string>
+				<base:nls-string xml:lang="en">Can use the application.</base:nls-string>
+				<base:nls-string xml:lang="hu">Használhatja az alkalmazást.</base:nls-string>
+				<base:nls-string xml:lang="it">Può usare l'applicazione.</base:nls-string>
+				<base:nls-string xml:lang="iw">ניתן להשתמש ביישום.</base:nls-string>
+				<base:nls-string xml:lang="ja">アプリケーションの使用が可能.</base:nls-string>
+				<base:nls-string xml:lang="ar">يمكن استخدام التطبيق.</base:nls-string>
+				<base:nls-string xml:lang="pt">Podem utilizar a aplicação.</base:nls-string>
+				<base:nls-string xml:lang="pt-BR">Pode usar a aplicação.</base:nls-string>
+				<base:nls-string xml:lang="ro">Can use the application.</base:nls-string>
+				<base:nls-string xml:lang="ru">Можно использовать данное приложение.</base:nls-string>
+				<base:nls-string xml:lang="th">สามารถใช้แอ็พพลิเคชัน</base:nls-string>
+				<base:nls-string xml:lang="sk">Can use the application.</base:nls-string>
+				<base:nls-string xml:lang="sl">Aplikacijo lahko uporabite.</base:nls-string>
+				<base:nls-string xml:lang="sv">Kan använda programmet.</base:nls-string>
+				<base:nls-string xml:lang="el">Μπορεί να χρησιμοποιήσει την εφαρμογή.</base:nls-string>
+				<base:nls-string xml:lang="es">Puede usar la aplicación. </base:nls-string>
+				<base:nls-string xml:lang="fi">Voi käyttää sovellusta.</base:nls-string>
+				<base:nls-string xml:lang="fr">L'application peut être utilisée.</base:nls-string>
+				<base:nls-string xml:lang="ca">Can use the application.</base:nls-string>
+				<base:nls-string xml:lang="cs">Mohou používat aplikaci.</base:nls-string>
+				<base:nls-string xml:lang="da">Kan bruge programmet.</base:nls-string>
+				<base:nls-string xml:lang="de">Kann die Anwendung verwenden.</base:nls-string>
+			</base:description>
+			<community:component-role-ref roleRef="User@6_3KE527R200VQ502MGJOIMC2G06" componentRef="com.ibm.portal.blank.paa"/>
+		</community:community-role>
+		<community:owner id="uid=wpsadmin,o=Default Organization" idType="UserId" displayName="wpsadmin"/>
+	</community:community>
+	<business-component guid="[rep_id]_6_3KE527R200VQ502MGJOIMC2G06" name="com.ibm.portal.blank.paa" handlerRef="local:ejb/ejb/com/ibm/wps/internalapp/service/PaaInstantiationServiceHome">
+		<var:component-role ref="Manager@6_3KE527R200VQ502MGJOIMC2G06"/>
+		<var:component-role ref="Manager@3_3KE527R200VQ502MGJOIMC2G43"/>
+		<var:component-role ref="Manager@3_3KE527R200VQ502MGJOIMC2GK6"/>
+		<var:component-role ref="User@6_3KE527R200VQ502MGJOIMC2G06"/>
+		<object-data>
+			<ibm-portal-topology xmlns="http://www.ibm.com/xmlns/prod/websphere/portal/v6.0/ibm-portal-topology" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink">
+				<component-tree>
+					<portlet-definition id="TMP_10005">
+						<description>
+							<base:nls-string xml:lang="en">HCL Notes Placeholder for Contacts Navigator</base:nls-string>
+						</description>
+						<preference name="com.ibm.rcp.standalone">
+							<base:value value="true" readOnly="false" required="false" xsi:type="base:String"/>
+						</preference>
+						<preference name="com.ibm.rcp.visible">
+							<base:value value="true" readOnly="false" required="false" xsi:type="base:String"/>
+						</preference>
+						<preference name="com.ibm.rcp.showTitle">
+							<base:value value="true" readOnly="false" required="false" xsi:type="base:String"/>
+						</preference>
+						<preference name="com.ibm.rcp.viewId">
+							<base:value value="com.ibm.rcp.csiviews.viewpart.CSINavViewPart" readOnly="false" required="false" xsi:type="base:String"/>
+						</preference>
+						<preference name="com.ibm.rcp.aaf.wiring.hideProps">
+        					<base:value value="SelectedNameChanged::SelectedCompanyChanged::SelectedEmailAddressChanged::SelectedNotesDocumentURLChanged::SelectedStreetAddressChanged" readOnly="false" required="false" xsi:type="base:String"/>
+      					</preference>
+						<preference name="com.ibm.rcp.ratio">
+							<base:value value="1.0" readOnly="false" required="false" xsi:type="base:String"/>
+						</preference>
+						<preference name="com.ibm.rcp.extensionType">
+							<base:value value="simple view" readOnly="false" required="false" xsi:type="base:String"/>
+						</preference>
+						<preference name="com.ibm.rcp.csiviews.viewpart.dburl">
+							<base:value value="notes:///[rep_id]/Contacts?OpenFrameset" readOnly="false" required="false" xsi:type="base:String"/>
+						</preference>
+						<preference name="com.ibm.rcp.fastView">
+							<base:value value="false" readOnly="false" required="false" xsi:type="base:String"/>
+						</preference>
+						<preference name="com.ibm.rcp.moveable">
+							<base:value value="true" readOnly="false" required="false" xsi:type="base:String"/>
+						</preference>
+						<preference name="com.ibm.rcp.closeable">
+							<base:value value="false" readOnly="false" required="false" xsi:type="base:String"/>
+						</preference>
+						<object-id value="[rep_id]_3_3KE527R208CCC02M6C5LO530A3"/>
+						<title>
+						<base:nls-string xml:lang="ar">لوحة التجول بين جهات الاتصال في Notes</base:nls-string>
+							<base:nls-string xml:lang="ca">Notes Contacts Navigator</base:nls-string>
+							<base:nls-string xml:lang="cs">Navigátor kontaktů prostředí Notes</base:nls-string>
+							<base:nls-string xml:lang="da">Notes-kontaktpersonnavigator</base:nls-string>
+							<base:nls-string xml:lang="de">Notes-Kontakte - Navigator</base:nls-string>
+							<base:nls-string xml:lang="el">Πλοήγηση επαφών των Notes</base:nls-string>
+							<base:nls-string xml:lang="en">Notes Contacts Navigator</base:nls-string>
+							<base:nls-string xml:lang="es">Guía de Contactos de Notes</base:nls-string>
+							<base:nls-string xml:lang="fi">Notes-yhteystietojen navigaattori.</base:nls-string>
+							<base:nls-string xml:lang="fr">Navigateur de contacts Notes</base:nls-string>
+							<base:nls-string xml:lang="hu">Notes - kapcsolattartók navigátora</base:nls-string>
+							<base:nls-string xml:lang="it">Navigatore Contatti di Notes</base:nls-string>
+							<base:nls-string xml:lang="iw">נווט האנשי קשר של Notes</base:nls-string>
+							<base:nls-string xml:lang="ja">Notes 連絡先ナビゲータ</base:nls-string>
+							<base:nls-string xml:lang="ko">Notes 연락처 네비게</base:nls-string>
+							<base:nls-string xml:lang="nl">Notes Contactpersonen-navigator</base:nls-string>
+							<base:nls-string xml:lang="no">Navigator for Notes-kontaktpersoner.</base:nls-string>
+							<base:nls-string xml:lang="pl">Nawigator kontaktów programu Notes</base:nls-string>
+							<base:nls-string xml:lang="pt">Navegador de contactos do Notes</base:nls-string>
+							<base:nls-string xml:lang="pt-BR">Navegador de Contatos do Notes</base:nls-string>
+							<base:nls-string xml:lang="ro">Notes Contacts Navigator</base:nls-string>
+							<base:nls-string xml:lang="ru">Навигатор контактов Notes</base:nls-string>
+							<base:nls-string xml:lang="sk">Notes Contacts Navigator</base:nls-string>
+							<base:nls-string xml:lang="sl">Notesov navigator koledarja</base:nls-string>
+							<base:nls-string xml:lang="sv">Notes-kontaktvägvisare</base:nls-string>
+							<base:nls-string xml:lang="th">เนวิเกเตอร์การติดต่อของ Notes</base:nls-string>
+							<base:nls-string xml:lang="tr">Notes Kişiler Gezgini</base:nls-string>
+							<base:nls-string xml:lang="uk">Notes Contacts Navigator</base:nls-string>
+							<base:nls-string xml:lang="zh">Notes 联系人导航器 </base:nls-string>
+							<base:nls-string xml:lang="zh-TW">Notes 聯絡人領航員</base:nls-string>
+						</title>
+						<resource-link portletApplication="hannover.pim.portlets">
+							<name value="HCL Notes Contacts Nav"/>
+						</resource-link>
+					</portlet-definition>
+					<portlet-entity id="TMP_10006" portletDefinitionRef="TMP_10005">
+						<object-id value="[rep_id]_5_3KE527R208CCC02M6C5LO53055"/>
+					</portlet-entity>
+					<portlet-definition id="TMP_10009">
+						<description>
+							<base:nls-string xml:lang="en">HCL Notes Placeholder for Contacts View</base:nls-string>
+						</description>
+						<preference name="com.ibm.rcp.standalone">
+							<base:value value="true" readOnly="false" required="false" xsi:type="base:String"/>
+						</preference>
+						<preference name="com.ibm.rcp.visible">
+							<base:value value="true" readOnly="false" required="false" xsi:type="base:String"/>
+						</preference>
+						<preference name="com.ibm.rcp.showTitle">
+							<base:value value="false" readOnly="false" required="false" xsi:type="base:String"/>
+						</preference>
+						<preference name="com.ibm.rcp.viewId">
+							<base:value value="com.ibm.rcp.csiviews.viewpart.CSIViewPart" readOnly="false" required="false" xsi:type="base:String"/>
+						</preference>
+						<preference name="com.ibm.rcp.ratio">
+							<base:value value=".22" readOnly="false" required="false" xsi:type="base:String"/>
+						</preference>
+						<preference name="com.ibm.rcp.extensionType">
+							<base:value value="simple view" readOnly="false" required="false" xsi:type="base:String"/>
+						</preference>
+						<preference name="com.ibm.rcp.csiviews.viewpart.dburl">
+							<base:value value="notes:///[rep_id]/Contacts?OpenFrameset" readOnly="false" required="false" xsi:type="base:String"/>
+						</preference>
+						<preference name="com.ibm.rcp.fastView">
+							<base:value value="false" readOnly="false" required="false" xsi:type="base:String"/>
+						</preference>
+						<preference name="com.ibm.rcp.moveable">
+							<base:value value="true" readOnly="false" required="false" xsi:type="base:String"/>
+						</preference>
+						<preference name="com.ibm.rcp.closeable">
+							<base:value value="false" readOnly="false" required="false" xsi:type="base:String"/>
+						</preference>
+						<object-id value="[rep_id]_3_3KE527R208CCC02M6C5LO530Q0"/>
+						<title>
+				<base:nls-string xml:lang="ar">مشاهدة جهات الاتصال في Notes</base:nls-string>
+							<base:nls-string xml:lang="ca">Notes Contacts View</base:nls-string>
+							<base:nls-string xml:lang="cs">Pohled Kontakty prostředí Notes</base:nls-string>
+							<base:nls-string xml:lang="da">Notes-kontaktpersonoversigt</base:nls-string>
+							<base:nls-string xml:lang="de">Notes-Kontakte - Ansicht</base:nls-string>
+							<base:nls-string xml:lang="el">Προβολή επαφών των Notes</base:nls-string>
+							<base:nls-string xml:lang="en">Notes Contacts View</base:nls-string>
+							<base:nls-string xml:lang="es">Vista de Contactos de Notes</base:nls-string>
+							<base:nls-string xml:lang="fi">Notes-yhteystietojen näkymä.</base:nls-string>
+							<base:nls-string xml:lang="fr">Vue de contacts Notes</base:nls-string>
+							<base:nls-string xml:lang="hu">Notes - kapcsolattartók nézete</base:nls-string>
+							<base:nls-string xml:lang="it">Vista Contatti di Notes</base:nls-string>
+							<base:nls-string xml:lang="iw">תצוגת אנשי קשר של Notes</base:nls-string>
+							<base:nls-string xml:lang="ja">Notes 連絡先ビュー</base:nls-string>
+							<base:nls-string xml:lang="ko">Notes 연락처 보기</base:nls-string>
+							<base:nls-string xml:lang="nl">Notes Contactpersonen-view</base:nls-string>
+							<base:nls-string xml:lang="no">Oversikt over Notes-kontaktpersoner.</base:nls-string>
+							<base:nls-string xml:lang="pl">Widok kontaktów programu Notes</base:nls-string>
+							<base:nls-string xml:lang="pt">Vista de contactos do Notes</base:nls-string>
+							<base:nls-string xml:lang="pt-BR">Visualização de Contatos do Notes</base:nls-string>
+							<base:nls-string xml:lang="ro">Notes Contacts View</base:nls-string>
+							<base:nls-string xml:lang="ru">Представление контактов Notes</base:nls-string>
+							<base:nls-string xml:lang="sk">Notes Contacts View</base:nls-string>
+							<base:nls-string xml:lang="sl">Notesov pogled stikov</base:nls-string>
+							<base:nls-string xml:lang="sv">Notes-kontaktvy</base:nls-string>
+							<base:nls-string xml:lang="th">มุมมองการติดต่อของ Notes</base:nls-string>
+							<base:nls-string xml:lang="tr">Notes Kişiler Görünümü</base:nls-string>
+							<base:nls-string xml:lang="uk">Notes Contacts View</base:nls-string>
+							<base:nls-string xml:lang="zh">Notes 联系人视</base:nls-string>
+							<base:nls-string xml:lang="zh-TW">Notes 聯絡人視圖</base:nls-string>
+						</title>
+						<resource-link portletApplication="hannover.pim.portlets">
+							<name value="HCL Notes Contacts View"/>
+						</resource-link>
+					</portlet-definition>
+					<portlet-entity id="TMP_10010" portletDefinitionRef="TMP_10009">
+						<object-id value="[rep_id]_5_3KE527R208CCC02M6C5LO53057"/>
+					</portlet-entity>
+				</component-tree>
+				<layout-tree>
+					<layout-element id="layout_TMP_10002">
+						<container xsi:type="SimpleContainer" orientation="row">
+							<container xsi:type="SimpleContainer" orientation="column">
+								<window id="TMP_10004" writable="true"/>
+							</container>
+							<container xsi:type="SimpleContainer" orientation="column">
+								<window id="TMP_10008" writable="true"/>
+							</container>
+						</container>
+					</layout-element>
+				</layout-tree>
+				<navigation-element id="TMP_10000">
+					<title>
+						<base:nls-string xml:lang="en">HCL Notes Contacts Application</base:nls-string>
+					</title>
+					<description/>
+					<preference name="com.ibm.rcp.useNavigator">
+						<base:value value="false" readOnly="false" required="false" xsi:type="base:String"/>
+					</preference>
+					<parent-tree>
+						<parent-tree-ref value="wps.application.root" parameterId="portal.root"/>
+					</parent-tree>
+					<object-id value="[rep_id]_6_3KE527R200VQ502MGJOIMC2G06"/>
+					<navigation-element id="TMP_10001" layoutElementRef="layout_TMP_10002">
+						<title>
+							<base:nls-string xml:lang="ar">جهات الاتصال</base:nls-string>
+							<base:nls-string xml:lang="ca">Contactes</base:nls-string>
+							<base:nls-string xml:lang="cs">Kontakty</base:nls-string>
+							<base:nls-string xml:lang="da">Kontaktpersoner</base:nls-string>
+							<base:nls-string xml:lang="de">Kontakte</base:nls-string>
+							<base:nls-string xml:lang="el">Επαφές</base:nls-string>
+							<base:nls-string xml:lang="en">Contacts</base:nls-string>
+							<base:nls-string xml:lang="es">Contactos</base:nls-string>
+							<base:nls-string xml:lang="fi">Yhteystiedot</base:nls-string>
+							<base:nls-string xml:lang="fr">Contacts</base:nls-string>
+							<base:nls-string xml:lang="hu">Kapcsolattartók</base:nls-string>
+							<base:nls-string xml:lang="it">Contatti</base:nls-string>
+							<base:nls-string xml:lang="iw">אנשי קשר</base:nls-string>
+							<base:nls-string xml:lang="ja">連絡先</base:nls-string>
+							<base:nls-string xml:lang="ko">연락처</base:nls-string>
+							<base:nls-string xml:lang="nl">Contactpersonen</base:nls-string>
+							<base:nls-string xml:lang="no">Kontaktpersoner</base:nls-string>
+							<base:nls-string xml:lang="pl">Kontakty</base:nls-string>
+							<base:nls-string xml:lang="pt">Contactos</base:nls-string>
+							<base:nls-string xml:lang="pt-BR">Contatos</base:nls-string>
+							<base:nls-string xml:lang="ro">Contacts</base:nls-string>
+							<base:nls-string xml:lang="ru">Контакты</base:nls-string>
+							<base:nls-string xml:lang="sk">Kontakty</base:nls-string>
+							<base:nls-string xml:lang="sl">Stiki</base:nls-string>
+							<base:nls-string xml:lang="sv">Kontakter</base:nls-string>
+							<base:nls-string xml:lang="th">การติดต่อ</base:nls-string>
+							<base:nls-string xml:lang="tr">Kişiler</base:nls-string>
+							<base:nls-string xml:lang="uk">Contacts</base:nls-string>
+							<base:nls-string xml:lang="zh">联系人</base:nls-string>
+							<base:nls-string xml:lang="zh-TW">聯絡人</base:nls-string>
+
+						</title>
+						<description>
+							<base:nls-string xml:lang="en">Blank Page</base:nls-string>
+						</description>
+						<preference name="com.ibm.portal.IgnoreAccessControlInCaches">
+							<base:value value="false" readOnly="false" required="false" xsi:type="base:String"/>
+						</preference>
+						<preference name="com.ibm.portal.bookmarkable">
+							<base:value value="No" readOnly="false" required="false" xsi:type="base:String"/>
+						</preference>
+						<preference name="com.ibm.portal.PageIcon">
+							<base:value value="tab_contacts.png" readOnly="false" required="false" xsi:type="base:String"/>
+						</preference>
+						<preference name="com.ibm.portal.ThemePageIcon">
+							<base:value value="com.ibm.notes.client.contactstabicon" readOnly="false" required="false" xsi:type="base:String"/>
+						</preference>
+						<preference name="com.ibm.portal.remote-cache-expiry">
+							<base:value value="0" readOnly="false" required="false" xsi:type="base:String"/>
+						</preference>
+						<preference name="com.ibm.rcp.launcher">
+							<base:value value="false" readOnly="false" required="false" xsi:type="base:String"/>
+						</preference>
+						<preference name="com.ibm.rcp.activities">
+							<base:value value="com.ibm.workplace.Mail.activity;com.ibm.workplace.LotusNotes.activity" readOnly="false" required="false" xsi:type="base:String"/>
+						</preference>
+						<preference name="com.ibm.portal.remote-cache-scope">
+							<base:value value="NON-SHARED" readOnly="false" required="false" xsi:type="base:String"/>
+						</preference>
+						<preference name="com.ibm.rcp.autoStart">
+							<base:value value="false" readOnly="false" required="false" xsi:type="base:String"/>
+						</preference>
+						<preference name="com.ibm.rcp.forms">
+							<base:value value="Person" readOnly="false" required="false" xsi:type="base:String"/>
+							<base:value value="Group" readOnly="false" required="false" xsi:type="base:String"/>
+							<base:value value="Location" readOnly="false" required="false" xsi:type="base:String"/>
+							<base:value value="Account" readOnly="false" required="false" xsi:type="base:String"/>
+							<base:value value="Connection" readOnly="false" required="false" xsi:type="base:String"/>
+							<base:value value="CrossCertificate" readOnly="false" required="false" xsi:type="base:String"/>
+							<base:value value="Certifier" readOnly="false" required="false" xsi:type="base:String"/>							
+						</preference>
+						<preference name="com.ibm.rcp.bookmark_level">
+							<base:value value="selection" readOnly="false" required="false" xsi:type="base:String"/>
+						</preference>
+						<object-id value="[rep_id]_6_3KE527R200VQ502MGJOIMC2G05"/>
+						<navigation-content windowRef="TMP_10004" componentDefinitionRef="TMP_10006"/>
+						<navigation-content windowRef="TMP_10008" componentDefinitionRef="TMP_10010"/>
+					</navigation-element>
+				</navigation-element>
+			</ibm-portal-topology>
+		</object-data>
+	</business-component>
+</ibm-portal-composite>
+

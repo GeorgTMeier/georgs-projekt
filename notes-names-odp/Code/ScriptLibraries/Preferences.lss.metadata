@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><note xmlns="http://www.lotus.com/dxl" class="filter" maintenanceversion="2.0" replicaid="C125899B00337147" version="12.0">
+<noteinfo noteid="242" sequence="155" unid="EE3E64EC929DE06F8525728A00451FFA">
+<created><datetime>20070222T073501,70-05</datetime></created>
+<modified><datetime dst="true">20230424T112154,04+02</datetime></modified>
+<revised><datetime>20220519T113209,93+00</datetime></revised>
+<lastaccessed><datetime dst="true">20230424T112154,03+02</datetime></lastaccessed>
+<addedtofile><datetime dst="true">20230424T112154,03+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Domino Template Development/O=Domino</name></updatedby>
+<revisions><datetime>20200402T144707,16+0530</datetime></revisions>
+<wassignedby><name>CN=Domino Template Development/O=Domino</name></wassignedby>
+<item name="$POID"><datetime>20070221T122609,50-05</datetime></item>
+<item name="$TITLE" sign="true"><text>Preferences</text></item>
+<item name="$Flags"><text>s34Q</text></item>
+<item name="$PublicAccess" sign="true"><text>1</text></item>
+<item name="$DesignerVersion" sign="true"><text>8.5.4</text></item>
+<item name="$LANGUAGE" sign="true"><text>en</text></item>
+
+</note>

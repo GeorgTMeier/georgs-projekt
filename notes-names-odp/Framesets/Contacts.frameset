@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note class='form' xmlns='http://www.lotus.com/dxl' version='12.0' maintenanceversion='2.0'
+ replicaid='C125899B00337147'>
+<noteinfo noteid='536' unid='DE54033BCA311AC3852566C6007C1EB7' sequence='5091'>
+<created><datetime>19981124T173543,27-05</datetime></created>
+<modified><datetime dst='true'>20230424T112155,92+02</datetime></modified>
+<revised><datetime>20220519T113220,24+00</datetime></revised>
+<lastaccessed><datetime dst='true'>20230424T112155,91+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20230424T112155,91+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Domino Template Development/O=Domino</name></updatedby>
+<revisions><datetime dst='true'>20110919T143200,40-04</datetime><datetime
+>20130213T093950,97-05</datetime><datetime>20130213T093951,08-05</datetime><datetime
+>20130213T114449,05-05</datetime><datetime>20130213T114449,14-05</datetime><datetime
+>20130214T110829,77-05</datetime></revisions>
+<wassignedby><name>CN=Domino Template Development/O=Domino</name></wassignedby>
+<item name='$LANGUAGE' sign='true'><text>en</text></item>
+<item name='$OpenAsCompApp' sign='true'><text>0</text></item>
+<item name='$TITLE' sign='true'><text>Contacts|Contacts&amp;Groups</text></item>
+<item name='$Comment' sign='true'><text/></item>
+<item name='$FrameSet' sign='true'>
+<rawitemdata type='1'>
+7/8YAAIAAgAAAAAAAAAAAAAAAAAAAAAA8P86AEUAAAAAAAAAAAAMAAwAAAAAAAUAAAAAAAUAAAAA
+AAEAAQAAAAAAAQD///8AAAADAAEAAwABAPH/NAARAAAAAEAAAQIAAQABAAAAAAAAAAAAAAABAP//
+/wAAAAEA////MAEAAAoBAAAAADD2/9AAAQAAAAMABgCuAAAAAAAAAAAAAAAAAAAAAAAAAAAAmgAK
+AAQAAAB4AL8AAAAAAAAAAAB5QFYBDgL7AHQBWgEdAq8AWAAaAAEAEABJbnRlcmlvckNvbnRhY3Rz
+rgA+APsAdAGvADYAGgABABAASW50ZXJpb3JTdGFuZGFyZK4AHAABABAASW50ZXJpb3JDb250YWN0
+c64ABAC1BQMABwAcABUACTNTNFM4UzlTMTRTMTZSMThTMjBSABQAAAASAAEACABGcmFtZXNldAMA
+</rawitemdata></item>
+<item name='$CompAppName' sign='true'><text>Notes Contacts Application.xml</text></item>
+<item name='$CompAppPageName' sign='true'><text>6_3KE527R200VQ502MGJOIMC2G05</text></item>
+<item name='$Flags'><text>#4C</text></item>
+<item name='$DesignerVersion' sign='true'><text>8.5.3</text></item></note>
+

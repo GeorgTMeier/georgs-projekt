@@ -1,0 +1,225 @@
+'++LotusScript Development Environment:2:5:(Options):0:74
+Option Public
+Use "GlobalDeclarations"
+'++LotusScript Development Environment:2:5:(Forward):0:1
+Declare Sub FormatNum(num As Variant, strAddrFormat As String)
+Declare Sub ParsePhoneNumber(num As Variant, strFieldName As String, strAddrFormat As String)
+Declare Function ParsePhoneNumber2(strPhoneNumber As String, strFieldName As String, strAddrFormat As String)
+
+'++LotusScript Development Environment:2:5:(Declarations):0:10
+'PhoneParser: 
+
+
+Dim l As Variant
+Dim x As Variant
+Dim y As Variant
+Dim letters As Variant
+Dim strnumbers As Variant
+Dim sep As Variant
+Dim p As Variant
+Dim par As Variant
+Dim locarea As Variant
+Dim num As Variant
+Dim OriginalNum As Variant
+Dim tel As Variant
+Dim F As Variant
+Dim T As Variant
+Dim locsep As Integer
+Dim lennum As Integer
+Dim InPar As Variant
+Dim LPar As Variant
+Dim LocLPar As Integer
+Dim LocRPar As Integer
+Dim RPar As Variant
+Dim Prefix As String
+Dim Suffix As String
+Dim FirstLet As String
+Dim LocFirstLet As Integer
+Dim hasspace As Variant
+Dim vCalc As Variant
+
+
+
+'++LotusScript Development Environment:2:2:FormatNum:1:8
+Sub FormatNum(num As Variant, strAddrFormat As String)
+	num=Trim(num)
+	lennum=Len(num)
+	hasspace=Instr(num," ")
+     REM "No separator"
+	If (sep(0)=F(0)) Then 
+		If lennum=7 And hasspace=0 Then
+			tel=Left(num,3)&"-"&Right(num,4)
+			Exit Sub
+		End If
+		If lennum < 7 Then
+			tel=num
+			Exit Sub
+		End If
+		
+		REM "If address format is not "1" it is not U.S. so we don't parse here if the first number is a 1"
+		If lennum = 10 And hasspace=0 And strAddrFormat = "1" Then
+			tel="(" & Left(num,3) & ") " & Left(Right(num,7),3) & "-" & Right(num,4)
+			Exit Sub
+		End If 
+		If (lennum > 7 And lennum < 10) Or (lennum > 10  And strAddrFormat = "1") Then
+			tel=num
+			Exit Sub
+		End If
+		
+	End If 
+     REM "Separator is present"
+	If (sep(0)=T(0))  Then
+		locsep=Instr(num,"-")
+		tel=Left(num,locsep-1)&"-"&Right(num,lennum-locsep)
+		Exit Sub
+	End If
+	tel=num
+End Sub
+'++LotusScript Development Environment:2:2:ParsePhoneNumber:1:8
+Sub ParsePhoneNumber(num As Variant, strFieldName As String, strAddrFormat As String)
+	
+	OriginalNum=num
+	
+	REM "Check to see if there is a prefix"
+	REM "If there is a prefix, set the prefix variable and remove the prefix from the remaining number"
+	REM "and if address format is not "1" it is not U.S. so we don't parse here if the first number is a 1"
+	If (p(0)=T(0) And strAddrFormat = "1") Then
+		Prefix="+" & Left(num,1)
+		num=Trim(Right(num,Len(num)-1))
+	Else
+		Prefix=""
+	End If
+	
+    	REM " Check to see if there are parens.  If so parse out the insides, left and right"	
+	If (par(0)=T(0)) Then
+		LocLPar=Instr(num,"(")
+		LocRPar=Instr(num,")")
+		
+		'Determine whether there is anything after the right paren and if so get it's value
+		If LocRPar = l Then
+			RPar = ""
+		Else			
+			RPar=Trim(Right(num,(Len(num))-LocRPar))
+		End If
+		
+		'Determine what is prior to the left paren and if it needs a + sign
+		LPar=Trim(Left(num,LocLPar-1))
+		If Len(LPar) >0 And Left(LPar,1) <>"+"  And Prefix <> "" Then
+			LPar="+" & LPar
+		End If
+		
+		'Determine what is inside the parens and if it has any letters
+		InPar=Mid(num,LocLPar+1,LocRPar-LocLPar-1)
+		y=Evaluate(|!@Matches("| & InPar & |";"+{!a-zA-Z}")|)
+		
+		'If letters are found inside the parens, parse them out and assign it to the suffix.  Also check the value of 
+		'LPar and RPar and if they are equal to the remaining number then they are set to  null string
+		If y(0) = T(0) Then
+			vCalc=Evaluate(|@ReplaceSubstring("| & num & |" ; "(| & InPar & |)";"")|)
+			InPar="(" & InPar & ")"
+			num = Trim(vCalc(0))
+			If LPar = num Then
+				LPar=""
+			End If
+			If Trim(RPar) = num Then
+				RPar = ""
+			End If
+			Suffix=InPar
+		Else 
+			InPar = "(" & InPar & ")"
+		End If
+		
+		If RPar <> ""  And y(0) <> T(0) Then
+			num=RPar
+		Elseif LPar <> "" And LocLPar = 1 Then
+			num=LPar
+		End If
+	Else
+		'If there are no paretheses, set the following values to null
+		InPar=Null
+		LPar=Null
+		LocRPar=0
+		RPar=Null
+	End If
+	
+%REM 
+	If there are letters still left in num and there are no letters in parentheses, the locate the first letter take whatever is to the right of it
+	and make the combination the suffix.
+%END REM
+	x=Evaluate(|!@Matches("| & num & |";"+{!a-zA-Z}")|, doc)
+	If (x(0)=T(0)) And Suffix = "" Then	
+		LocFirstLet=Instr(num,FirstLet)
+		vSuffix=Evaluate(|@Right(| & strFieldName & |;"| & FirstLet & |")| , doc)
+		Suffix = Trim(FirstLet & vSuffix(0))
+		vCalc = Evaluate(|@Ends("| & Suffix & |";")")|)
+		If vCalc(0) = 1 Then
+			vCalc=Evaluate(|@Leftback("| & Suffix & |";1)|)
+			Suffix=Trim(vCalc(0) & ")")
+			vCalc=Evaluate(|@Ends(@Left("| & OriginalNum & |"; "| & Suffix & |");"(")|)
+			If vCalc(0) = 1 Then
+				Suffix="(" & Suffix
+			End If
+		End If
+		vCalc=Evaluate(|@ReplaceSubstring("| & num & |" ; "| & Suffix & |";"")|)
+		num=Trim(vCalc(0))
+		vCalc=Evaluate(|@ReplaceSubstring("| & num & |" ; "()";"")|)
+		num=Trim(vCalc(0))
+	End If
+	
+%REM
+	By this point we have parsed out any prefix, suffix, letters from the number.  Now make the call to format the number.
+%END REM
+	
+	If Len(num)<7 Then
+		tel=OriginalNum
+		Suffix=""
+		Exit Sub
+	Else
+		Call FormatNum(num, strAddrFormat)
+	End If
+	If par(0) = T(0) Then
+		If Suffix <> InPar And tel <> num Then
+			tel=Trim(LPar) & " " & InPar & " " & tel
+		End If	
+	End If
+	
+End Sub
+'++LotusScript Development Environment:2:1:ParsePhoneNumber2:1:8
+Function ParsePhoneNumber2(strPhoneNumber As String, strFieldName As String, strAddrFormat As String)
+	
+	num=doc.GetItemValue(strFieldName)(0)
+	
+	If num="" Then
+		Exit Function
+	End If
+	
+	pLen = Len(strPhoneNumber)
+	l=pLen
+	
+REM "Test to see if the number contains any letters. 
+REM " We do the test this way because it appears that @matches does not return consistent results without doing the ! of the pattern.
+REM " In order to make it easier to understand the logic, we do another ! at the begining, so that if it does contain letters 
+REM " the result is TRUE, otherwise it does not contain any letters the result is FALSE.";
+	
+	x=Evaluate(|!@Matches(| & strFieldName & |;"+{!a-zA-Z}")|, doc)
+	
+	letters=Evaluate(|@Trim(@ReplaceSubstring(| & strFieldName & |;"0":"1":"2":"3":"4":"5":"6":"7":"8":"9":"(":")":"-":" ":"+";""))|, doc)
+	
+	strnumbers=Evaluate(|@Trim(@ReplaceSubstring(| & strFieldName & |;"| & letters(0) & |":"(":")";""))|,doc)
+	
+	FirstLet=Left(letters(0),1)
+	
+	p=Evaluate(|@Begins(| & strFieldName & |;"1")|,doc)
+	
+	sep=Evaluate(|@Contains(| & strFieldName & |;"-")|,doc)
+	
+	par=Evaluate(|@Contains(| & strFieldName & |;"(") & @Contains(| & strFieldName & |;")")|,doc)
+	
+	Call ParsePhoneNumber(num , strFieldName, strAddrFormat)
+	
+	Call doc.ReplaceItemValue(strFieldName, Trim(Trim(Prefix) & " " & Trim(tel) & " " & Trim(Suffix)))
+	
+	Suffix=""
+	tel=""
+	Prefix=""
+End Function

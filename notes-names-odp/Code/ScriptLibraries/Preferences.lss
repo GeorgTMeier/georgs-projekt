@@ -1,0 +1,675 @@
+'++LotusScript Development Environment:2:5:(Options):0:74
+Option Public
+Use "MiscContactsLib"
+
+'++LotusScript Development Environment:2:5:(Forward):0:1
+Declare Function Pref_QueryOpen(Source As Notesuidocument, Continue As Variant) As Integer
+Declare Function Pref_Save(Note As NotesDocument) As Integer
+Declare Sub CheckForDPABProfile
+
+'++LotusScript Development Environment:2:5:(Declarations):0:10
+Dim roamingProfile As notesdocument
+Dim db As notesdatabase
+Dim roamingProfileExists  As Boolean
+
+'BEGIN_TRANSLATED_TEXT
+
+Const xTitle = "Contacts Preferences"
+
+Const NotMailOwner = |Notes cannot save this preference: Default Display for Contact Names, because you are not the owner of your current location's mail file.|
+Const Msg2 =  |Go to File > Location > Switch to Location, select a location that you own, and then set this preference.|
+
+Const NoMail = |Notes cannot save this preference: Default Display for Contact Names, because it cannot find your mail file.|
+Const NoMail2 = |Please make sure your server information is correct. Select File > Preferences, select Locations, select your current location, and then click Edit.|
+Const NoMail3 = |On the Servers tab, make sure your Home/Mail server is correct.|
+Const NoMail4 = |On the Mail tab, make sure your Mail file is correct.|
+Const NoMail5 = |If the information is correct, the server may be down, so you should try again later.|
+
+'END_TRANSLATED_TEXT
+
+
+
+
+'++LotusScript Development Environment:2:1:Pref_QueryOpen:1:8
+Function Pref_QueryOpen(Source As Notesuidocument, Continue As Variant) As Integer
+	
+	'BEGIN_DO_NOT_TRANSLATE
+	
+	On Error Goto ErrorThrower
+	
+	Dim Session As New notessession	
+'	Dim Db As NotesDatabase
+	Dim WS As New notesuiworkspace
+	Dim UIDoc As NotesUIDocument
+	Dim NABProf As NotesDocument
+	Dim CurrentViewFormat As String
+	Dim prefSave As Boolean
+	prefSave = False
+	
+	Set db = Session.currentdatabase
+	Set NABprof = db.getprofiledocument("DirectoryProfile")
+	
+	If session.Username = source.document.getitemvalue("Owner")(0) Then
+	    '//Enable Sync Contacts
+		Dim iDefPref As Integer
+		Dim vPrefLocked As Variant
+		
+		iDefPref = 0
+		If source.document.hasitem("EnableSyncContact") Then iDefPref = source.document.Getitemvalue("EnableSyncContact")(0)
+		
+		If iDefPref < 1 Then
+			
+			vPrefLocked = Evaluate (|!@PolicyIsFieldLocked("ContactDelegationSwitch")|)
+			If vPrefLocked(0) = 1 Then
+				Call source.document.replaceitemvalue("ContactDelegationSwitch","1")
+			End If
+			
+			Call source.document.replaceitemvalue("EnableSyncContact", 1)
+			Call source.document.save(True,False,False)
+		End If		
+		'//END
+		
+		'//Typeahead set default JobTitle
+		Dim TYPEDROPDOWNATTR As Variant
+		
+		TYPEDROPDOWNATTR = session.getenvironmentstring("TYPEDROPDOWNATTR", True)
+		If TYPEDROPDOWNATTR = "" Then					
+			Call source.document.replaceitemvalue("TypeaheadAttr", "JobTitle")
+			PrefSave = True	
+			Call session.Setenvironmentvar("TYPEDROPDOWNATTR", "JobTitle", True)
+		Else
+			Call source.document.ReplaceItemValue("TypeaheadAttr", TYPEDROPDOWNATTR)	
+			PrefSave = True		
+		End If		
+		'//END	
+		If PrefSave = True Then 
+			Call source.document.save(True,False,False)
+		End If
+		
+	End If
+	
+	
+	'for Contacts synchronization
+	Dim desktopPolicyDoc As notesdocument	
+	Set desktopPolicyDoc = session.GetUserPolicySettings("", session.username,POLICYSETTINGS_DESKTOP)	
+	
+	'typeahead
+	currentLocUNID = Evaluate ("@locationgetinfo([unid])")
+	Set currLoc = db.Getdocumentbyunid(currentLocUNID(0))
+	mailLoc = currLoc.MailType(0)  'server =0, local=1
+	Call source.document.ReplaceItemValue("MailLoc", mailLoc)
+	'/typeahead
+	
+	If desktopPolicyDoc Is Nothing Then 
+		Call source.document.replaceitemvalue("$DPLocked", "")
+		Goto prefOpenContinue				
+	End If
+	
+	If desktopPolicyDoc.hasitem("$DPLocked") Then
+		dci = desktopPolicyDoc.getitemvalue("$DPLocked")
+		Call source.document.replaceitemvalue("$DPLocked", dci)		
+	End If
+	
+	'private default
+	Dim prefNote As notesdocument
+	Set prefNote = source.document
+	
+	If Lcase(prefNote.getitemvalue("Owner")(0)) = Lcase(session.UserName) Then	
+		
+		privateIndex = Arraygetindex(dci, "ContactPrivateDefault", 5)		
+		
+		Dim setOncePolicyOptions As Variant
+		setOncePolicyOptions = desktopPolicyDoc.getitemvalue("$PolicyHTASetOnceItems")
+		Dim alwaysSetItemsVal As Variant
+		alwaysSetItemsVal = desktopPolicyDoc.getitemvalue("AlwaysSetItems") 
+		
+		'alwaysSetItemsVal = dpdoc.getitemvalue("AlwaysSetItems")
+		profileSetOnceVal = prefNote.getitemvalue("$PolicyInitialValueSet")(0)	
+		
+		'check for set initial
+		setOncePolicyIndex = Arraygetindex(setOncePolicyOptions, "ContactPrivateDefault", 5)	
+		alwaysSetIndex = Arraygetindex(alwaysSetItemsVal, "ContactPrivateDefault", 5)
+		
+		privateDefaultValue = desktopPolicydoc.getitemvalue("ContactPrivateDefault")
+		
+		If Not Isnull(PrivateIndex) Then
+		'private default is locked; set value
+			'value is locked - reset flags
+			If prefNote.hasitem("$PolicyInitialValueSet") Then
+				If prefNote.getitemvalue("$PolicyInitialValueSet")(0)  = "1"  Then
+					Call prefNote .replaceitemvalue("$PolicyInitialValueSet", "")
+					Call prefNote.save(True,False)
+				End If			
+			End If			
+			
+			If prefNote.hasitem("$UserSetPrivateDefault") Then
+				If prefNote.getitemvalue("$UserSetPrivateDefault")(0)  = "1"  Then
+					Call prefNote .replaceitemvalue("$UserSetPrivateDefault", "")
+					Call prefNote.save(True,False)
+				End If			
+			End If			
+			
+			If privateDefaultValue(0) = "1" Then
+				Call prefNote.replaceitemvalue("PrivateDefault", "1")
+				Call prefNote.save(True,False)
+			Else
+				Call prefNote.replaceitemvalue("PrivateDefault", "")
+				Call prefNote.save(True,False)
+			End If		
+			
+		Elseif Not Isnull(setOncePolicyIndex) Then
+			
+			'check for Set Initial
+			
+			If profileSetOnceVal = "" Then				
+				'preferences never updated with initial value policy setting.
+				'replace values on the note and save
+				Call prefNote.replaceitemvalue("PrivateDefault", PrivateDefaultValue)
+				Call prefNote.replaceitemvalue("$PolicyInitialValueSet", "1")	
+				Call prefNote.replaceitemvalue("SetLockedMailValue", "")	
+				Call prefNote.replaceitemvalue("$UserSetPrivateDefault", "")	
+				
+				Call prefNote.save(True,False)
+			Else
+				Call ActivatePrivateDefaultPolicy(session, db, prefNote, desktopPolicyDoc, prefNote)
+			End If
+		Elseif Not Isnull(alwayssetindex) Then
+			'set when modified; set always - erase initialValue flag
+			Call prefNote.replaceitemvalue("PrivateDefault", privateDefaultValue)
+			Call prefNote.replaceitemvalue("$PolicyInitialValueSet", "")
+			Call PrefNote.replaceitemvalue("$UserSetPrivateDefault", "") 
+			Call prefNote.replaceitemvalue("setLockedMailValue", "")	
+			Call prefNote.save(True,False)
+			
+		Elseif Not desktopPolicyDoc.hasitem("ContactPrivateDefault") Then
+			'don't set
+			
+			'these two if-statements are set up so we only save the profile if it is truly needed
+			
+			If prefNote.hasitem("$PolicyInitialValueSet") Then
+				If prefNote.getitemvalue("$PolicyInitialValueSet")(0)  = "1"  Then
+					Call prefNote .replaceitemvalue("$PolicyInitialValueSet", "")
+					Call prefNote.save(True,False)
+				End If			
+			End If			
+			
+			If prefNote.hasitem("SetLockedMailValue") Then
+				If prefNote.getitemvalue("SetLockedMailValue")(0)  = "1"  Then
+					Call prefNote .replaceitemvalue("SetLockedMailValue", "")
+					Call prefNote.save(True,False)
+				End If			
+			End If			
+			
+		End If			
+		
+	End If
+	
+	'setting tmp ini variable (used by Pref_Save to determine whether Mailfile contact profile needs to be updated)	
+	Call session.setenvironmentvar("tmpOrigPDValue", source.document.getitemvalue("PrivateDefault")(0))
+	
+	'//private default	
+	
+prefOpenContinue:
+	Call source.document.ReplaceItemValue("LDAPChange", "")  
+	
+	Call source.document.ReplaceItemvalue("CurrentViewFormat", source.document.GetItemvalue("NameDisplay")(0))  
+	
+	getDPABenv = session.getenvironmentstring("DisableDPABprocessing", True)	  
+	getDPABCCenv = session.getenvironmentstring("DisableDPABCCprocessing", True) 
+	getDPABReceivenv = session.getenvironmentstring("DisableDPABReceivedprocessing", True) 
+	getDPABCCTOenv = session.getenvironmentstring("DisableDPABCCandToprocessing", True) 
+	
+	If getDPABenv = "1" Then
+		Call source.document.ReplaceItemValue("DisableDPAB", "1")
+	Elseif getDPABenv = "" Then
+		Call source.document.ReplaceItemValue("DisableDPAB", "2")		
+		Call source.document.ReplaceItemValue("DisableDPABOptions", "0") 
+	End If
+	
+	If getDPABCCenv = "1" Or getDPABReceivenv = "1" Or getDPABCCTOenv = "1" Then
+		If getDPABCCenv = "1" Then
+			Call source.document.ReplaceItemValue("DisableDPABOptions", "2") 
+		Elseif getDPABReceivenv = "1" Then
+			Call source.document.ReplaceItemValue("DisableDPABOptions", "3") 
+		Elseif getDPABCCTOenv = "1" Then
+			Call source.document.ReplaceItemValue("DisableDPABOptions", "4") 			
+		End If
+		
+	End If
+	
+	'also need to keep DPAB up to date for roaming users
+	Call CheckForDPABProfile	
+	If roamingProfileExists Then
+		Set roamingProfileQO = db.getprofiledocument("roaminguserid")  
+		roamingProfileValue1 = roamingProfileQO.getitemvalue("$PrefDisableDPABprocessing")  
+		roamingProfileValue2 = roamingProfileQO.getitemvalue("$PrefDisableDPABCCprocessing")  
+		roamingProfileValue3 = roamingProfileQO.getitemvalue("$PrefDisableDPABReceivedprocessing")  
+		roamingProfileValue4 = roamingProfileQO.getitemvalue("$PrefDisableDPABCCandToprocessing")  
+		
+		If (getDPABenv = "1" Or getDPABCCenv = "1" Or getDPABReceivenv = "1" Or getDPABCCTOenv = "1") Or  getDPABenv = "" Then
+			If getDPABenv = "1" Then	
+				'if DPAB is disabled...
+				If  Cstr(roamingProfileValue1(0)) <>  "1" Then
+					Call roamingProfileQO.ReplaceItemValue("$PrefDisableDPABprocessing", 1)  
+					'Disable the other roaming dpab options
+					'cc
+					If roamingProfileQO.hasitem("$PrefDisableDPABCCprocessing") Then  
+						Call roamingProfileQO.ReplaceItemValue("$PrefDisableDPABCCprocessing", 0)  
+					End If
+					'received
+					If roamingProfileQO.hasitem("$PrefDisableDPABReceivedprocessing") Then  
+						Call roamingProfileQO.ReplaceItemValue("$PrefDisableDPABReceivedprocessing", 0)  
+					End If
+					'CCandTo
+					If roamingProfileQO.hasitem("$PrefDisableDPABCCandToprocessing") Then  
+						Call roamingProfileQO.ReplaceItemValue("$PrefDisableDPABCCandToprocessing", 0)  
+					End If					
+					Call roamingProfileQO.save(True,False)	
+				End If
+			Elseif getDPABCCenv = "1" Then
+				If Cstr(roamingProfileValue2(0)) <>  "1" Then
+					'CCProcessing = 1
+					Call roamingProfileQO.ReplaceItemValue("$PrefDisableDPABCCprocessing", 1)  
+					'disable the other dpab options
+					'dpab
+					If roamingProfileQO.hasitem("$PrefDisableDPABprocessing") Then  
+						Call roamingProfileQO.ReplaceItemValue("$PrefDisableDPABprocessing", 0)  
+					End If
+					'received
+					If roamingProfileQO.hasitem("$PrefDisableDPABReceivedprocessing") Then  
+						Call roamingProfileQO.ReplaceItemValue("$PrefDisableDPABReceivedprocessing", 0)  
+					End If
+					'CCandTo
+					If roamingProfileQO.hasitem("$PrefDisableDPABCCandToprocessing") Then  
+						Call roamingProfileQO.ReplaceItemValue("$PrefDisableDPABCCandToprocessing", 0)  
+					End If			
+					Call roamingProfileQO.save(True,False)	
+				End If				
+			Elseif getDPABReceivenv = "1"  Then
+				If Cstr(roamingProfileValue3(0)) <>  "1" Then
+					'ReceivedProcessing = 1
+					Call roamingProfileQO.ReplaceItemValue("$PrefDisableDPABReceivedprocessing", 1)  
+					'disable the other dpab options
+					'dpab
+					If roamingProfileQO.hasitem("$PrefDisableDPABprocessing") Then  
+						Call roamingProfileQO.ReplaceItemValue("$PrefDisableDPABprocessing", 0)  
+					End If
+					'cc
+					If roamingProfileQO.hasitem("$PrefDisableDPABCCprocessing") Then  
+						Call roamingProfileQO.ReplaceItemValue("$PrefDisableDPABCCprocessing", 0)  
+					End If
+					'CCandTo
+					If roamingProfileQO.hasitem("$PrefDisableDPABCCandToprocessing") Then  
+						Call roamingProfileQO.ReplaceItemValue("$PrefDisableDPABCCandToprocessing", 0)  
+					End If	
+					Call roamingProfileQO.save(True,False)	
+				End If
+			Elseif getDPABCCTOenv = "1" Then
+				If Cstr(roamingProfileValue4(0)) <>  "1" Then
+					'CCandToProcessing = 1
+					Call roamingProfileQO.ReplaceItemValue("$PrefDisableDPABCCandToprocessing", 1)  
+					'disable the other dpab options
+					'dpab
+					If roamingProfileQO.hasitem("$PrefDisableDPABprocessing") Then  
+						Call roamingProfileQO.ReplaceItemValue("$PrefDisableDPABprocessing", 0)  
+					End If
+					'cc
+					If roamingProfileQO.hasitem("$PrefDisableDPABCCprocessing") Then  
+						Call roamingProfileQO.ReplaceItemValue("$PrefDisableDPABCCprocessing", 0)  
+					End If			
+					'received
+					If roamingProfileQO.hasitem("$PrefDisableDPABReceivedprocessing") Then  
+						Call roamingProfileQO.ReplaceItemValue("$PrefDisableDPABReceivedprocessing", 0)  
+					End If
+					Call roamingProfileQO.save(True,False)	
+				End If
+			Elseif  getDPABenv = "" Then
+			'roamingProfileValue1(0)
+				If Cstr(roamingProfileValue1(0)) = "1" Or Cstr(roamingProfileValue2(0)) = "1" Or Cstr(roamingProfileValue3(0)) = "1" Or Cstr(roamingProfileValue4(0)) = "1" Then
+					
+			'remove all DisableDPAB options
+					If roamingProfileQO.hasitem("$PrefDisableDPABprocessing") Then  
+						Call roamingProfileQO.ReplaceItemValue("$PrefDisableDPABprocessing", 0)  
+					End If
+					If roamingProfileQO.hasitem("$PrefDisableDPABCCprocessing") Then  
+						Call roamingProfileQO.ReplaceItemValue("$PrefDisableDPABCCprocessing", 0)  
+					End If		
+					If roamingProfileQO.hasitem("$PrefDisableDPABReceivedprocessing") Then  
+						Call roamingProfileQO.ReplaceItemValue("$PrefDisableDPABReceivedprocessing", 0)  
+					End If
+					If roamingProfileQO.hasitem("$PrefDisableDPABCCandToprocessing") Then  
+						Call roamingProfileQO.ReplaceItemValue("$PrefDisableDPABCCandToprocessing", 0)  
+					End If	
+				End If
+				Call roamingProfileQO.save(True,False)	
+			End If
+		End If  
+	End If
+	
+'// Set up soft deletes
+	v = Evaluate (|@GetSoftDeleteExpireTime|)
+	If Not(source.document Is Nothing) Then
+		Call source.document.ReplaceItemValue("SoftDeleteExpireTime",v(0))  
+	End If	
+	Exit Function
+	
+ErrorThrower:
+	Error Err, Error &_ 
+	Chr(13) + "On Module: " &	Cstr( Getthreadinfo(1) ) &_ 
+	Chr(13) & "On Line: " & Cstr( Erl )	&_ 
+	Chr(13) + "On Method: " &	Cstr( Getthreadinfo(10) ) 
+	
+'END_DO_NOT_TRANSLATE
+End Function
+
+'++LotusScript Development Environment:2:1:Pref_Save:1:8
+Function Pref_Save(Note As NotesDocument) As Integer
+	'BEGIN_DO_NOT_TRANSLATE
+	
+	On Error Goto ErrorThrower
+	
+	roamingProfileExists = False
+	
+	Dim Session As New notessession	
+'	Dim Db As NotesDatabase
+	Dim WS As New notesuiworkspace
+	Dim UIDoc As NotesUIDocument
+	Dim NABProf As NotesDocument
+	Dim doc As NotesDocument
+	Dim DisplayFormat As String
+	
+	Set db=Session.CurrentDatabase
+	
+	'//Typeahead options
+	TAoption = note.getitemvalue("TypeaheadAttr")
+	Call session.setenvironmentvar("TYPEDROPDOWNATTR", TAoption(0), True)
+	
+	If Not(note Is Nothing) Then
+		
+		If Not note.hasitem("$DPLocked") Then
+			'no locked policies
+			Call note.replaceitemvalue("$UserSetPrivateDefault", "1")
+		Else			
+			'existence of $DPLocked indicates locked policies
+			DPIndex = Arraygetindex(note.getitemvalue("$DPLocked"), "ContactPrivateDefault", 5)		
+			If Not Isnull(DPIndex) Then
+				'if private default is locked, nullify UserSet... value
+				Call note.replaceitemvalue("$UserSetPrivateDefault", "")
+			Else
+				Call note.replaceitemvalue("$UserSetPrivateDefault", "1")
+			End If			
+		End If
+		
+		'// Set SoftDelete		
+		isEnabled = Evaluate( |@IsSoftDeleteEnabled|)
+		If isEnabled(0) = "1" Then
+			v = Evaluate("@SetSoftDeleteExpireTime(SoftDeleteExpireTime)", note)		  
+		End If		
+		
+		'//DPAB enablement
+		If note.getitemvalue("DisableDPAB")(0) = "1" Then 							   'Do not add recent contacts
+			'all users
+			Call Session.SetEnvironmentVar( "DisableDPABprocessing", "1", True )	
+			Call Session.SetEnvironmentVar("DisableDPABCCprocessing", "", True ) 
+			Call Session.SetEnvironmentVar("DisableDPABReceivedprocessing", "", True )
+			Call Session.setEnvironmentvar("DisableDPABCCandToprocessing", "", True) 
+			
+			'roaming user - Do not add recent contacts
+			Call CheckForDPABProfile			
+			If roamingProfileExists Then
+				Set roamingProfileQS = db.getprofiledocument("roaminguserid")  
+				Call roamingProfileQS.ReplaceItemValue("$PrefDisableDPABprocessing", 1)  
+				'Disable the other roaming dpab options
+				'cc
+				If roamingProfileQS.hasitem("$PrefDisableDPABCCprocessing") Then  
+					Call roamingProfileQS.ReplaceItemValue("$PrefDisableDPABCCprocessing", 0)  
+				End If
+				'received
+				If roamingProfileQS.hasitem("$PrefDisableDPABReceivedprocessing") Then  
+					Call roamingProfileQS.ReplaceItemValue("$PrefDisableDPABReceivedprocessing", 0)  
+				End If
+				'CCandTo
+				If roamingProfileQS.hasitem("$PrefDisableDPABCCandToprocessing") Then  
+					Call roamingProfileQS.ReplaceItemValue("$PrefDisableDPABCCandToprocessing", 0)  
+				End If	
+				Call roamingProfileQS.save(True,False)		
+			End If
+			
+		Else  'Add recent contacts
+			'all users
+			If note.GetItemValue("DisableDPABOptions")(0) = "0" Then   					'inlclude all names
+				Call Session.SetEnvironmentVar( "DisableDPABprocessing", "", True )	
+				Call Session.SetEnvironmentVar("DisableDPABCCprocessing", "", True ) 
+				Call Session.SetEnvironmentVar("DisableDPABReceivedprocessing", "", True )
+				Call Session.setEnvironmentvar("DisableDPABCCandToprocessing", "", True) 
+			Elseif note.GetItemValue("DisableDPABOptions")(0) = "2" Then  				 'Only 'To' recipients
+				Call Session.SetEnvironmentVar("DisableDPABprocessing", "", True )				
+				Call Session.SetEnvironmentVar( "DisableDPABCCprocessing", "1", True )				
+				Call Session.SetEnvironmentVar("DisableDPABReceivedprocessing", "", True )
+				Call Session.SetEnvironmentVar("DisableDPABCCandToprocessing", "", True )
+			Elseif note.GetItemValue("DisableDPABOptions")(0) = "3" Then  				 'Only Sent emails
+				Call Session.SetEnvironmentVar("DisableDPABprocessing", "", True )				
+				Call Session.SetEnvironmentVar( "DisableDPABCCprocessing", "", True )				
+				Call Session.SetEnvironmentVar("DisableDPABReceivedprocessing", "1", True )
+				Call Session.SetEnvironmentVar("DisableDPABCCandToprocessing", "", True )
+			Elseif note.GetItemValue("DisableDPABOptions")(0) = "4" Then  				 'Only Sender's name
+				Call Session.SetEnvironmentVar("DisableDPABprocessing", "", True )				
+				Call Session.SetEnvironmentVar( "DisableDPABCCprocessing", "", True )				
+				Call Session.SetEnvironmentVar("DisableDPABReceivedprocessing", "", True )
+				Call Session.SetEnvironmentVar("DisableDPABCCandToprocessing", "1", True )				
+			End If
+			
+			'roaming user - Add recent contacts
+			Call CheckForDPABProfile	
+			Set roamingProfileQS = db.getprofiledocument("roaminguserid")  
+			If roamingProfileExists Then
+				If note.GetItemValue("DisableDPABOptions")(0) = "0" Then   'include ALL
+					'remove all DisableDPAB options
+					If roamingProfileQS.hasitem("$PrefDisableDPABprocessing") Then  
+						Call roamingProfileQS.ReplaceItemValue("$PrefDisableDPABprocessing", 0)  
+					End If	
+					If roamingProfileQS.hasitem("$PrefDisableDPABCCprocessing") Then  
+						Call roamingProfileQS.ReplaceItemValue("$PrefDisableDPABCCprocessing", 0)  
+					End If		
+					If roamingProfileQS.hasitem("$PrefDisableDPABReceivedprocessing") Then  
+						Call roamingProfileQS.ReplaceItemValue("$PrefDisableDPABReceivedprocessing", 0)  
+					End If
+					If roamingProfileQS.hasitem("$PrefDisableDPABCCandToprocessing") Then  
+						Call roamingProfileQS.ReplaceItemValue("$PrefDisableDPABCCandToprocessing", 0)  
+					End If					
+				Elseif note.GetItemValue("DisableDPABOptions")(0) = "2" Then   'CC
+					Call roamingProfileQS.ReplaceItemValue("$PrefDisableDPABCCprocessing", 1)  	
+					'disableDPAB
+					If roamingProfileQS.hasitem("$PrefDisableDPABprocessing") Then  
+						Call roamingProfileQS.ReplaceItemValue("$PrefDisableDPABprocessing", 0)  
+					End If
+					'received
+					If roamingProfileQS.hasitem("$PrefDisableDPABReceivedprocessing") Then  
+						Call roamingProfileQS.ReplaceItemValue("$PrefDisableDPABReceivedprocessing", 0)  
+					End If
+					'CCandTo
+					If roamingProfileQS.hasitem("$PrefDisableDPABCCandToprocessing") Then  
+						Call roamingProfileQS.ReplaceItemValue("$PrefDisableDPABCCandToprocessing", 0)  
+					End If			
+				Elseif note.GetItemValue("DisableDPABOptions")(0) = "3" Then   'Received
+					Call roamingProfileQS.ReplaceItemValue("$PrefDisableDPABReceivedprocessing", 1)  
+					'disable the other dpab options
+					'dpab
+					If roamingProfileQS.hasitem("$PrefDisableDPABprocessing") Then  
+						Call roamingProfileQS.ReplaceItemValue("$PrefDisableDPABprocessing", 0)  
+					End If
+					'cc
+					If roamingProfileQS.hasitem("$PrefDisableDPABCCprocessing") Then  
+						Call roamingProfileQS.ReplaceItemValue("$PrefDisableDPABCCprocessing", 0)  
+					End If
+					'CCandTo
+					If roamingProfileQS.hasitem("$PrefDisableDPABCCandToprocessing") Then  
+						Call roamingProfileQS.ReplaceItemValue("$PrefDisableDPABCCandToprocessing", 0)  
+					End If	
+				Elseif note.GetItemValue("DisableDPABOptions")(0) = "4" Then   'CCandTo
+					Call roamingProfileQS.ReplaceItemValue("$PrefDisableDPABCCandToprocessing", 1)  
+					'disable the other dpab options
+					'dpab
+					If roamingProfileQS.hasitem("$PrefDisableDPABprocessing") Then  
+						Call roamingProfileQS.ReplaceItemValue("$PrefDisableDPABprocessing", 0)  
+					End If
+					'cc
+					If roamingProfileQS.hasitem("$PrefDisableDPABCCprocessing") Then  
+						Call roamingProfileQS.ReplaceItemValue("$PrefDisableDPABCCprocessing", 0)  
+					End If			
+					'received
+					If roamingProfileQS.hasitem("$PrefDisableDPABReceivedprocessing") Then  
+						Call roamingProfileQS.ReplaceItemValue("$PrefDisableDPABReceivedprocessing", 0)  
+					End If
+				End If				
+				Call roamingProfileQS.save(True,False)		
+			End If	
+		End If
+		
+		DisplayFormat = note.GetItemValue("NameDisplay")(0)   
+		
+		'// if they have changed the display format AND wish to apply it to all entries (no need to update otherwise)	
+		If (note.GetItemValue("NameDisplay")(0) <> note.GetItemValue("CurrentViewFormat")(0)) And note.GetItemValue("askFormat")(0) =  "1" Then   
+			Set view = db.getview("($Users)")	  
+			Set doc = view.GetFirstDocument
+			
+			While Not (doc Is Nothing)
+				If (Lcase(doc.Form(0)) = Lcase("PerSon")) Or (Lcase(doc.Form(0)) = Lcase("dPaBPerSon")) Then  
+					Call doc.ReplaceItemValue("NameDisplayPref", DisplayFormat)  
+					Call doc.Save(True, True)
+				End If
+				Set doc = view.GetNextDocument(doc)
+			Wend			
+			
+			If Not (ws.CurrentView Is Nothing) Then
+				Call ws.viewrefresh
+			End If					
+		End If
+		
+		'If they have changed display format - need to update DirectoryProfile in mail db
+		'also need to update DirectoryProfile if user has changed the PrivateDefault preference value
+		currentUser = session.username
+		owner = note.getitemvalue("Owner")
+		
+		'Check if current user is contacts owner (if not, do nothing)
+		If Lcase(currentuser) = Lcase(owner(0)) Then	
+			
+			'for Private Default contacts
+			origPD = session.getenvironmentstring("tmpOrigPDValue") 
+			currentPD = note.getitemvalue("PrivateDefault") 
+			
+			'for contacts synchronization
+			If note.getitemvalue("ContactDelegationSwitch")(0) = "1" Or OrigPD <> currentPD(0) Then
+				
+			'Determine mail file (server/filename) from current location
+				locFilename = Evaluate("@locationGetInfo([MailFilename])")
+				srvInt = Instr(locFilename(0), "!")
+				mfTot = Len(locFilename(0))
+				If srvInt <> 0 Then
+					mailServer = Left(locFilename(0), srvInt-1)
+					mailFilename = Right(locFilename(0), (mfTot-srvInt) -1)
+				Else
+					mailFilename = locFilename(0)
+					mailServer = ""
+				End If
+				
+				Dim mailDB As New NotesDatabase(mailServer, mailFilename)
+				If Not mailDb.isopen Then	
+					Msgbox NoMail + Chr(13)  + Chr(13) + NoMail2 + Chr(13)  + Chr(13) + NoMail3 + Chr(13) + NoMail4 + Chr(13)  + Chr(13) + NoMail5, 64, xTitle
+					Goto ContinuePrefSave
+				End If
+				
+				Set mailCalProfile = maildb.getprofiledocument("CalendarProfile")
+				
+			'Check if current user is mail file owner (f not, do nothing)
+				If Lcase(currentuser) = Lcase(mailCalProfile.getitemvalue("Owner")(0) ) Then					
+					Set mailDirProfile = maildb.getprofiledocument("DirectoryProfile") 				
+					mailNameDisplay = mailDirProfile.getitemvalue("NameDisplay")
+					perNameDisplay = note.getitemvalue("NameDIsplay")
+					
+				'Compare Mail NameDisplay value in Mail with the same item in Contacts Preferences
+					If mailNameDisplay(0) <> perNameDisplay(0) Then				
+						Call mailDirprofile.replaceitemvalue("NameDisplay", perNameDisplay)
+						Call mailDirProfile.replaceitemvalue("$PublicAccess", "1")
+						Call mailDirProfile.save(True,False)
+					End If		
+					
+					'we know PrivateDefault has changed in contacts preferences; write PrivateDefault item to DirectoryProfile
+					Call session.SetEnvironmentVar("tmpOrigPDValue", "")  'reset temp comparison value
+					
+					'if Initial Value is set, also need to let the Mail contact profile know; otherwise, mail
+					'contact Private value may not be in sync 
+					If note.hasitem("$PolicyInitialValueSet") Then						
+						If note.getitemvalue("$PolicyInitialValueSet")(0) = "1" Then							
+							Call mailDirProfile.replaceitemvalue("$PolicyInitialValueSet", "1") 	
+							Call mailDirProfile.replaceitemvalue("PrivateDefault", currentPD) 
+							Call mailDirProfile.save(True, False) 
+						Else
+							Call mailDirProfile.replaceitemvalue("PrivateDefault", currentPD) 
+							Call mailDirProfile.replaceitemvalue("$UserSetPrivateDefault", "1") 
+							Call mailDirProfile.save(True, False) 	
+						End If
+					Else
+						Call mailDirProfile.replaceitemvalue("PrivateDefault", currentPD) 
+						Call mailDirProfile.replaceitemvalue("$UserSetPrivateDefault", "1") 
+						Call mailDirProfile.save(True, False) 
+					End If
+					
+				Else
+					Msgbox NotMailOwner +  Chr(13)  + Chr(13) + Msg2, 64, xTitle
+					Goto ContinuePrefSave
+				End If			
+			End If
+		End If				
+		
+continuePrefSave:
+		LDAPChange = note.getitemvalue("LDAPChange")  
+		If LDAPChange(0) = "1" And note.GetItemValue("LDAPFTI")(0)="1" Then  
+			Call db.UpdateFTIndex(True)
+		End If
+		
+		Call note.ReplaceItemValue("LDAPChange", "")  
+		
+		'// Update Outline
+		ver = session.notesbuildversion
+		If ver >= 307 Then
+			Call ws.OutlineReload("Contacts&Groups", db.FileName)				
+		End If
+		
+		Call Note.save(False,False)		
+		
+	End If
+	
+	Exit Function
+	
+ErrorThrower:
+	Error Err, Error &_ 
+	Chr(13) + "On Module: " &	Cstr( Getthreadinfo(1) ) &_ 
+	Chr(13) & "On Line: " & Cstr( Erl )	&_ 
+	Chr(13) + "On Method: " &	Cstr( Getthreadinfo(10) ) 
+	
+'END_DO_NOT_TRANSLATE
+End Function
+
+'++LotusScript Development Environment:2:2:CheckForDPABProfile:1:8
+Sub CheckForDPABProfile
+	Set profColl = db.getprofiledoccollection
+	Dim Count As Integer	
+	Count = 0	
+	collCount = profColl.Count
+	
+	If collCount = 0 Then Exit Sub
+	roamingProfileExists  = False
+	
+	Set profNote = profColl.getFirstDocument	
+	Do Until count = collCount
+		count = count + 1
+		If Lcase(profNote.NameOfProfile) = Lcase("roaminguserid") Then  'DNT  
+			roamingProfileExists = True			
+			Goto ExitLoop			
+		End If		
+		Set profNote = profColl.getnextdocument(profNote)		
+	Loop	
+ExitLoop:
+	
+End Sub

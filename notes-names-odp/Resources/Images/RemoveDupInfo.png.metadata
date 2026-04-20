@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><note xmlns="http://www.lotus.com/dxl" class="form" maintenanceversion="2.0" replicaid="C125899B00337147" version="12.0">
+<noteinfo noteid="55e" sequence="7" unid="EEE7BE5EFD97360585257983002F12A1">
+<created><datetime>20120112T033409,61-05</datetime></created>
+<modified><datetime dst="true">20230424T112156,02+02</datetime></modified>
+<revised><datetime>20220519T113220,81+00</datetime></revised>
+<lastaccessed><datetime dst="true">20230424T112156,01+02</datetime></lastaccessed>
+<addedtofile><datetime dst="true">20230424T112156,01+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Domino Template Development/O=Domino</name></updatedby>
+<wassignedby><name>CN=Domino Template Development/O=Domino</name></wassignedby>
+<item name="$Flags"><text>34CiQ</text></item>
+<item name="$FlagsExt" sign="true"><text>D</text></item>
+<item name="$ImagesWide" sign="true"><number>1</number></item>
+<item name="$ImagesHigh" sign="true"><number>1</number></item>
+<item name="$ImagesColorize" sign="true"><number>0</number></item>
+
+
+<item name="$FileModDT" sign="true"><datetime>20120110T100705,20+08</datetime></item>
+<item name="$ImageNames" sign="true"><text>RemoveDupInfo.png</text></item>
+<item name="$TITLE" sign="true"><textlist><text>RemoveDupInfo.png</text><text>RemoveDupInfo</text></textlist></item>
+<item name="$DesignerVersion" sign="true"><text>8.5.3</text></item>
+<item name="$LANGUAGE" sign="true"><text>en</text></item></note>

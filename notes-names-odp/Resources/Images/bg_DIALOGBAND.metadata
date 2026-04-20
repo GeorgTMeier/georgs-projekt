@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><note xmlns="http://www.lotus.com/dxl" class="form" maintenanceversion="2.0" replicaid="C125899B00337147" version="12.0">
+<noteinfo noteid="62a" sequence="5330" unid="FFA23DCF1BAF66D10525697E004C403B">
+<created><datetime>20001020T085251,79-05</datetime></created>
+<modified><datetime dst="true">20230424T112156,50+02</datetime></modified>
+<revised><datetime>20220519T113223,21+00</datetime></revised>
+<lastaccessed><datetime dst="true">20230424T112156,49+02</datetime></lastaccessed>
+<addedtofile><datetime dst="true">20230424T112156,49+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Domino Template Development/O=Domino</name></updatedby>
+<wassignedby><name>CN=Domino Template Development/O=Domino</name></wassignedby>
+<item name="$ImagesWide" sign="true"><number>1</number></item>
+<item name="$ImagesHigh" sign="true"><number>1</number></item>
+
+<item name="$ImageNames" sign="true"><text>solid header.gif</text></item>
+<item name="$ImagesColorize" sign="true"><number>1</number></item>
+<item name="$TITLE" sign="true"><textlist><text>bg_DIALOGBAND</text><text>bg_DIALOGBAND</text></textlist></item>
+<item name="$PublicAccess" sign="true"><text>1</text></item>
+<item name="$Flags"><text>34CiQ</text></item>
+<item name="$LANGUAGE" sign="true"><text>en</text></item></note>

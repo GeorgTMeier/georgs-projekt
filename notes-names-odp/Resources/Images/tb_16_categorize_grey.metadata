@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><note xmlns="http://www.lotus.com/dxl" class="form" maintenanceversion="2.0" replicaid="C125899B00337147" version="12.0">
+<noteinfo noteid="41a" sequence="12" unid="7454773066B34D4A85257A210049EA44">
+<created><datetime dst="true">20120618T092721,00-04</datetime></created>
+<modified><datetime dst="true">20230424T112155,21+02</datetime></modified>
+<revised><datetime>20220519T113216,29+00</datetime></revised>
+<lastaccessed><datetime dst="true">20230424T112155,20+02</datetime></lastaccessed>
+<addedtofile><datetime dst="true">20230424T112155,20+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Domino Template Development/O=Domino</name></updatedby>
+<revisions><datetime dst="true">20120618T092721,01-04</datetime><datetime dst="true">20120618T092848,93-04</datetime><datetime dst="true">20120618T092916,79-04</datetime><datetime dst="true">20120620T063356,35-04</datetime><datetime dst="true">20120620T063504,75-04</datetime></revisions>
+<wassignedby><name>CN=Domino Template Development/O=Domino</name></wassignedby>
+<item name="$Flags"><text>34CiQ</text></item>
+<item name="$FlagsExt" sign="true"><text>D</text></item>
+<item name="$ImagesWide" sign="true"><number>1</number></item>
+<item name="$ImagesHigh" sign="true"><number>1</number></item>
+<item name="$ImagesColorize" sign="true"><number>0</number></item>
+
+
+<item name="$FileModDT" sign="true"><datetime dst="true">20120613T144900,00-04</datetime></item>
+<item name="$ImageNames" sign="true"><text>tb_16_categorize_n.png</text></item>
+<item name="$TITLE" sign="true"><text>tb_16_categorize_grey</text></item>
+<item name="$DesignerVersion" sign="true"><text>8.5.3</text></item>
+<item name="$LANGUAGE" sign="true"><text>en</text></item></note>

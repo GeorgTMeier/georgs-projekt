@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note class='form' xmlns='http://www.lotus.com/dxl' version='12.0' maintenanceversion='2.0'
+ replicaid='C125899B00337147'>
+<noteinfo noteid='3ce' unid='55B8405D3A434E00852566C6007BE1BA' sequence='5055'>
+<created><datetime>19981124T173307,14-05</datetime></created>
+<modified><datetime dst='true'>20230424T112155,02+02</datetime></modified>
+<revised><datetime>20220519T113215,26+00</datetime></revised>
+<lastaccessed><datetime dst='true'>20230424T112155,01+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20230424T112155,01+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Domino Template Development/O=Domino</name></updatedby>
+<revisions><datetime dst='true'>20191025T061222,79-04</datetime><datetime
+>20191105T042057,56-05</datetime><datetime>20191105T053821,96-05</datetime><datetime
+>20191107T061248,46-05</datetime><datetime>20191107T074955,45-05</datetime><datetime
+>20191107T085643,89-05</datetime><datetime>20191108T011253,26-05</datetime><datetime
+>20191108T031445,39-05</datetime><datetime>20191108T040431,65-05</datetime><datetime
+>20191108T044346,26-05</datetime><datetime>20191111T102152,85-05</datetime><datetime
+>20191111T212153,34-05</datetime><datetime>20191111T221656,92-05</datetime><datetime
+>20191111T222420,55-05</datetime><datetime>20191111T223553,52-05</datetime><datetime
+>20191111T224728,79-05</datetime><datetime>20191111T230129,12-05</datetime><datetime
+>20191111T231513,78-05</datetime><datetime>20191112T052710,64-05</datetime><datetime
+>20191112T100531,93-05</datetime><datetime>20200113T055104,84-05</datetime><datetime
+>20200117T033923,44-05</datetime><datetime>20200402T144707,22+0530</datetime></revisions>
+<wassignedby><name>CN=Domino Template Development/O=Domino</name></wassignedby>
+<item name='$LANGUAGE' sign='true'><text>en</text></item>
+<item name='OriginalModTime' sign='true'><datetime dst='true'>20050524T123254,37-04</datetime></item>
+<item name='$HTMLCode' sign='true'>
+<rawitemdata type='1'>
+X/8QAAIADwAHAAAAAAAAAA==
+</rawitemdata></item>
+<item name='$TITLE'><text>Contacts&amp;Groups</text></item>
+<item name='$INFO' sign='true'>
+<rawitemdata type='1'>
+hhgBAIAAAAAAgAAAAQABAP///wAAAAAA
+</rawitemdata></item>
+<item name='$Flags'><text>C34WQ</text></item>
+<item name='$DesignerVersion' sign='true'><text>8.5</text></item>
+<item name='$$ScriptName' summary='false' sign='true'><text>Contacts&amp;Groups</text></item>
+<item name='$BODY' sign='true'>
+<rawitemdata type='1'>
+gQKC/1oAAQAAAAAAAAAAADgEAAA4BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAABAAAAAJSEOAQNADgEDQAAAAAAAQAAAAQAAACDBAEAhf8IAAEAAAqBAoMEAQCF/wgA
+AQAACt0GAACt/3H/MgAAAAAAAwAWABAAAAAAAAAAAAAAAAAAAAAAAAAAAABDb250YWN0cyZHcm91
+cHMArf8cABsACAAAABAAQ29udGFjdHMmR3JvdXBzAOr/PgAbAAmEAABjAG8JAQAACgAAAAAAAAAA
+AQAACgEAAAkAAAUA////AAEAAAAAAAAAAAAAAAAAAAAAAAAA7P8mAaAOAgAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAEgAAAAgASsA2AAAAA4ACQABAAAKAQAACgEAAAoBAAAKAQAACgEAAAoAAAAA
+AAAAALABsAEAAAMAAAAFAP///wAFAP///wAFAP///wAFAP///wAFAP///wABAOns8QABAOns8QAF
+AP///wABAOns8QABAOns8QABAAAAAAABAAAAAAABAAAAAAAAAAAAAAAAAAAAAAADAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAQAAAAAAAQAAAAAAAQAAAAAAAQAAAP8AAQAAAP8AAAAT
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAQ29udGFjdE91dGxpbmVOb3Rlc1ZpZXcArgLeBgAArgA=
+</rawitemdata></item></note>
+

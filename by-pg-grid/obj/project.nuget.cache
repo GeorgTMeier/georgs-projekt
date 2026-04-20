@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "dgSpecHash": "zKXy2FSMS+s=",
+  "success": true,
+  "projectFilePath": "Q:\\github\\georgs-projekt\\by-pg-grid\\PgDataGridWinForms.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\adminL03\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\9.0.0\\microsoft.extensions.dependencyinjection.abstractions.9.0.0.nupkg.sha512",
+    "C:\\Users\\adminL03\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\9.0.0\\microsoft.extensions.logging.abstractions.9.0.0.nupkg.sha512",
+    "C:\\Users\\adminL03\\.nuget\\packages\\npgsql\\10.0.1\\npgsql.10.0.1.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "message": "PgDataGridWinForms hängt von Npgsql (>= 8.0.3) ab, aber Npgsql 8.0.3 wurde nicht gefunden. Npgsql 10.0.1 wurde stattdessen aufgelöst.",
+      "projectPath": "Q:\\github\\georgs-projekt\\by-pg-grid\\PgDataGridWinForms.csproj",
+      "warningLevel": 1,
+      "filePath": "Q:\\github\\georgs-projekt\\by-pg-grid\\PgDataGridWinForms.csproj",
+      "libraryId": "Npgsql",
+      "targetGraphs": [
+        "net9.0-windows7.0"
+      ]
+    }
+  ]
+}

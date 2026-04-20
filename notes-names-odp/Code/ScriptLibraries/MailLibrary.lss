@@ -1,0 +1,74 @@
+'++LotusScript Development Environment:2:5:(Options):0:74
+Option Public
+Use "StringResources"
+%INCLUDE "lsconst.lss"
+
+'**** DO NOT USE THIS LIBRARY IN THE CONTACT FORM (due to Variable duplications) ****
+
+
+
+'++LotusScript Development Environment:2:5:(Forward):0:1
+Declare Sub InstantiateVariables
+Declare Function GetMailAddress() As String
+
+'++LotusScript Development Environment:2:5:(Declarations):0:10
+Dim ws As NotesUIWorkspace
+
+Dim session As NotesSession
+Dim db As NotesDatabase
+Dim maildb As NotesDatabase
+Dim note As NotesDocument
+Dim mailnote As NotesDocument
+Dim collection As NotesDocumentCollection
+Dim profile As NotesDocument
+
+Dim SendToNames() As String
+Dim counter As Integer
+Dim flag As Variant
+Dim mError As Integer
+
+
+'++LotusScript Development Environment:2:2:InstantiateVariables:1:8
+Sub InstantiateVariables
+	Set ws = New NotesUIWorkspace
+	Set session = New NotesSession
+	Set db = session.CurrentDatabase
+	Set maildb = New NotesDatabase("","")
+	maildb.OpenMail
+	
+	' check to make sure that we got the mail file opened
+	flag = maildb.Isopen
+	If flag = True Then
+		Set profile = maildb.GetProfileDocument("CalendarProfile")
+		counter = 0
+		Set collection = db.UnprocessedDocuments
+	Else
+		Msgbox getString(5) & Chr(13) & Chr(13) & getString(4), MB_ICONSTOP,  getString(3)
+		mError = 1
+	End If
+End Sub
+'++LotusScript Development Environment:2:1:GetMailAddress:1:8
+Function GetMailAddress() As String
+	Set pNote = db.getprofiledocument("tempvars")
+	CurrentMailingAddress = pNote.Pmailaddress
+	
+	If note.Type(0) = "Person" Then	
+		If CurrentMailingAddress(0) = "MA" Then
+			GetMailAddress = note.MailAddress(0)
+			If getMailAddress  = "" And note.FullName(0) <> "" Then
+				GetMailAddress = note.FullName(0)
+			End If			
+		Elseif CurrentMailingAddress(0) <> "" Then
+			GetMailAddress = CurrentMailingAddress(0)
+		Else			
+			GetMailAddress= note.FullName(0)
+		End If
+	Elseif note.Type(0) = "Group" Then
+		GetMailAddress = note.ListName(0)
+	Else
+		GetMailAddress=""
+	End If
+	
+	pNote.Pmailaddress = ""
+	Call pNote.save(False,False)
+End Function

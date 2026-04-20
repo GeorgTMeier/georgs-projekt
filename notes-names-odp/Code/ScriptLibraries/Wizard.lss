@@ -1,0 +1,338 @@
+'++LotusScript Development Environment:2:5:(Options):0:74
+Option Public
+Option Declare
+%INCLUDE "lsxuierr.lss"
+Use "StackContainer"
+'++LotusScript Development Environment:2:5:(Forward):0:1
+Declare Class Wizard
+Declare Class SimpleWizard As Wizard
+Declare Class Wiz
+Declare Sub Terminate
+Declare Function confirmClose( source As NotesUIDocument) As Integer
+
+'++LotusScript Development Environment:2:5:(Declarations):0:10
+Const WIZ_CANCEL_CONFIRM_MESSAGE = "The wizard has not completed yet.  Are you sure you want to cancel?"
+Const WIZ_CANCEL_CONFIRM_TITLE = "Cancel"
+
+
+'DNT
+Const WIZ_BUTTON_HIDE_FIELD = "WizButtonHide"
+Const WIZ_SHOW_PRE_NEXT = "prenext"
+Const WIZ_SHOW_PRE_DONE = "prefinish"
+Const WIZ_SHOW_NEXT = "next"
+Const WIZ_SHOW_DONE = "done"
+Const WIZ_NEXT_PANEL_FIELD = "WizNext"
+
+Const WIZ_PROCESS_NEXT_ERROR = 5000
+
+Class Wizard
+	Private tableName As String
+	Private previousPanels As StackContainer 
+	Private uidoc As NotesUIDocument
+	Private note As NotesDocument
+	
+	Property Get currentPanel As String
+		currentPanel = note.getItemValue( tableName)(0)
+		
+	End Property
+	
+	Sub new( uidoc As NotesUIdocument, tableName As String, firstPanel As String)
+		Me.tableName = "$" + tableName
+		Set previousPanels = New StackContainer
+		
+		Set Me.uidoc = uidoc
+		Set note = uidoc.document
+		note.replaceItemValue Me.tableName, firstPanel
+		
+	End Sub
+	
+	Sub refreshHideFormulas
+		'**This method just refreshes the hide-when formulas for the current wizard doc
+		uidoc.refreshHideFormulas
+	End Sub
+	
+	Sub activatePreviousButton( bActivate As Integer)
+		'**This method will set the appropriate field so the previous button will activate or deactivate.  The method 
+		'**refreshHideFormulas must be invoked after this method to display the activated button 
+		If bActivate Then
+			Select Case note.getItemValue( WIZ_BUTTON_HIDE_FIELD)(0)
+				
+			Case WIZ_SHOW_DONE:
+				note.replaceItemValue WIZ_BUTTON_HIDE_FIELD, WIZ_SHOW_PRE_DONE
+			Case WIZ_SHOW_NEXT:
+				note.replaceItemValue WIZ_BUTTON_HIDE_FIELD, WIZ_SHOW_PRE_NEXT
+			Case ""
+				note.replaceItemValue WIZ_BUTTON_HIDE_FIELD, WIZ_SHOW_PRE_NEXT		
+			End Select	
+			
+		Else
+			
+			Select Case note.getItemValue( WIZ_BUTTON_HIDE_FIELD)(0)
+				
+			Case WIZ_SHOW_PRE_DONE:
+				note.replaceItemValue WIZ_BUTTON_HIDE_FIELD, WIZ_SHOW_DONE
+			Case WIZ_SHOW_PRE_NEXT:
+				note.replaceItemValue WIZ_BUTTON_HIDE_FIELD, WIZ_SHOW_NEXT
+			End Select
+		End If
+	End Sub
+	
+	Sub activateNextButton( bActivate As Integer)
+		'**This method will set the appropriate field so the next button will activate or deactivate.  If the 
+		'**next button is deactivated, the finish button will be activated.  The method 
+		'**refreshHideFormulas must be invoked after this method to display the appropriate  button 
+		If bActivate Then
+			Select Case note.getItemValue( WIZ_BUTTON_HIDE_FIELD)(0)
+				
+			Case WIZ_SHOW_PRE_DONE:
+				note.replaceItemValue WIZ_BUTTON_HIDE_FIELD, WIZ_SHOW_PRE_NEXT
+				
+			Case WIZ_SHOW_PRE_NEXT:
+				' do nothing
+			Case WIZ_SHOW_NEXT:
+				' do nothing
+			Case Else
+				note.replaceItemValue WIZ_BUTTON_HIDE_FIELD, WIZ_SHOW_NEXT		
+			End Select	
+			
+		Else			
+			Select Case note.getItemValue( WIZ_BUTTON_HIDE_FIELD)(0)
+				
+			Case WIZ_SHOW_PRE_NEXT:
+				note.replaceItemValue WIZ_BUTTON_HIDE_FIELD, WIZ_SHOW_PRE_DONE
+			Case Else
+				note.replaceItemValue WIZ_BUTTON_HIDE_FIELD, WIZ_SHOW_DONE
+			End Select
+		End If
+		
+	End Sub
+	
+	Private Sub switchToPanel( panel As String)
+		Call note.replaceItemValue( tableName, panel)
+		uidoc.reload
+		uidoc.refreshHideFormulas
+		
+	End Sub
+	
+	Public Sub next
+		'** This method is called when you wish to advance to the next panel
+		'** The next panel is determined by the processNext method, which can be overridden
+		'** to enable custom behaviour
+		'On Error lsERR_LSXUI_NOTES_ERROR Goto validateErr
+		'On Error WIZ_PROCESS_NEXT_ERROR Goto validateErr
+		'The above code used to catch only validation errors and 
+		'errors thrown by the processNext method
+		'It doesn't catch the validation errors for some reason
+		'so now it catches all errors instead
+		
+		On Error  Goto validateErr
+		uidoc.refresh
+		Call previousPanels.push( note.getItemValue(tableName)(0))
+		
+		activatePreviousButton True
+		
+		Call switchToPanel( processNext( note, previousPanels.peek))
+		
+exitProc:
+		Exit Sub
+		
+validateErr:
+		'Do nothing, we just wanted to catch a validation error
+		Resume exitProc
+	End Sub
+	
+	Public Sub previous
+		'** this method is called when you wish go back to the previous panel.  You can use
+		'** the processPrevious method for custom processing or to override what the default
+		'** previous panel is.
+		Dim tempPrevious As String
+		
+		If previousPanels.count > 0 Then
+			
+			activateNextButton True
+			
+			If previousPanels.count = 1 Then
+				activatePreviousButton False
+				
+			End If
+			
+			tempPrevious = processPrevious( note, note.getItemValue( tableName)(0))
+			
+			If Len( tempPrevious) = 0 Then
+				switchToPanel previousPanels.pop
+			Else
+				previousPanels.pop
+				switchToPanel tempPrevious
+			End If
+			
+		End If
+		
+	End Sub
+	
+	Public Function processNext( note As Notesdocument, currentPanel As String) As String
+		'** This method is used to determine what panel gets displayed next.
+		'** It's default behavior is to return the value in the field WizNext.
+		'** This method can be overridden to provide whatever logic you want and to do custom processing.
+		'** .
+		'** If for some reason you cannot continue to the next panel, then you can throw the 
+		'** error WIZ_PROCESS_NEXT_ERROR, which stop the code from trying to goto the next panel
+		'** You will probably want to display some message to the user when doing this as the existing code
+		'** will not.
+		
+		processNext = note.getItemValue( WIZ_NEXT_PANEL_FIELD )(0)
+		
+	End Function
+	
+	Public Function processPrevious( note As Notesdocument, currentPanel As String) As String
+		'** This method is used to determine what panel displayedwhen previous is called.
+		'** It's default behavior is to return a null string ( "" ), so that last panel shown is what is displayed.
+		'** This method can be overridden to provide whatever logic you want and to do custom processing.
+		
+	End Function
+	
+	Public Sub complete
+		'**This method is called when the wizard should complete.  To provide custom behaviors, 
+		'**override the processComplete method.
+		On Error lsERR_LSXUI_NOTES_ERROR Goto validateErr
+		uidoc.refresh
+		
+		If processComplete( note, note.getItemValue( tableName)(0)) Then
+			
+			Dim ws As New NotesUIWorkspace
+			Dim tempItem As NotesItem
+			
+		'clean up wizard specific fields
+			Set tempItem = note.getFirstItem( tableName)
+			If Not tempItem Is Nothing Then
+				tempItem.values = ""
+				tempItem.saveToDisk = False
+			End If
+			
+			Set tempItem = note.getFirstItem( WIZ_NEXT_PANEL_FIELD)
+			If Not tempItem Is Nothing Then
+				tempItem.values = ""
+				tempItem.saveToDisk = False
+			End If
+			
+			Set tempItem = note.getFirstItem( WIZ_BUTTON_HIDE_FIELD)
+			If Not tempItem Is Nothing Then
+				tempItem.values = ""
+				tempItem.saveToDisk = False
+			End If
+			
+			ws.refreshParentNote
+			uidoc.close
+			
+		End If
+		
+exitProc:
+		Exit Sub
+		
+validateErr:
+		'Do nothing, we just wanted to catch a validation error
+		Resume exitProc
+	End Sub
+	
+	Function processComplete( note As Notesdocument, currentPanel As String) As Integer
+		'** Override the method to provide custom behaviour when the complete method is invoked
+		'** To abort the completion, return false, otherwise return true
+		
+		processComplete = True
+	End Function
+	
+	
+End Class
+
+Class SimpleWizard As Wizard
+	panels As Variant
+	currentPanelNum As Integer
+	Sub new( uidoc As NotesUIDocument, tableName As String, panels() As String), Wizard( uidoc, tableName, panels(Lbound(panels)))
+		Me.panels = panels
+		currentPanelNum = Lbound(panels)
+	End Sub
+	
+	Private Function processNext( note As Notesdocument, currentPanel As String) As String
+		If currentPanelNum < Ubound(panels) Then
+			If currentPanelNum = Ubound(panels) - 1Then
+				activateNextButton( False)
+			Else
+				activateNextButton( True)
+			End If
+			
+			currentPanelNum = currentPanelNum + 1
+			processNext = panels(currentPanelNum)
+			
+		End If
+		
+	End Function
+	
+	
+	Private Function processPrevious( note As Notesdocument, currentPanel As String) As String
+		currentPanelNum = currentPanelNum - 1
+	End Function
+	
+End Class
+
+
+Class Wiz
+	'** This class acts a wrapper for launching Wizards
+	
+	Private workspace As NotesUIWorkSpace
+	Private strWizardForm As String
+	Public wizNote As NotesDocument
+	Private strWindowTitle As String
+	
+	Sub new( strWizardForm As String, strWindowTitle As String)
+		
+		Set workspace = New NotesUIWorkSpace
+		Dim session As New NotesSession
+		Dim db As NotesDatabase
+		Set db = session.currentDatabase
+		
+		Me.strWizardForm = strWizardForm
+		Set Me.wizNote = db.createDocument
+		Me.strWindowTitle = strWindowTitle
+	End Sub
+	
+	Function launch As Integer
+		Dim continue As Integer
+		continue = True
+		preLaunch wizNote, continue
+		If continue Then
+			launch = workspace.dialogBox( strWizardForm, True, True, True, False, False, False, strWindowTitle, wizNote, True, True)
+			postLaunch wizNote, (launch)
+		Else
+			launch = False
+		End If
+		
+		
+	End Function
+	
+	Sub preLaunch( wizNote As NotesDocument, continue As Integer)
+		'** This gets called right before the wizard is launched
+		'** set the continue var to false to stop the wizard from launching
+		'** This is meant to be overridden with a sub class method
+	End Sub
+	
+	Sub postLaunch( wizNote As NotesDocument, exitStatus As Integer)
+		'** This gets called right after the wizard is launched
+		'** The exitStatus var will be false if the wizard termintated successfully
+		'** This is meant to be overridden with a sub class method	
+	End Sub
+	
+End Class
+
+
+'++LotusScript Development Environment:2:2:Terminate:1:10
+Sub Terminate
+	
+End Sub
+'++LotusScript Development Environment:2:1:confirmClose:1:8
+Function confirmClose( source As NotesUIDocument) As Integer
+	confirmClose = True
+	If source.Dialogboxcanceled Then
+		If Messagebox( WIZ_CANCEL_CONFIRM_MESSAGE , 4 + 32 + 256, WIZ_CANCEL_CONFIRM_TITLE) = 7 Then
+			confirmClose = False
+		End If
+	End If
+End Function

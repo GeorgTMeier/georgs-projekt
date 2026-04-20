@@ -1,0 +1,385 @@
+'++LotusScript Development Environment:2:5:(Options):0:74
+Option Public
+
+
+'++LotusScript Development Environment:2:5:(Forward):0:1
+Declare Sub checkDWAConf(uidoc As notesuidocument, doc As notesdocument)
+Declare Sub LocPolicy(desktopPolicyDoc As notesdocument, db As notesdatabase)
+Declare Sub checkPolicyValues(pflag As String, indMailType As Variant, indOutMailThreshold As Variant, dProfile As notesdocument)
+Declare Sub ActivatePrivateDefaultPolicy(s As notessession, db As notesdatabase, contProfile As notesdocument, dpdoc As notesdocument, note As notesdocument)
+Declare Function CheckPrivatePolicyLocked_Form(session As notessession, note As notesdocument, contProfile As notesdocument)
+Declare Sub getMailDb
+Declare Sub PDFormPostModeChange(uidoc As notesuidocument, doc As notesdocument, dpdoc As notesdocument)
+
+'++LotusScript Development Environment:2:5:(Declarations):0:10
+Dim pSave As Boolean
+Dim dpDoc As notesdocument
+Dim mailfilename As String
+Dim mailserver As String
+
+
+
+'++LotusScript Development Environment:2:2:checkDWAConf:1:8
+Sub checkDWAConf(uidoc As notesuidocument, doc As notesdocument)
+	If uidoc.editmode And Not doc.isnewnote And doc.hasitem("Confidential") Then
+		If doc.hasitem("Readers") Then
+			If doc.getitemvalue("Readers")(0) = "" Then
+				Call uidoc.fieldsettext("Confidential", "")
+				DocRefresh = True
+			End If
+		Else
+			Call uidoc.fieldsettext("Confidential", "")
+			DocRefresh = True
+		End If		
+	End If
+	
+End Sub
+'++LotusScript Development Environment:2:2:LocPolicy:1:8
+Sub LocPolicy(desktopPolicyDoc As notesdocument, db As notesdatabase)
+	
+	Dim dProfile As notesdocument	
+	Set dProfile = db.getprofiledocument("DirectoryProfile")	
+	pSave = False	
+	Dim indMailType As Variant
+	Dim indOutMailThreshold As Variant
+	Dim pFlag As String
+	pFlag = "0"
+	
+	If Not desktopPolicyDoc Is Nothing Then	 'there is a desktop policy for this person
+		Dim synchIndex As Variant
+		
+		If desktopPolicyDoc.hasitem("$DpLocked") Then
+			
+			dci = desktopPolicyDoc.getitemvalue("$DPLocked")
+			
+			If Isarray(dci) And dci(0) <> "" Then	'There are values in the $DPLocked item		
+				indMailType = Arraygetindex(dci, "locallmailtype", 5)
+				indOutMailThreshold = Arraygetindex(dci, "outgoingmailsendthreshold", 5)		
+				
+				pflag = "1"			
+				Call checkPolicyValues(pFlag, indMailType, indOutMailThreshold, dProfile)
+				
+			Elseif (Isarray(dci) And dci(0) = "")	Then	'$DPLocked exists but has no values
+				Call checkPolicyValues(pFlag, indMailType, indOutMailThreshold, dProfile)			
+			Elseif Not Isarray(dci) Then '$DPLocked exists but is null
+				Call checkPolicyValues(pFlag, indMailType, indOutMailThreshold, dProfile)		
+			End If
+		Else  'no $DPLocked item
+			Call checkPolicyValues(pFlag, indMailType, indOutMailThreshold, dProfile)			
+		End If		
+		
+	Elseif desktopPolicyDoc Is Nothing Then  'no desktop policy for this person
+		Call checkPolicyValues(pFlag, indMailType, indOutMailThreshold, dProfile)
+		
+	Elseif (Not desktopPolicyDoc Is Nothing And Not DesktopPolicyDoc.HasItem("$DPLocked"))  Then   'desktop policy exists; there is no $DPLocked item
+		Call checkPolicyValues(pFlag, indMailType, indOutMailThreshold, dProfile)	
+	End If
+	
+	If pSave = True Then
+		Call dProfile.save(True,False)		
+	End If	
+	
+End Sub
+'++LotusScript Development Environment:2:2:checkPolicyValues:1:8
+Sub checkPolicyValues(pflag As String, indMailType As Variant, indOutMailThreshold As Variant, dProfile As notesdocument)
+	
+	If pFlag = "1" Then		
+		If Not Isnull(indMailType) Then  'locallMailType found in $DPLocked
+			dProfile.MailType = "1"
+			pSave = True
+		Else
+			If dProfile.MailType(0) = "1" Then
+				dProfile.MailType = ""
+				pSave = True
+			End If
+		End If
+		
+		If Not Isnull(indOutMailThreshold ) Then  'outgoingmailsendthreshold found in $DPLocked
+			dProfile.OutMailThreshold  = "1"
+			pSave = True
+		Else					
+			If dProfile.OutMailThreshold(0)  = "1" Then
+				dProfile.OutMailThreshold  = ""	
+				pSave = True
+			End If					
+		End If
+		
+	Else  	'If polcy not enacted for locallMailType or outgoingMailSendThreshold, then remove values from profile if they exist
+		If dProfile.MailType(0) = "1" Then
+			dProfile.MailType = ""
+			pSave = True	
+		End If
+		
+		If dProfile.OutMailThreshold(0) = "1" Then
+			dProfile.OutMailThreshold  = ""	
+			pSave = True	
+		End If		
+	End If	
+	
+End Sub
+'++LotusScript Development Environment:2:2:ActivatePrivateDefaultPolicy:1:8
+Sub ActivatePrivateDefaultPolicy(s As notessession, db As notesdatabase, contProfile As notesdocument, dpdoc As notesdocument, note As notesdocument)
+	
+'Do_Not_Translate
+	
+	Dim thisField As String	
+	Dim saveProfile As Boolean
+	saveProfile = False
+	
+	profilePrivateDefaultValue = contProfile.getitemvalue("PrivateDefault")
+	
+	If note.hasitem("Confidential") Then
+		thisField = "Confidential"
+	Elseif note.hasitem("PrivateDefault")  Then
+		thisField = "PrivateDefault"			
+	End If
+	
+	If Not DPDoc Is Nothing Then
+		
+		policyPrivateDefaultValue = dpdoc.getitemvalue("ContactPrivateDefault")(0)
+		Dim setOncePolicyOptions As Variant
+		setOncePolicyOptions = dpdoc.getitemvalue("$PolicyHTASetOnceItems")
+		alwaysSetItemsVal = dpdoc.getitemvalue("AlwaysSetItems")
+		profileSetOnceVal = contProfile.getitemvalue("$PolicyInitialValueSet")(0)		
+		
+		'check for set initial
+		setOncePolicyIndex = Arraygetindex(setOncePolicyOptions, "ContactPrivateDefault", 5)	
+		'check for set when mod 		
+		alwaysSetIndex = Arraygetindex(alwaysSetItemsVal, "ContactPrivateDefault", 5)	
+		
+		If Not Isnull(setOncePolicyIndex) Then
+			If profileSetOnceVal = "" Then
+				'profile never updated with initial value policy setting.
+				If thisField = "PrivateDefault" Then
+					'if this called by Preferences dialog, just replace values on the note and save
+					Call note.replaceitemvalue("PrivateDefault", policyPrivateDefaultValue)
+					Call note.replaceitemvalue("$PolicyInitialValueSet", "1")	
+					Call note.replaceitemvalue("SetLockedMailValue", "")	
+					Call note.replaceitemvalue("$UserSetPrivateDefault", "") 					
+				Elseif thisField = "Confidential" Then
+					'if this is called by Contact record, replace values in the contact profile
+					Call contProfile.replaceitemvalue("PrivateDefault", policyPrivateDefaultValue)
+					Call contProfile.replaceitemvalue("$PolicyInitialValueSet", "1")
+					Call contProfile.replaceitemvalue("SetLockedMailValue", "")	
+					Call contProfile.replaceitemvalue("$UserSetPrivateDefault", "") 
+					SaveProfile = True
+					'set Confidential to '1"
+					Call note.replaceitemvalue(thisfield, policyPrivateDefaultValue)	 					
+				End If		
+			Elseif profileSetOnceVal = "1" Then
+				'profile has been updated with initial value policy setting.  if contact, set confidential= profile value
+				If thisField = "Confidential" Then
+					Call note.replaceitemvalue(thisfield, profilePrivateDefaultValue )
+					Call contProfile.replaceitemvalue("SetLockedMailValue", "")	
+					saveProfile = True
+				End If		
+			End If			
+		Elseif Not Isnull(alwaysSetIndex)  Then 'set when modified 
+			If dpdoc.hasitem("ContactPrivateDefault") Then
+				'set when modified; set always - erase initialValue flag
+				Call note.replaceitemvalue(thisfield, policyPrivateDefaultValue) 
+				Call contProfile.replaceitemvalue("$PolicyInitialValueSet", "")
+				Call contProfile.replaceitemvalue("$UserSetPrivateDefault", "") 
+				Call contProfile.replaceitemvalue("setLockedMailValue", "")	
+				saveProfile = True
+			End If		
+		Else
+			'no set when mod or set initial policy; see if there is a preference set
+			If profilePrivateDefaultValue(0) = "1" And thisField = "Confidential" Then
+				'set value from preference
+				Call note.replaceitemvalue(thisfield, "1")
+			End If		
+			
+			'these two if-statements are set up so we only save the profile if it is truly needed			
+			If contProfile.SetLockedMailvalue(0) = "1" Then
+				Call contProfile.replaceitemvalue("SetLockedMailValue", "")	
+				ProfileSave = True
+			End If
+			
+			If contProfile.hasitem("$PolicyInitialValueSet") Then
+				If contProfile.getitemvalue("$PolicyInitialValueSet")(0)  = "1"  Then
+					Call contProfile.replaceitemvalue("$PolicyInitialValueSet", "")							
+					ProfileSave = True
+				End If			
+			End If			
+		End If		
+	Else
+		'no desktop policies in effect; get value from Preferences
+		If thisField = "Confidential" Then
+			Call note.replaceitemvalue(thisfield, profilePrivateDefaultValue )
+		End If
+		
+		'these if-statements are set up so we only save the profile if it is truly needed	
+		If contProfile.SetLockedMailvalue(0) = "1" Then
+			Call contProfile.replaceitemvalue("SetLockedMailValue", "")	
+			ProfileSave = True
+		End If
+		
+		If contProfile.hasitem("$PolicyInitialValueSet") Then
+			If contProfile.getitemvalue("$PolicyInitialValueSet")(0)  = "1"  Then
+				Call contProfile.replaceitemvalue("$PolicyInitialValueSet", "")							
+				ProfileSave = True
+			End If			
+		End If		
+	End If
+	
+	If saveProfile = True Then
+		If thisField = "PrivateDefault" Then
+			Call note.save(True, False)			
+		Elseif thisField = "Confidential" Then
+			Call contProfile.save(True, False)			
+		End If		
+	End If
+	
+'End_Do_Not_Translate
+	
+End Sub
+'++LotusScript Development Environment:2:1:CheckPrivatePolicyLocked_Form:1:8
+Function CheckPrivatePolicyLocked_Form(session As notessession, note As notesdocument, contProfile As notesdocument)
+	
+	CheckPrivatePolicyLocked_Form = False
+	Set dpdoc = session.getUserPolicySettings("", session.username,POLICYSETTINGS_DESKTOP)
+	
+	If Not dpDoc Is Nothing Then
+		If DPDoc.hasitem("$DPLocked") Then
+			Dim dplocked As Variant
+			Dim privateIndex As Variant
+			dpLocked = DPDoc.getitemvalue("$DPLocked")				
+			privateIndex = Arraygetindex(dpLocked, "ContactPrivateDefault", 5)		
+			If Not Isnull(privateIndex) Then
+				CheckPrivatePolicyLocked_Form = True
+			End If
+		End If
+	Else
+		'no policies in effect
+		Exit Function
+	End If
+	
+	
+	If CheckPrivatePolicyLocked_Form = True Then
+		
+		Dim PrivateDefaultValue As Variant
+		privateDefaultValue = dpdoc.getitemvalue("ContactPrivateDefault")
+		'reset initial value flag
+		ProfileSave  =False
+		
+		If contprofile.PrivateDefault(0) <> privateDefaultValue(0) Then
+			Call contProfile.replaceitemvalue("PrivateDefault", privateDefaultValue)
+			profileSave = True
+		End If
+		
+		'set locked value in mail db contact profile
+		'allows mail directoryProfile to be in sync for iNotes
+		If contProfile.setLockedMailValue(0) <> "1" Then
+			Call getMailDb
+			Dim mailDB As New NotesDatabase(mailServer, mailFilename)
+			If mailDb.isopen Then	
+				Set mailDirProfile = maildb.getprofiledocument("DirectoryProfile") 
+				mailPrivateDefault= mailDirProfile.getitemvalue("PrivateDefault")
+				
+				If mailPrivateDefault(0) <> privateDefaultValue(0) Then
+				'if current user is mail file owner, fix the value in mailfile contact profile
+					Set mailCalProfile = maildb.getprofiledocument("CalendarProfile")
+					If (Lcase(mailCalProfile.getitemvalue("Owner")(0)) = Lcase(session.username)) And (mailDirProfile.PrivateDefault(0) <> privateDefaultValue(0)) Then
+						Call mailDirProfile.replaceitemvalue("PrivateDefault", privateDefaultValue)
+						Call mailDirProfile.save(True,False)
+						Call contProfile.replaceitemvalue("SetLockedMailValue", "1")
+						profileSave = True
+					End If					
+				End If
+			End If
+		End If		
+		
+		If contProfile.hasitem("$PolicyInitialValueSet") Then
+			If contProfile.getitemvalue("$PolicyInitialValueSet")(0)  = "1"  Then
+				Call contProfile.replaceitemvalue("$PolicyInitialValueSet", "")							
+				ProfileSave = True
+			End If			
+		End If
+		
+		If contProfile.hasitem("$UserSetPrivateDefault") Then
+			If contProfile.getitemvalue("$UserSetPrivateDefault")(0) = "1" Then
+				Call contProfile.replaceitemvalue("$UserSetPrivateDefault", "")							
+				ProfileSave = True
+			End If			
+		End If
+		
+		If profileSave = True Then
+			Call contProfile.save(True,False)			
+		End If
+		
+		If note.isnewnote And privateDefaultValue(0) = "1" Then
+			Call note.replaceitemvalue("Confidential", "1")
+			Call note.replaceitemvalue("$DPLocked", dplocked)
+		Elseif note.isnewnote And privateDefaultValue(0) = "" Then
+			Call note.replaceitemvalue("Confidential", "")
+			Call note.replaceitemvalue("$DPLocked", dplocked)
+		Elseif Not note.isnewnote Then  'edit existing contact 
+			'determine if mark private checkbox matches policy
+			'if not, remove locking (when/if note is saved, user will be prompted if it doesn't match locked policy) 
+			If  note.Confidential(0)  = privateDefaultValue(0)  Then
+				Call note.replaceitemvalue("$DPLocked", dplocked)
+			Else
+				Call note.replaceitemvalue("$DPLocked", "")				
+			End If		
+		End If		
+	End If	
+	
+End Function
+'++LotusScript Development Environment:2:2:getMailDb:1:8
+Sub getMailDb
+	locFilename = Evaluate("@locationGetInfo([MailFilename])")
+	srvInt = Instr(locFilename(0), "!")
+	mfTot = Len(locFilename(0))
+	If srvInt <> 0 Then
+		mailServer = Left(locFilename(0), srvInt-1)
+		mailFilename = Right(locFilename(0), (mfTot-srvInt) -1)
+	Else
+		mailFilename = locFilename(0)
+		mailServer = ""
+	End If
+	
+End Sub
+'++LotusScript Development Environment:2:2:PDFormPostModeChange:1:8
+Sub PDFormPostModeChange(uidoc As notesuidocument, doc As notesdocument, dpdoc As notesdocument)
+	
+	If Not dpDoc Is Nothing Then
+		If DPDoc.hasitem("$DPLocked") Then
+			Dim dplocked As Variant
+			Dim privateIndex As Variant
+			dpLocked = DPDoc.getitemvalue("$DPLocked")
+			privateIndex = Arraygetindex(dpLocked, "ContactPrivateDefault", 5)
+			
+			policyPDvalue = dpdoc.getitemvalue("ContactPrivateDefault") 
+			Dim dplockedval As String  
+			If doc.hasitem("$DPLocked") Then  
+				dplockedVal = doc.getitemvalue("$DPLocked")(0)
+			Else
+				dplockedVal = ""
+			End If
+			
+			If Isnull(PrivateIndex) And uidoc.editmode And dplockedVal <> ""  Then 
+				'DPLocked in policy, but Private Default is not locked
+				Call doc.replaceitemvalue("$DPLocked", "")
+				Call uidoc.refresh
+			Elseif Not Isnull(PrivateIndex) And uidoc.editmode Then 
+				'editing existing contact, policy is locked, mark private value matches policy				
+				If policyPDvalue(0) = doc.getitemvalue("Confidential")(0) And Not doc.hasitem("$DPLocked") Then 
+					'lock checkbox in contact
+					Call doc.replaceitemvalue("$DPLocked", dplocked)
+					Call doc.save(True,False)
+					Call uidoc.refresh
+				End If					
+			End If
+		Elseif dplockedVal <> "" Then  
+			'if DPLocked no longer present in policy
+			Call doc.replaceitemvalue("$DPLocked", "")
+			Call uidoc.refresh
+		End If
+	Elseif doc.hasitem("$DPLocked") And doc.getitemvalue("$DPLocked")(0) <> "" Then  
+		'no longer a desktop policy, but contact is locked; must remove $DPLocked value
+		Call doc.replaceitemvalue("$DPLocked", "")  
+		Call uidoc.refresh		
+	End If
+	
+End Sub

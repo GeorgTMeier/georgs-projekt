@@ -1,0 +1,21 @@
+name: by_pg_flutter
+description: GTM Turbo DataGrid - Flutter-Version mit PostgreSQL (test2view, Buchpos, Filter nach Art).
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.0.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  postgres: ^3.5.0
+  intl: ^0.20.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true

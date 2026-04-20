@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note class='form' xmlns='http://www.lotus.com/dxl' version='12.0' maintenanceversion='2.0'
+ replicaid='C125899B00337147'>
+<noteinfo noteid='352' unid='2DA4666E85F57965852569E6004572C7' sequence='41'>
+<created><datetime>20010201T073833,67-05</datetime></created>
+<modified><datetime dst='true'>20230424T112154,71+02</datetime></modified>
+<revised><datetime>20220519T113213,46+00</datetime></revised>
+<lastaccessed><datetime dst='true'>20230424T112154,70+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20230424T112154,70+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Domino Template Development/O=Domino</name></updatedby>
+<wassignedby><name>CN=Domino Template Development/O=Domino</name></wassignedby>
+<item name='$LANGUAGE' sign='true'><text>en</text></item>
+<item name='$OpenAsCompApp' sign='true'><text>0</text></item>
+<item name='$TITLE' sign='true'><text>InteriorAdvanced|InteriorAdvanced</text></item>
+<item name='$Comment' sign='true'><text/></item>
+<item name='$FrameSet' sign='true'>
+<rawitemdata type='1'>
+7/8YAAIABgAAAAAAAAAAAAAAAAAAAAAA8P8+AEQAAAABAAAAAAABAAEAAAAAAAUAAAAAAAUAAAAA
+AAEAAgAAAAAAAQAAAAAAAAADAAEAAQDNAAIATwDw/0IAAAAAAAEAAAAAAAEAAQAAAAAABQAAAAAA
+BQAAAAAAAwABAAAAAAAFAAAAAAAAAAEAMgADAF4AAQAAAAMAAQDx/zQAEQAAAABAAAECAAEAAQAA
+AAAAAAAAAAAAAQAAAAAAAAABAP///zQBAAAKAQAAAAA09v83AAAAAAADAAMAFQAAAAAAAAAAAAAA
+AAAAAAAAAAAAAFN3aXRjaGVyRm9ybV9BZHZhbmNlZD/x/0sAEAAAAABAAQACAAEAAQAAAAAADgAA
+AAkAAQAAAAAAAABOb3Rlc05hdmlnYXRvck5vdGVzVmlldwEA////NAEAAAoBAAAAADQ/9v8qAAAA
+AAADAAcACAAAAAAAAAAAAAAAAAAAAAAAAAAAAEFkdmFuY2Vk8f+YATEAAAAAYAABAgABAAEAAAAA
+AAAAAAAAAAEAAAAAAAAAXAFcAQEAHAACAHNwAQABACAAAAAAAAAAAAAAQGQCAwAHAA4ABwAJMVMy
+UzZTAAEAIgAIAExvY2FsVHh0BQACAHNwAQAFAExvY2FsACICAwAHABAACQAJMFIyUzNTNFMAAQAc
+AAUAb25UeHQABQACAHNwAQACAG9uIgIDAAcAEgALAAkwUjFTMlMzUzRTAAEAHAAGAHNlcnZlcosA
+AAAAAAAAAADwP2sCAwAHAA4ABwAJMFIxUzJTAAEAPgAMAHNlcnZlclN0cmluZwUABQBvblR4dAAB
+AAEAIAAiAgIABQAAAAAAAAAFAAYAU2VydmVytAIiAgMABwAYABIACTBSMVMyUzNTNFM1UzZTMTBT
+AABCAAUABgBzZXJ2ZXIBAAAACgKvACoAEgAFAAgATG9jYWxUeHSuABgABQAMAHNlcnZlclN0cmlu
+Z64ABAC1AwMABwAOAAcACTBSNlM4UwAAAAIAAAABANDX4TQBAAAKAQAAAAA08f80AAAAAAAAQAEA
+AwABAAEAAAAAAAAAAAAAAAEAAAAAAAAAAQD///80AQAACgEAAAAANPb/NQAAAAAAAwAGABMAAAAA
+AAAAAAAAAAAAAAAAAAAAAABBZHZhbmNlZCBWaWV3IEZyYW1lPw==
+</rawitemdata></item>
+<item name='$Flags'><text>#4C</text></item>
+<item name='$DesignerVersion' sign='true'><text>8</text></item></note>
+

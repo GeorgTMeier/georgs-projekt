@@ -1,0 +1,95 @@
+'++LotusScript Development Environment:2:5:(Options):0:74
+Option Public
+Use "GlobalDeclarations"
+
+'++LotusScript Development Environment:2:5:(Forward):0:1
+Declare Sub ParseAddress(add As Variant, elements As Variant, whichfield As String)
+
+'++LotusScript Development Environment:2:5:(Declarations):0:10
+Dim City As Variant
+Dim State As Variant
+Dim Address As Variant
+Dim Punct As Integer
+Dim LastLine As Variant
+Dim OtherLines As Variant
+
+
+'++LotusScript Development Environment:2:2:ParseAddress:1:8
+Sub ParseAddress(add As Variant, elements As Variant, whichfield As String)
+     REM "Clear out the existing fields so that new/modified address is correct"
+	If whichfield = "B" Then
+		doc.OfficeStreetAddress=""
+		doc.OfficeCity=""
+		doc.OfficeState=""
+	End If
+	If whichfield = "H" Then
+		doc.StreetAddress=""
+		doc.City=""
+		doc.State=""
+	End If
+	
+	
+     REM " The rules to parse an address are as follows:"
+     REM " If there is only one word, assume it is the city."
+     REM " If there is more than one word and no punctuation, still assume it is the city."
+     REM " If there is more than one word and there is a comma, assume left of the comma is city, right is state or province"
+     REM " If there are two lines, assume the first line is the address and the second line is the city/state"
+     REM " If there are more than two lines, assume the last is city/state, the rest are address"
+     REM " Country and ZIP/Postal codes go into different fields."
+	
+	Punct=Instr(add,",")
+	
+	If elements(0) = 1 And Punct=0 Then
+		If whichfield = "B" Then
+			doc.OfficeCity=Trim(add)
+			Exit Sub
+		End If
+		If whichfield = "H" Then
+			doc.City=Trim(add)
+			Exit Sub
+		End If
+	End If
+	
+	If elements(0) = 1 And Punct>0 Then
+		If whichfield = "B" Then
+			doc.OfficeCity=Trim(Left(add,Punct-1))
+			doc.OfficeState=Trim(Right(add, Len(add)-Punct))
+			Exit Sub
+		End If
+		If whichfield = "H" Then
+			doc.City=Trim(Left(add,Punct-1))
+			doc.State=Trim(Right(add, Len(add)-Punct))
+			Exit Sub
+		End If
+	End If
+	
+	If elements(0) > 1 Then
+		If whichfield="B" Then
+			LastLine=Evaluate(|@Subset(@Explode(BusinessAddress;@Char(13));-1)|,doc)  
+			OtherLines=Evaluate(|@Implode(@Subset(@Explode(BusinessAddress;@Char(13));@Elements(@Explode(BusinessAddress;@Char(13)))-1);@NewLine)|,doc)
+			doc.OfficeStreetAddress=OtherLines
+			Punct=Instr(LastLine(0),",")
+			If  Punct >0 Then
+				doc.OfficeCity=Trim(Left(LastLine(0),Punct-1))
+				doc.OfficeState=Trim(Right(LastLine(0), Len(LastLine(0))-Punct))
+			Else
+				doc.OfficeCity=Trim(LastLine(0))
+			End If
+			Exit Sub
+		End If
+		If whichfield="H" Then
+			LastLine=Evaluate(|@Subset(@Explode(HomeAddress;@Char(13));-1)|,doc)
+			OtherLines=Evaluate(|@Implode(@Subset(@Explode(HomeAddress;@Char(13));@Elements(@Explode(HomeAddress;@Char(13)))-1);@NewLine)|,doc)
+			doc.StreetAddress=OtherLines
+			Punct=Instr(LastLine(0),",")
+			If  Punct >0 Then
+				doc.City=Trim(Left(LastLine(0),Punct-1))
+				doc.State=Trim(Right(LastLine(0), Len(LastLine(0))-Punct))
+			Else
+				doc.City=Trim(LastLine(0))
+			End If
+			Exit Sub
+		End If
+	End If
+	
+End Sub
